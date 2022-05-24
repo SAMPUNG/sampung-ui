@@ -1,0 +1,5 @@
+$border: lightgray;
+
+@mixin border {
+  border-color: $border;
+}

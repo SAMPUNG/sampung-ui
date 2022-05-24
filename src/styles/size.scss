@@ -1,0 +1,8 @@
+$input-height: 32px;
+
+@mixin height {
+  height: $input-height;
+}
+@mixin select {
+  min-height: $input-height;
+}

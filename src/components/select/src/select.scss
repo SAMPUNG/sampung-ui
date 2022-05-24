@@ -1,0 +1,30 @@
+@use 'src/styles/color' as color;
+@use 'src/styles/size' as size;
+
+.sam-select {
+  // @include size.select;
+  // @include color.border;
+
+  border-color: color.$border;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0px;
+  position: relative;
+
+  .results {
+    margin: 0;
+    padding: 0;
+
+    li {
+      // @include color.border;
+
+      border-color: color.$border;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 4px;
+      display: inline-block;
+      list-style: none;
+      padding: 0 8px;
+    }
+  }
+}
