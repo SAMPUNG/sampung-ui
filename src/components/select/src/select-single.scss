@@ -4,8 +4,8 @@
 
 @import 'src/styles/reset';
 
-$element: 'select';
-$subelement: 'select';
+$element: 'select-single';
+$subelement: 'selection-single';
 $modifier: 'dropdown';
 
 .#{bem.$block}-#{$element} {

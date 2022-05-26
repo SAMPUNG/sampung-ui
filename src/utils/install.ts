@@ -3,7 +3,8 @@ import type { App, Component, Plugin } from 'vue'
 const resolveName = (): string => 'SamComponent' + Math.random().toString().slice(2, 6)
 const resolveInstall = (component: Component, alias?: string): Plugin => ({
   install: (app: App): void => {
-    const name:string = alias || component?.name || resolveName()
+    const name: string = alias || component?.name || resolveName()
+    console.log(name, component)
     app.component(name, component)
   }
 })

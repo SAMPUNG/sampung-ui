@@ -1,5 +1,4 @@
 <template>
-  <label :class="colon ? 'colon' : ''" :for="name">{{ label }}</label>
   <input
     :class="status"
     :max="max"

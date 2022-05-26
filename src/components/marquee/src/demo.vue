@@ -5,17 +5,18 @@
       <sam-marquee :size="size" />
     </div>
     <!-- Controls -->
-    <sam-form class="demo-controls" name="controls">
+    <sam-form name="controls">
       <sam-fieldset legend="属性(attrs)">
-        <sam-input
-          v-model="size"
-          label="尺寸(size)"
-          :max="200"
-          :min="12"
-          name="size"
-          :step="1"
-          type="number"
-        />
+        <sam-field label="尺寸(size)" name="size">
+          <sam-input
+            v-model="size"
+            :max="200"
+            :min="12"
+            name="size"
+            :step="1"
+            type="number"
+          />
+        </sam-field>
       </sam-fieldset>
     </sam-form>
   </div>

@@ -19,11 +19,3 @@ $modifier: 'inline';
     position: relative;
   }
 }
-
-label {
-  margin-right: 8px;
-
-  &.colon::after {
-    content: ':';
-  }
-}

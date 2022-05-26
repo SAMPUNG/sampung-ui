@@ -1,0 +1,12 @@
+@use 'src/styles/bem' as bem;
+
+$element: 'playground';
+$modifier: 'disabled';
+
+.#{bem.$block}-#{$element} {
+  position: relative;
+
+  &--#{$modifier} {
+    position: relative;
+  }
+}

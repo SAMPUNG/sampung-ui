@@ -1,6 +1,7 @@
 <template>
   <form
     :action="action"
+    :autocomplete="autocomplete"
     :class="status"
     :enctype="enctype"
     :method="method"

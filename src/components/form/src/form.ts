@@ -10,6 +10,11 @@ export default defineComponent({
       required: false,
       type: String
     },
+    autocomplete: {
+      default: 'on',
+      required: false,
+      type: String
+    },
     disabled: {
       default: false,
       required: false,

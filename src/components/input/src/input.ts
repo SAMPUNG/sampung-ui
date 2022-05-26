@@ -5,20 +5,10 @@ import bem from '@/utils/bem'
 export default defineComponent({
   name: bem('input'),
   props: {
-    colon: {
-      default: true,
-      required: false,
-      type: Boolean
-    },
     inline: {
       default: false,
       required: false,
       type: Boolean
-    },
-    label: {
-      default: '',
-      required: false,
-      type: String
     },
     max: {
       default: undefined,

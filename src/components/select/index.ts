@@ -1,5 +1,5 @@
 import component from './src/select.vue'
 import resolveInstall from '@/utils/install'
 
-export const SamSelect = resolveInstall(component)
-export default SamSelect
+export const Select = resolveInstall(component)
+export default Select
