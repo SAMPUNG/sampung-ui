@@ -1,40 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-
-    <div class="demo">
-      <sam-marquee :size="25" />
-      <sam-select v-model="value" :options="options" />
-    </div>
+    <sam-demo-marquee />
+    <sam-demo-select />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import bem from '@/utils/bem'
+import SamDemoMarquee from '@/components/marquee/src/demo.vue'
+import SamDemoSelect from '@/components/select/src/demo.vue'
 
 export default defineComponent({
-  data: () => ({
-    value: [],
-    options: [
-      {
-        label: 'AA',
-        value: 'aa'
-      },
-      {
-        label: 'BB',
-        value: 'bb'
-      },
-      {
-        label: 'CC',
-        value: 'cc'
-      }
-    ]
-  })
+  name: bem('home'),
+  components: { SamDemoMarquee, SamDemoSelect }
 })
 </script>
 
-<style lang="scss" scoped>
-.demo {
-  text-align: center;
-}
-</style>
+<style lang="scss" scoped></style>

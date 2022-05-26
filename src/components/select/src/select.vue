@@ -1,16 +1,16 @@
 <template>
-  <div :class="status">
-    <input type="hidden" :value="modelValue" @change="changeHandler" />
+  <div :class="status" @click="onFocus">
+    <input type="hidden" :value="modelValue" @change="onChange" />
     <ul class="results">
       <li v-for="(item, index) in results" :key="index">{{ item }}</li>
     </ul>
   </div>
-  <teleport to="body">
-    <ul :class="[teleport, 'options']">
+  <teleport :to="teleport">
+    <ul :class="[selection, 'options']" :style="offset">
       <li
         v-for="({ label, value }, index) in options"
         :key="index"
-        @click="selectHandler(value, label)"
+        @click="onSelect(value, label)"
       >
         {{ label }}
       </li>

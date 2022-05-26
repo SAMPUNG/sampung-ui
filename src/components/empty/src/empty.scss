@@ -1,11 +1,10 @@
 @use 'src/styles/bem' as bem;
 
-$element: 'form';
-$modifier: 'inline';
+$element: 'empty';
+$modifier: 'none';
 
 .#{bem.$block}-#{$element} {
   position: relative;
-  text-align: left;
 
   &--#{$modifier} {
     position: relative;

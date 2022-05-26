@@ -1,3 +1,15 @@
-.sam-fieldset {
+@use 'src/styles/bem' as bem;
+@use 'src/styles/color' as color;
+@use 'src/styles/size' as size;
+
+@import 'src/styles/reset';
+
+$element: 'fieldset';
+$modifier: 'dropdown';
+
+.#{bem.$block}-#{$element} {
+  border-color: color.$border;
+  border-width: size.$border;
   position: relative;
+  text-align: left;
 }

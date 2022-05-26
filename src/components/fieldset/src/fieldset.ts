@@ -10,17 +10,17 @@ export default defineComponent({
       type: Boolean
     },
     form: {
-      default: '',
+      default: undefined,
       required: false,
       type: String
     },
     legend: {
-      default: '',
+      default: undefined,
       required: false,
       type: String
     },
     name: {
-      default: '',
+      default: undefined,
       required: false,
       type: String
     },

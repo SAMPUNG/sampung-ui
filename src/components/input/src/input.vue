@@ -1,9 +1,12 @@
 <template>
-  <label :for="name">{{ label }}</label>
+  <label :class="colon ? 'colon' : ''" :for="name">{{ label }}</label>
   <input
     :class="status"
+    :max="max"
+    :min="min"
     :name="name"
     :placeholder="placeholder"
+    :step="step"
     :type="type"
     :value="modelValue"
     @input="inputHandler"

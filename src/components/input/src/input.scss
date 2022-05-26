@@ -1,3 +1,29 @@
-.sam-form {
+@use 'src/styles/bem' as bem;
+@use 'src/styles/color' as color;
+@use 'src/styles/size' as size;
+
+$element: 'input';
+$modifier: 'inline';
+
+.#{bem.$block}-#{$element} {
+  border-color: color.$border;
+  border-style: solid;
+  border-width: size.$border;
+  box-sizing: border-box;
+  height: size.$input;
+  padding: 0 8px;
   position: relative;
+  text-align: left;
+
+  &--#{$modifier} {
+    position: relative;
+  }
+}
+
+label {
+  margin-right: 8px;
+
+  &.colon::after {
+    content: ':';
+  }
 }

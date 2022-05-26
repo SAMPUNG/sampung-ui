@@ -1,0 +1,16 @@
+.demo {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  padding: 20px;
+  width: 1200px;
+
+  &-playground {
+    width: 50%;
+  }
+  &-controls {
+    width: 50%;
+  }
+}

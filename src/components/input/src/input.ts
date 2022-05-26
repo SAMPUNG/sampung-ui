@@ -5,10 +5,30 @@ import bem from '@/utils/bem'
 export default defineComponent({
   name: bem('input'),
   props: {
+    colon: {
+      default: true,
+      required: false,
+      type: Boolean
+    },
+    inline: {
+      default: false,
+      required: false,
+      type: Boolean
+    },
     label: {
       default: '',
       required: false,
       type: String
+    },
+    max: {
+      default: undefined,
+      required: false,
+      type: Number
+    },
+    min: {
+      default: undefined,
+      required: false,
+      type: Number
     },
     modelValue: {
       default: undefined,
@@ -25,18 +45,20 @@ export default defineComponent({
       required: false,
       type: String
     },
+    step: {
+      default: undefined,
+      required: false,
+      type: Number
+    },
     type: {
       default: 'text',
       required: false,
       type: String
     },
   },
-  data: () => ({
-    dropdown: false as boolean
-  }),
   computed: {
     status() {
-      return bem('select', this.dropdown? 'dropdown' : '')
+      return bem('input', this.inline ? 'inline' : '')
     },
   },
   methods: {

@@ -1,8 +1,10 @@
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig(() => ({
+  assetsInclude: ['**/*.html'],
   base: '/',
   plugins: [
     legacy({
@@ -12,7 +14,7 @@ export default defineConfig(() => ({
   ],
   resolve: {
     alias: {
-      '@': 'src'
+      '@': resolve(__dirname, 'src')
     }
   }
 }))

@@ -1,3 +1,2 @@
-import bem from './bem'
-
-export { bem }
+export * from './bem'
+export * from './install'

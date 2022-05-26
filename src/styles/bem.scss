@@ -1,0 +1,11 @@
+$block: 'sam';
+
+@mixin bem($element, $modifier: '') {
+  .#{$block}-#{$element} {
+    @if $midifier != '' {
+      &--#{$modifier} {
+        position: relative;
+      }
+    }
+  }
+}

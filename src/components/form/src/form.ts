@@ -6,7 +6,7 @@ export default defineComponent({
   name: bem('form'),
   props: {
     action: {
-      default: '',
+      default: undefined,
       required: false,
       type: String
     },
@@ -26,12 +26,12 @@ export default defineComponent({
       type: String
     },
     name: {
-      default: '',
+      default: undefined,
       required: false,
       type: String
     },
     target: {
-      default: '',
+      default: undefined,
       required: false,
       type: String
     }

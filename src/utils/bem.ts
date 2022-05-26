@@ -1,8 +1,13 @@
-const bem = (element: string, modifier?: string, block = 'sam'): string => {
+const block = 'sam' as string
+
+const bem = (element: string, modifier?: string): string => {
+  const base = `${block}-${element}`
+  const results = [base]
   if (modifier) {
-    return `${block}-${element}-${modifier}`
+    results.push(`${base}--${modifier}`)
   }
-  return `${block}-${element}`
+  return results.join(' ')
 }
 
 export default bem
+export { bem }
