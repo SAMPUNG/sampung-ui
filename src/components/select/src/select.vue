@@ -9,4 +9,4 @@
   />
 </template>
 
-<script lang="ts" src="./select.ts"></script>
+<script lang="ts" src="./select.component.ts"></script>

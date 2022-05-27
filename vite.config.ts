@@ -1,10 +1,12 @@
+/// <reference types="vitest" />
+
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig(() => ({
-  base: '/',
+  base: './',
   plugins: [
     legacy({
       targets: ['defaults', 'not IE 11']
@@ -15,5 +17,9 @@ export default defineConfig(() => ({
     alias: {
       '@': resolve(__dirname, 'src')
     }
+  },
+  test: {
+    reporters: 'default',
+    root: './'
   }
 }))

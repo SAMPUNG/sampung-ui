@@ -1,15 +1,15 @@
 @use 'src/styles/bem' as bem;
 
 $element: 'field';
-// $modifier: 'invalid';
+$modifier: 'empty';
 
 .#{bem.$block}-#{$element} {
   position: relative;
   text-align: left;
 
-  // &--#{invalid} {
-  //   position: relative;
-  // }
+  &--#{invalid} {
+    position: relative;
+  }
 
   label {
     margin-right: 8px;

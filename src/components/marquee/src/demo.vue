@@ -7,7 +7,7 @@
     <!-- Controls -->
     <sam-form name="controls">
       <sam-fieldset legend="属性(attrs)">
-        <sam-field label="尺寸(size)" name="size">
+        <sam-field legend="尺寸(size)" name="size">
           <sam-input
             v-model="size"
             :max="200"

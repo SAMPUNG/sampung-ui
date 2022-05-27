@@ -1,19 +1,11 @@
 import { defineEmits, defineProps, ref } from 'vue'
 import type { Ref } from 'vue'
 import type { InputValue } from '@/types/input'
-import type { SelectOption } from '@/types/select'
+import type { CommonProps, CommonEmits } from './select.types'
 
-const props = defineProps<{
-  multiple?: boolean
-  name?: string
-  options?: SelectOption[]
-}>()
+const props = defineProps<CommonProps>()
 
-const emit = defineEmits<{
-  (event: 'blur', name?: string): void
-  (event: 'foucs', name?: string): void
-  (event: 'select', value: unknown, label: string, name?: string): void
-}>()
+const emit = defineEmits<CommonEmits>()
 
 const dropdown: Ref<boolean> = ref(false)
 const results: Ref<Array<string>> = ref([])
@@ -41,5 +33,3 @@ const updateResults = (label: string): void => {
     results.value.splice(index, 1)
   }
 }
-
-type SelectOptions = Array<SelectOption>

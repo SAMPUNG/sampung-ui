@@ -11,7 +11,7 @@
     <!-- Controls -->
     <sam-form name="controls">
       <sam-fieldset legend="属性(attrs)">
-        <sam-field label="占位符(placeholder)" name="placeholder">
+        <sam-field legend="占位符(placeholder)" name="placeholder">
           <sam-input
             v-model="placeholder"
             label="占位符(placeholder)"
