@@ -1,9 +1,7 @@
-@use 'src/styles/bem' as bem;
-
 $element: 'empty';
 $modifier: 'none';
 
-.#{bem.$block}-#{$element} {
+.#{$block}-#{$element} {
   position: relative;
 
   &--#{$modifier} {
