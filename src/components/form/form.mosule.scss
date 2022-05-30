@@ -1,0 +1,11 @@
+$element: 'form';
+$modifier: 'inline';
+
+.#{bem.$block}-#{$element} {
+  position: relative;
+  text-align: left;
+
+  &--#{$modifier} {
+    position: relative;
+  }
+}
