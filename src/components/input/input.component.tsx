@@ -1,7 +1,6 @@
 import { defineComponent, defineEmits, defineProps } from 'vue'
-import { InputValue } from '@/types/input'
 import bem from '@/utils/bem'
-import type { InputEmits, InputProps } from './input.interface'
+import type { InputEmits, InputProps, InputValue } from './input.interface'
 import style from './input.module.scss'
 
 const name = bem('input')
