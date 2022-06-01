@@ -23,7 +23,7 @@ export default defineComponent({
   name,
   setup() {
     const options = ref(defaultTabs)
-    const selected: Ref<string> = ref('')
+    const selected: Ref<string> = ref(defaultTabs[0].name)
 
     return {
       options,

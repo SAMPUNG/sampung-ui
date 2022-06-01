@@ -1,21 +1,33 @@
 import { defineComponent, defineEmits, defineProps, ref, withDefaults } from 'vue'
-import type { Ref } from 'vue'
+import type { PropType, Ref } from 'vue'
 import bem from '@/utils/bem'
-import type { IndicatorOffset, TabOption, TabsEmits, TabsProps } from './tabs.interface'
+import type { IndicatorOffset, TabOption, TabsEmits, TabsProps, TabsValue } from './tabs.interface'
 import style from './tabs.module.scss'
 
 const name = bem('tabs')
 
 export default defineComponent({
   name,
-  setup(defaultProps) {
+  props: {
+    modelValue: {
+      default: undefined
+    },
+    options: {
+      default: () => [],
+      type: Array as PropType<TabOption[]>
+    }
+  },
+  setup(props: TabsProps) {
     const dropdown: Ref<boolean> = ref(false)
     const emits = defineEmits<TabsEmits>()
     const offset: Ref<IndicatorOffset> = ref({
       transform: 'translateX(0px)',
       width: '32px',
     })
-    const props = withDefaults(defineProps<TabsProps>(), defaultProps)
+    // const props = withDefaults(defineProps<TabsProps>(), {
+    //   modelValue: undefined,
+    //   options: () => []
+    // })
 
     const resolveSelected = (item: TabOption): string => {
       return item.name === props.modelValue ? 'selected' : '';
@@ -36,8 +48,8 @@ export default defineComponent({
       emits('update:modelValue', dataset.name);
     }
     return {
-      offset,
       ...props,
+      offset,
       resolveSelected,
       onDropdown,
       onSelect
