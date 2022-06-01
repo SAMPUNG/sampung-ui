@@ -1,4 +1,4 @@
-import component from './src/empty.vue'
+import component from './empty.component'
 import resolveInstall from '@/utils/install'
 
 export const Empty = resolveInstall(component)

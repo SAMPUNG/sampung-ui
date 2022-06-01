@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import bem from '@/utils/bem'
-import style from './empty.module.scss'
+import style from './mosaic.module.scss'
 
 const name = bem('mosaic')
 

@@ -1,5 +1,5 @@
 export type PlaygroundControl = {
-  label: string
+  legend: string
   name: string,
   type: string,
   value: unknown

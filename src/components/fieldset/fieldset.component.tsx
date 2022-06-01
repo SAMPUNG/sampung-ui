@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import bem from '@/utils/bem'
-import style from './fielsset.module.scss'
+import style from './fieldset.module.scss'
 
 const name = bem('fieldset')
 

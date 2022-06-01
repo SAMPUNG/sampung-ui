@@ -1,4 +1,4 @@
-import component from './playground.vue'
+import component from './palyground.component'
 import resolveInstall from '@/utils/install'
 
 export const Playground = resolveInstall(component)

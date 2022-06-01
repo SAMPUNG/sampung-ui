@@ -1,12 +1,12 @@
 export const controls = [
   {
-    label: '可多选',
+    legend: '可多选',
     name: 'multiple',
     type: 'boolean',
     value: false
   },
   {
-    label: '可选项',
+    legend: '可选项',
     name: 'options',
     type: 'array',
     value: [
@@ -41,7 +41,7 @@ export const controls = [
     ]
   },
   {
-    label: '占位符',
+    legend: '占位符',
     name: 'placeholder',
     type: 'string',
     value: '请选择……'

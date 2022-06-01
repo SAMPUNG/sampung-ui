@@ -3,7 +3,7 @@ import type { Ref } from 'vue'
 import bem from '@/utils/bem'
 import type { FormEmits, FormProps } from './form.interface'
 import { model } from './form.provide'
-import style from './empty.module.scss'
+import style from './form.module.scss'
 
 const name = bem('marquee')
 

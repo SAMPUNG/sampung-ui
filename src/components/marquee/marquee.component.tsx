@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { Style } from '@/types/component'
 import bem from '@/utils/bem'
-import style from './empty.module.scss'
+import style from './marquee.module.scss'
 
 const name = bem('marquee')
 

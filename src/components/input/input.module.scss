@@ -2,10 +2,7 @@
 @use 'src/styles/color' as color;
 @use 'src/styles/size' as size;
 
-$element: 'input';
-$modifier: 'inline';
-
-.#{bem.$block}-#{$element} {
+.input {
   border-color: color.$border;
   border-style: solid;
   border-width: size.$border;
@@ -14,8 +11,4 @@ $modifier: 'inline';
   padding: 0 8px;
   position: relative;
   text-align: left;
-
-  &--#{$modifier} {
-    position: relative;
-  }
 }

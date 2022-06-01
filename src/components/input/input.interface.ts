@@ -9,7 +9,7 @@ export declare type InputProps = {
   max?: number
   min?: number
   modelValue: InputValue
-  name ?: string,
+  name?: string,
   placeholder ?: string
   step?: number
   type?: InputType
