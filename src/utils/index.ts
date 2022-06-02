@@ -1,2 +1,2 @@
-export * from './bem'
 export * from './install'
+export * from './namespace'

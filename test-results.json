@@ -1,0 +1,177 @@
+{
+  "numTotalTestSuites": 7,
+  "numPassedTestSuites": 7,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 13,
+  "numPassedTests": 12,
+  "numFailedTests": 1,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "startTime": 1654139305232,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            ""
+          ],
+          "fullName": " 测试通过",
+          "status": "passed",
+          "title": "测试通过",
+          "duration": 2,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1654139306271,
+      "endTime": 1654139306273,
+      "status": "passed",
+      "message": "",
+      "name": "D:/220507_npm/sampung-ui/src/components/tabs/select.spec.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Create Namespace"
+          ],
+          "fullName": " Create Namespace Get block",
+          "status": "passed",
+          "title": "Get block",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Create Namespace"
+          ],
+          "fullName": " Create Namespace Get element",
+          "status": "passed",
+          "title": "Get element",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Create Namespace"
+          ],
+          "fullName": " Create Namespace Get name",
+          "status": "passed",
+          "title": "Get name",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Create Namespace"
+          ],
+          "fullName": " Create Namespace Get history",
+          "status": "passed",
+          "title": "Get history",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Resolve Bem with ([test])"
+          ],
+          "fullName": " Resolve Bem with ([test]) Resolve Bem",
+          "status": "failed",
+          "title": "Resolve Bem",
+          "duration": 3,
+          "failureMessages": [
+            "expected 'sam-sampung sam-sampung--test' to be 'sam-sampung--test' // Object.is equality"
+          ]
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Resolve Bem with ([test])"
+          ],
+          "fullName": " Resolve Bem with ([test]) Get history",
+          "status": "passed",
+          "title": "Get history",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Resolve Bem with ([disabled], button)"
+          ],
+          "fullName": " Resolve Bem with ([disabled], button) Resolve Bem",
+          "status": "passed",
+          "title": "Resolve Bem",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Resolve Bem with ([disabled], button)"
+          ],
+          "fullName": " Resolve Bem with ([disabled], button) Get history",
+          "status": "passed",
+          "title": "Get history",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Resolve Bem with ([disabled, loading], button)"
+          ],
+          "fullName": " Resolve Bem with ([disabled, loading], button) Resolve Bem",
+          "status": "passed",
+          "title": "Resolve Bem",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Resolve Bem with ([disabled, loading], button)"
+          ],
+          "fullName": " Resolve Bem with ([disabled, loading], button) Get history",
+          "status": "passed",
+          "title": "Get history",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Resolve Bem with ([], button)"
+          ],
+          "fullName": " Resolve Bem with ([], button) Resolve Bem",
+          "status": "passed",
+          "title": "Resolve Bem",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Resolve Bem with ([], button)"
+          ],
+          "fullName": " Resolve Bem with ([], button) Get history",
+          "status": "passed",
+          "title": "Get history",
+          "duration": 1,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1654139422839,
+      "endTime": 1654139422851,
+      "status": "failed",
+      "message": "",
+      "name": "D:/220507_npm/sampung-ui/tests/namespace.ts"
+    }
+  ]
+}

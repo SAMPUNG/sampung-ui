@@ -31,7 +31,9 @@ export default defineConfig(() => ({
     }
   },
   test: {
-    reporters: 'default',
+    include: ['src/**/*.spec.{ts,tsx}', 'tests/**/*.spec.ts'],
+    outputFile: 'test-results.json',
+    reporters: 'json',
     root: './'
   }
 }))

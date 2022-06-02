@@ -1,13 +1,13 @@
-import { defineComponent, defineEmits, defineProps, ref, withDefaults } from 'vue'
+import { defineComponent, defineEmits, ref } from 'vue'
 import type { PropType, Ref } from 'vue'
-import bem from '@/utils/bem'
+import Namespace from '@/utils/namespace'
 import type { IndicatorOffset, TabOption, TabsEmits, TabsProps, TabsValue } from './tabs.interface'
 import style from './tabs.module.scss'
 
-const name = bem('tabs')
+const tabs = new Namespace('tabs')
 
 export default defineComponent({
-  name,
+  name: tabs.name,
   props: {
     modelValue: {
       default: undefined
@@ -17,6 +17,9 @@ export default defineComponent({
       type: Array as PropType<TabOption[]>
     }
   },
+  emits: {
+    'update:modelValue' () {}
+  },
   setup(props: TabsProps) {
     const dropdown: Ref<boolean> = ref(false)
     const emits = defineEmits<TabsEmits>()
@@ -24,15 +27,10 @@ export default defineComponent({
       transform: 'translateX(0px)',
       width: '32px',
     })
-    // const props = withDefaults(defineProps<TabsProps>(), {
-    //   modelValue: undefined,
-    //   options: () => []
-    // })
 
     const resolveSelected = (item: TabOption): string => {
       return item.name === props.modelValue ? 'selected' : '';
     }
-
 
     const onDropdown = (): void => {
       dropdown.value = true
@@ -57,7 +55,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={style.tabs}>
+      <div class={[style.tabs, tabs.bem([])]}>
         <ul class={style['tab-list']}>
           {
             this.options?.map(item => (
