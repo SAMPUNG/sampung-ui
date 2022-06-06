@@ -1,6 +1,6 @@
 import { defineComponent, ref, watch } from 'vue'
 import type { PropType } from 'vue'
-import { verifyRegular } from '@/utils/data'
+import { resolveUniqueId, verifyRegular } from '@/utils/data'
 import Namespace from '@/utils/namespace'
 import type { SelectOption, SelectOptionRecord, SelectProps, SelectValue } from './select.interface'
 
@@ -35,11 +35,12 @@ export default defineComponent({
     }
   },
   setup(props: SelectProps, context) {
+    const id = ref<string>(resolveUniqueId())
     const list = ref<HTMLElement | null>(null)
     const selected = ref<SelectValue>(props.modelValue)
 
     const onSelect = (option: SelectOption, target: HTMLLIElement): void => {
-      const name = resolveName(option)
+      const name: SelectValue = resolveName(option)
       selected.value = name
 
       context.emit('change', name)
@@ -74,6 +75,7 @@ export default defineComponent({
         console.log('select select :>:> ', name, index)
         if (index !== -1) {
           const target: Element | undefined = list.value?.children[index]
+          console.dir(list)
           if (target !== undefined) {
             onSelect(props.options[index], target as HTMLLIElement)
           }
@@ -88,8 +90,10 @@ export default defineComponent({
     })
 
     return {
+      id,
       onSelect,
       resolveLegend,
+      resolveName,
       resolveSelected,
       selected,
       selectOption,
@@ -97,11 +101,12 @@ export default defineComponent({
   },
   render() {
     return (
-      <ul class={select.bem([])} ref="list">
+      <ul class={select.bem()} id={this.id}>
         {
           this.options.map(item => (
             <li
-              class={[select.bem([], 'item'), this.resolveSelected(item)]}
+              class={[select.bem('item'), this.resolveSelected(item)]}
+              data-name={this.resolveName(item)}
               onClick={(event: Event) => this.onSelect(item, event.target as HTMLLIElement)}
             >
               <span>{this.resolveLegend(item)}</span>

@@ -15,11 +15,19 @@ export default class Namespace {
     this.name = this.resolveBem(element)
   }
 
-  bem (modifiers: string[], offspring?: string): string {
+  bem (): string
+  bem (offspring: string): string
+  bem (modifiers: string[]): string
+  bem (offspring: string, modifiers: string[]): string
+
+  bem(a?: string | string[], b?: string[]): string {
+    const offspring = typeof a === 'string' ? a : undefined
+    const modifiers = Array.isArray(a) ? a : b
+
     const element = this.resolveElement(offspring)
     const results: string[] = [this.resolveBem(element)]
 
-    modifiers.forEach(modifier => {
+    modifiers?.forEach(modifier => {
       results.push(this.resolveBem(element, modifier))
     })
 

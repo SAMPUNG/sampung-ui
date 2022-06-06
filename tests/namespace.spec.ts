@@ -47,10 +47,10 @@ describe('Resolve Bem with ([test])', () => {
 })
 
 
-describe('Resolve Bem with ([disabled], button)', () => {
+describe('Resolve Bem with (button, [disabled])', () => {
 
   it('Resolve Bem', () => {
-    expect(sampung.bem(['disabled'], 'button')).toBe('sam-sampung-button sam-sampung-button--disabled')
+    expect(sampung.bem('button', ['disabled'])).toBe('sam-sampung-button sam-sampung-button--disabled')
   })
 
   it('Get history', () => {
@@ -65,10 +65,10 @@ describe('Resolve Bem with ([disabled], button)', () => {
 })
 
 
-describe('Resolve Bem with ([disabled, loading], button)', () => {
+describe('Resolve Bem with (button, [disabled, loading])', () => {
 
   it('Resolve Bem', () => {
-    expect(sampung.bem(['disabled', 'loading'], 'button')).toBe('sam-sampung-button sam-sampung-button--disabled sam-sampung-button--loading')
+    expect(sampung.bem('button', ['disabled', 'loading'])).toBe('sam-sampung-button sam-sampung-button--disabled sam-sampung-button--loading')
   })
 
   it('Get history', () => {
@@ -88,10 +88,10 @@ describe('Resolve Bem with ([disabled, loading], button)', () => {
 })
 
 
-describe('Resolve Bem with ([], button)', () => {
+describe('Resolve Bem with (button)', () => {
 
   it('Resolve Bem', () => {
-    expect(sampung.bem([], 'button')).toBe('sam-sampung-button')
+    expect(sampung.bem('button')).toBe('sam-sampung-button')
   })
 
   it('Get history', () => {
