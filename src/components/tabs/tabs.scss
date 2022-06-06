@@ -1,0 +1,62 @@
+.sam-tabs {
+  border-bottom: 1px solid #eee;
+  box-shadow: 0px 0px 5px #eee;
+  height: 48px;
+  margin: 0 0 15px 0;
+  position: relative;
+  text-align: left;
+  width: 100%;
+
+  &-list {
+    display: inline-block;
+    height: 100%;
+    padding: 0 0 0 8px;
+
+    &-item {
+      cursor: pointer;
+      display: inline-block;
+      font-size: 14px;
+      font-family: Microsoft YaHei;
+      line-height: 19px;
+      height: 100%;
+      padding: 15px 0 14px 0;
+    
+      &:not(:first-child) {
+        margin: 0 0 0 32px;
+      }
+      &:hover {
+        color: #027aff;
+      }
+      &.selected {
+        color: #027aff;
+        cursor: text;
+      }
+      & > span {
+        pointer-events: none;
+      }
+    }
+  }
+
+  &-controls {
+    float: right;
+    padding: 0 8px;
+    line-height: 48px;
+  
+    &-more {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+  }
+  
+  &-indicator {
+    background: #027aff;
+    bottom: 0px;
+    height: 2px;
+    position: absolute;
+    transition-duration: 0.2s;
+    width: 32px;
+  }
+}

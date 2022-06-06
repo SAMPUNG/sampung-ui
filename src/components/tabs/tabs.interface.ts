@@ -1,3 +1,5 @@
+import type { SelectOptionRecord, SelectValue } from '../select/select.interface'
+
 export declare type ControlPayload = Record<string, unknown>
 
 export declare type IndicatorOffset = {
@@ -7,18 +9,16 @@ export declare type IndicatorOffset = {
 
 export declare type TabsEmits = {
   (event: 'control', payload: ControlPayload): void
-  (event: 'update:modelValue', value: TabsValue): void
+  (event: 'update:modelValue', value: string): void
 }
 
 export declare type TabsProps = {
   modelValue: TabsValue
-  options: TabOption[]
+  options: TabsOption[]
 }
 
-export declare type TabOption = {
-  icon?: string
-  name: string
-  title: string
-}
+export declare type TabsOptionRecord = SelectOptionRecord
 
-export declare type TabsValue = string | number | undefined
+export declare type TabsOption = TabsValue[] | TabsOptionRecord[]
+
+export declare type TabsValue = SelectValue

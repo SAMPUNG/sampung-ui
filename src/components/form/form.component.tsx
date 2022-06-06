@@ -5,7 +5,7 @@ import type { FormEmits, FormProps } from './form.interface'
 import { model } from './form.provide'
 import style from './form.module.scss'
 
-const name = bem('marquee')
+const name = bem('form')
 
 export default defineComponent({
   name,

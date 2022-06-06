@@ -1,77 +1,94 @@
-import { defineComponent, defineEmits, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import type { PropType, Ref } from 'vue'
 import Namespace from '@/utils/namespace'
-import type { IndicatorOffset, TabOption, TabsEmits, TabsProps, TabsValue } from './tabs.interface'
-import style from './tabs.module.scss'
+import type { IndicatorOffset, TabsOption, TabsProps, TabsValue } from './tabs.interface'
+import TabsSelect from '../select/select.component'
+
+import './tabs.scss'
 
 const tabs = new Namespace('tabs')
 
 export default defineComponent({
   name: tabs.name,
+  components: { TabsSelect },
   props: {
     modelValue: {
-      default: undefined
+      default: ''
     },
     options: {
       default: () => [],
-      type: Array as PropType<TabOption[]>
+      type: Array as PropType<TabsOption[]>
     }
   },
   emits: {
-    'update:modelValue' () {}
+    'change' (value: TabsValue) {
+      return value
+    },
+    'update:modelValue' (value: TabsValue) {
+      return value
+    }
   },
-  setup(props: TabsProps) {
+  setup(props: TabsProps, context) {
     const dropdown: Ref<boolean> = ref(false)
-    const emits = defineEmits<TabsEmits>()
     const offset: Ref<IndicatorOffset> = ref({
-      transform: 'translateX(0px)',
+      transform: 'translateX(8px)',
       width: '32px',
     })
+    const select = ref<typeof TabsSelect | null>(null)
+    const selected = ref<TabsValue>(props.modelValue)
 
-    const resolveSelected = (item: TabOption): string => {
-      return item.name === props.modelValue ? 'selected' : '';
+    const onChange = (value: TabsValue) => {
+      context.emit('change', value)
+      console.log('tabs on change :>:> ', value, props.modelValue, selected.value)
     }
 
     const onDropdown = (): void => {
       dropdown.value = true
     }
 
-    const onSelect = (event: MouseEvent): void => {
-      const target = event.target as HTMLLIElement
-      const dataset: DOMStringMap = target.dataset
-
+    const onSelect = (target: HTMLLIElement): void => {
       offset.value.transform = `translateX(${target.offsetLeft}px)`;
       offset.value.width = `${target.clientWidth}px`;
-
-      emits('update:modelValue', dataset.name);
     }
+
+    const selectTab = (name: TabsValue): void => {
+      console.log('tab select :>:> ', name)
+      select.value?.selectOption(name)
+    }
+
+    watch(() => props.modelValue, selectTab)
+
+    context.expose({
+      selectTab
+    })
+
     return {
-      ...props,
       offset,
-      resolveSelected,
+      onChange,
       onDropdown,
-      onSelect
+      onSelect,
+      select,
+      selectTab,
     }
   },
   render() {
     return (
-      <div class={[style.tabs, tabs.bem([])]}>
-        <ul class={style['tab-list']}>
-          {
-            this.options?.map(item => (
-              <li
-                class={[style['tab-item'], this.resolveSelected(item)]}
-                data-name={item.name}
-                onClick={this.onSelect}
-              >
-                <span>{item.title}</span>
-              </li>
-            ))
-          }
-        </ul>
-        <div class={style['tabs-controls']} onClick={this.onDropdown}></div>
-        <div class={style['tabs-indicator']} style={this.offset} />
+      <div class={[tabs.bem([])]}>
+        <tabs-select
+          vModel={this.select}
+          options={this.options}
+          onChange={this.onChange}
+          onSelect={this.onSelect}
+          ref="select" 
+        />
+        <div class={tabs.bem([], 'controls')} onClick={this.onDropdown}>
+          <button class={tabs.bem([], 'controls-more')}>⋯</button>
+        </div>
+        <div class={tabs.bem([], 'indicator')} style={this.offset} />
       </div>
     )
+  },
+  mounted() {
+    this.selectTab(this.modelValue)
   }
 })

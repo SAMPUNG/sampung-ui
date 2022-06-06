@@ -1,6 +1,6 @@
 import { defineEmits, defineProps, ref } from 'vue'
 import type { Ref } from 'vue'
-import type { InputValue } from '@/types/input'
+import type { SelectValue } from './select.interface'
 import type { CommonProps, CommonEmits } from './select.interface'
 
 const props = defineProps<CommonProps>()
@@ -20,7 +20,7 @@ const onFocus = (): void => {
   emit('foucs', props.name)
 }
 
-const onSelect = (value: InputValue, label: string): void => {
+const onSelect = (value: SelectValue, label: string): void => {
   updateResults(label)
   emit('select', value, label, props.name)
 }

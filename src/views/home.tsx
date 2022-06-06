@@ -6,16 +6,16 @@ const name = bem('home')
 
 const defaultTabs = [
   {
+    legend: 'Tab A',
     name: 'a',
-    title: 'Tab A'
   },
   {
+    legend: 'Tab B',
     name: 'b',
-    title: 'Tab B'
   },
   {
+    legend: 'Tab C',
     name: 'c',
-    title: 'Tab C'
   }
 ]
 
@@ -23,18 +23,25 @@ export default defineComponent({
   name,
   setup() {
     const options = ref(defaultTabs)
-    const selected: Ref<string> = ref(defaultTabs[0].name)
+    const selected: Ref<string> = ref(defaultTabs[1].name)
+
+    const onChange = (value: string): void => {
+      console.log('home on change :>:> ', value, selected.value)
+    }
 
     return {
       options,
-      selected
+      selected,
+      onChange
     }
   },
   render() {
     return (
       <div class="home">
+        <sam-tabs vModel={this.selected} options={this.options} onChange={this.onChange} />
         <span>hello, world</span>
-        <sam-tabs vModel={this.selected} options={this.options} />
+        <br />
+        <span>{this.selected}</span>
       </div>
     )
   }

@@ -1,49 +1,117 @@
-import { computed, defineComponent, defineEmits, withDefaults } from "vue";
-import type { ComputedRef } from "vue";
-import bem from '@/utils/bem'
-import SelectMultiple from './select-multiple.component'
-import SelectSingle from './select-single.component'
-import { SelectEmits, SelectProps, SelectValue } from './select.interface'
+import { defineComponent, ref, watch } from 'vue'
+import type { PropType } from 'vue'
+import { verifyRegular } from '@/utils/data'
+import Namespace from '@/utils/namespace'
+import type { SelectOption, SelectOptionRecord, SelectProps, SelectValue } from './select.interface'
 
-const name = bem('select')
+import './select.scss'
+
+const select = new Namespace('select')
+
+export const SelectCommonProps = {
+  modelValue: {
+    default: undefined,
+    type: [String, Number, Boolean, undefined] as PropType<SelectValue>,
+    validator: verifyRegular
+  },
+  options: {
+    default: () => [],
+    type: Array as PropType<SelectOption[]>
+  }
+}
 
 export default defineComponent({
-  name,
-  components: {
-    SelectMultiple,
-    SelectSingle
+  name: select.name,
+  props: SelectCommonProps,
+  emits: {
+    'change' (value: SelectValue) {
+      return value
+    },
+    'select' (target: HTMLLIElement) {
+      return target
+    },
+    'update:modelValue' (value: SelectValue) {
+      return value
+    }
   },
-  setup() {
-    const emits = defineEmits<SelectEmits>()
-    const props = withDefaults(defineProps<SelectProps>(), {
-      multiple: false,
-      placeholder: '请选择……',
-      teleport: 'body'
-    })
-    const target: ComputedRef<string> = computed(() => props.multiple ? 'select-multiple' : `select-single`)
+  setup(props: SelectProps, context) {
+    const list = ref<HTMLElement | null>(null)
+    const selected = ref<SelectValue>(props.modelValue)
 
-    const onChange = (value: SelectValue): void => {
-      emits('update:modelValue', value)
+    const onSelect = (option: SelectOption, target: HTMLLIElement): void => {
+      const name = resolveName(option)
+      selected.value = name
+
+      context.emit('change', name)
+      context.emit('select', target)
+      context.emit('update:modelValue', name);
+      console.log('select on select | change :>:> ', name, props.modelValue, selected.value)
     }
-    const switchMode = (): void => {
-      emits('update:modelValue', props.multiple ? [] : undefined)
+
+    const resolveLegend = (item: SelectOption): SelectValue => {
+      if (typeof item === 'object') {
+        return (item as SelectOptionRecord).legend
+      }
+      return item as SelectValue;
     }
+
+    const resolveName = (item: SelectOption): SelectValue => {
+      if (typeof item === 'object') {
+        return (item as SelectOptionRecord).name
+      }
+      return item as SelectValue;
+    }
+
+    const resolveSelected = (item: SelectOption): SelectValue => {
+      return resolveName(item) === selected.value ? 'selected' : '';
+    }
+
+    const selectOption = (name: SelectValue): void => {
+      if (verifyRegular(name)) {
+        const index: number = props.options.findIndex((item: SelectOption) => {
+          return resolveName(item) === name
+        })
+        console.log('select select :>:> ', name, index)
+        if (index !== -1) {
+          const target: Element | undefined = list.value?.children[index]
+          if (target !== undefined) {
+            onSelect(props.options[index], target as HTMLLIElement)
+          }
+        }
+      }
+    }
+
+    watch(() => props.modelValue, selectOption)
+
+    context.expose({
+      selectOption
+    })
 
     return {
-      ...props,
-      target
+      onSelect,
+      resolveLegend,
+      resolveSelected,
+      selected,
+      selectOption,
     }
   },
   render() {
     return (
-      <component
-        vModel={this.modelValue}
-        is={this.target}
-        options={this.options}
-        placeholder={this.placeholder}
-        teleport={this.teleport}
-        onChange={this.onChange}
-      />
+      <ul class={select.bem([])} ref="list">
+        {
+          this.options.map(item => (
+            <li
+              class={[select.bem([], 'item'), this.resolveSelected(item)]}
+              onClick={(event: Event) => this.onSelect(item, event.target as HTMLLIElement)}
+            >
+              <span>{this.resolveLegend(item)}</span>
+            </li>
+          ))
+        }
+      </ul>
     )
+  },
+  mounted() {
+    this.selectOption(this.modelValue)
   }
 })
