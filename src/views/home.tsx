@@ -9,11 +9,11 @@ export default defineComponent({
   render() {
     return (
       <div class={home.bem()}>
-        <span>hello, sampung</span>
-        <ul id='nav'>
+        <span class={home.bem('title')}>hello, sampung</span>
+        <ul class={home.bem('nav')} id='nav'>
           {
             demo.map(({ name, path }) => (
-              <li>
+              <li class={home.bem('nav-item')}>
                 <router-link to={'/' + path}>
                   <span>{name}</span>
                 </router-link>

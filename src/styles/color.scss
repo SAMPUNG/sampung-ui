@@ -1,7 +1,10 @@
 $background: #212121;
 $border: whitesmoke;
+$content: white;
 $font: white;
+$panel: black;
 $primary: hotpink;
+$secondary: pink;
 
 @mixin border {
   border-color: $border;

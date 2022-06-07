@@ -1,0 +1,90 @@
+@use '@/styles/color' as color;
+
+$center: calc(50% - 7px);
+$size: 300px;
+$padding: 8px;
+$third: calc(13.4% - 7px);
+$thirds: calc(26.8% - 7px);
+
+.sam-clock {
+  height: $size;
+  margin: 0 auto;
+  position: relative;
+  width: $size;
+
+  &::before {
+    background: color.$panel;
+    border-radius: 50%;
+    bottom: 0;
+    content: ' ';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+  }
+  &::after {
+    background: color.$secondary;
+    border-radius: 50%;
+    bottom: 49%;
+    content: ' ';
+    left: 49%;
+    position: absolute;
+    right: 49%;
+    top: 49%;
+    z-index: 1;
+  }
+
+  &-tick {
+    position: absolute;
+
+    &:nth-child(1) {
+      right: $thirds;
+      top: $third;
+    }
+    &:nth-child(2) {
+      right: $third;
+      top: $thirds;
+    }
+    &:nth-child(3) {
+      right: $padding;
+      top: $center;
+    }
+    &:nth-child(4) {
+      bottom: $thirds;
+      right: $third;
+    }
+    &:nth-child(5) {
+      bottom: $third;
+      right: $thirds;
+    }
+    &:nth-child(6) {
+      bottom: $padding;
+      left: $center;
+    }
+    &:nth-child(7) {
+      bottom: $third;
+      left: $thirds;
+    }
+    &:nth-child(8) {
+      bottom: $thirds;
+      left: $third;
+    }
+    &:nth-child(9) {
+      left: $padding;
+      top: $center;
+    }
+    &:nth-child(10) {
+      left: $third;
+      top: $thirds;
+    }
+    &:nth-child(11) {
+      left: $thirds;
+      top: $third;
+    }
+    &:nth-child(12) {
+      left: $center;
+      top: $padding;
+    }
+  }
+}

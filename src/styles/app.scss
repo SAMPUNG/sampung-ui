@@ -3,12 +3,33 @@
   text-align: center;
 }
 
+.sam-home {
+  margin: 0 auto;
+  max-width: 600px;
+
+  &-title {
+    font-size: 32px;
+    line-height: 3;
+  }
+}
+
 #nav {
-  padding: 30px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 16px;
+
+  li {
+    line-height: 2;
+    width: 200px;
+  }
 
   a {
-    font-weight: bold;
     color: whitesmoke;
+    font-weight: bold;
+    text-decoration: none;
 
     &.router-link-exact-active {
       color: #42b983;
