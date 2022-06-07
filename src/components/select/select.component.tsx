@@ -106,7 +106,7 @@ export default defineComponent({
           this.options.map(item => (
             <li
               class={[select.bem('item'), this.resolveSelected(item)]}
-              data-name={this.resolveName(item)}
+              data-tab-name={this.resolveName(item)}
               onClick={(event: Event) => this.onSelect(item, event.target as HTMLLIElement)}
             >
               <span>{this.resolveLegend(item)}</span>

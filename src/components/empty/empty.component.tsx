@@ -1,14 +1,14 @@
 import { defineComponent } from 'vue'
-import bem from '@/utils/bem'
+import Namespace from '@/utils/namespace'
 import style from './empty.module.scss'
 
-const name = bem('empty')
+const empty = new Namespace('empty')
 
 export default defineComponent({
-  name,
+  name: empty.name,
   render() {
     return (
-      <span class={style[name]}></span>
+      <span class={empty.bem()}></span>
     )
   }
 })

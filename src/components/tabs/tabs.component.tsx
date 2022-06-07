@@ -60,7 +60,7 @@ export default defineComponent({
     const selectTab = (name: TabsValue): void => {
       select.value?.selectOption(name)
 
-      const selector = `#${id.value} li[data-name="${name}"]`
+      const selector = `#${id.value} li[data-tab-name="${name}"]`
       const target: HTMLLIElement | null = document.querySelector(selector)
 
       if (target) {

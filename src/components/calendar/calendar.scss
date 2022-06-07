@@ -1,0 +1,86 @@
+.sam-calendar {
+  background: black;
+  box-sizing: border-box;
+  padding: 0 24px;
+  position: relative;
+  transition-duration: 0.5s;
+  width: 100%;
+
+  .header {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 34px;
+
+    .title {
+      color: #555;
+      flex-grow: 1;
+      font-family: Roboto;
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+    }
+    span {
+      color: #adadad;
+      cursor: pointer;
+
+      &:nth-child(even) {
+        margin: 0 15px;
+      }
+    }
+  }
+  .content {
+    padding: 10px 0 0 0;
+  }
+}
+
+.day-list {
+  align-items: center;
+  color: #555;
+  display: flex;
+  flex-direction: row;
+  font-family: Microsoft Yahei;
+  font-size: 14px;
+  height: 19px;
+  justify-content: space-around;
+}
+
+.date-list {
+  align-items: center;
+  color: #555;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+.date-cell {
+  cursor: pointer;
+  height: 24px;
+  margin: 8px 0;
+  text-align: center;
+  width: 13%;
+
+  &.before .tag {
+    color: #ccc;
+  }
+  &.with-data .tag {
+    background: rgba(2, 122, 255, 0.12);
+  }
+  &.selected .tag {
+    background: #027aff;
+    color: #fff;
+  }
+
+  .tag {
+    border-radius: 4px;
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    width: 24px;
+  }
+}

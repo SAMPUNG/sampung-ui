@@ -1,6 +1,10 @@
+@use 'color.scss' as color;
+
 html,
 body {
+  background: color.$background;
   box-sizing: border-box;
+  color: color.$font;
   margin: 0;
   padding: 0;
 }

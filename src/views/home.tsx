@@ -1,47 +1,27 @@
-import { defineComponent, ref } from 'vue'
-import type { Ref } from 'vue'
-import bem from '@/utils/bem'
+import { defineComponent } from 'vue'
+import Namespace from '@/utils/namespace'
+import demo from '@/components/demo'
 
-const name = bem('home')
-
-const defaultTabs = [
-  {
-    legend: 'Tab A',
-    name: 'a',
-  },
-  {
-    legend: 'Tab B',
-    name: 'b',
-  },
-  {
-    legend: 'Tab C',
-    name: 'c',
-  }
-]
+const home = new Namespace('home')
 
 export default defineComponent({
-  name,
-  setup() {
-    const options = ref(defaultTabs)
-    const selected: Ref<string> = ref(defaultTabs[1].name)
-
-    const onChange = (value: string): void => {
-      console.log('home on change :>:> ', value, selected.value)
-    }
-
-    return {
-      options,
-      selected,
-      onChange
-    }
-  },
+  name: home.bem(),
   render() {
     return (
-      <div class="home">
-        <sam-tabs vModel={this.selected} options={this.options} onChange={this.onChange} />
-        <span>hello, world</span>
-        <br />
-        <span>{this.selected}</span>
+      <div class={home.bem()}>
+        <span>hello, sampung</span>
+        <ul id='nav'>
+          {
+            demo.map(({ name, path }) => (
+              <li>
+                <router-link to={'/' + path}>
+                  <span>{name}</span>
+                </router-link>
+              </li>
+            ))
+          }
+        </ul>
+        <router-view />
       </div>
     )
   }

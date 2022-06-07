@@ -1,3 +1,5 @@
+@use '@/styles/color' as color;
+
 .sam-select {
   display: inline-block;
   height: 100%;
@@ -16,10 +18,10 @@
       margin: 0 0 0 32px;
     }
     &:hover {
-      color: #027aff;
+      color: color.$primary;
     }
     &.selected {
-      color: #027aff;
+      color: color.$primary;
       cursor: text;
     }
     & > span {

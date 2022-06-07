@@ -1,4 +1,7 @@
-$border: lightgray;
+$background: #212121;
+$border: whitesmoke;
+$font: white;
+$primary: hotpink;
 
 @mixin border {
   border-color: $border;

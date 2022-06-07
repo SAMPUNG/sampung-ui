@@ -1,16 +1,17 @@
 import { defineComponent } from 'vue'
-import bem from '@/utils/bem'
-import Empty from './empty.component'
+import Namespace from '@/utils/namespace'
+import DemoEmpty from './empty.component'
 
-const name = bem('empty-demo')
+const demo = new Namespace('demo-empty')
 
 export default defineComponent({
-  name,
-  components: { Empty },
+  name: demo.bem(),
+  components: { DemoEmpty },
   render() {
-    return 
-    <div class="demo">
-      <Empty />
-    </div>
+    return (
+      <div class={demo.bem()}>
+        <demo-empty />
+      </div>
+    )
   },
 })

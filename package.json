@@ -11,6 +11,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "echarts": "^5.3.2",
     "vue": "^3.2.25"
   },
   "devDependencies": {
