@@ -1,10 +1,21 @@
-$background: #212121;
+$black: black;
+$pantone: #212121;
+$pantone25d: #1a1a1a;
+$pantone25l: #292929;
+$pantone_reverse: #dedede;
+
+$background: $pantone;
 $border: whitesmoke;
 $content: white;
 $font: white;
 $panel: black;
+$panel2: darkgrey;
 $primary: hotpink;
 $secondary: pink;
+$irrelevant: Lavender;
+$primary: violet;
+$secondary: plum;
+$irrelevant: Thistle;
 
 @mixin border {
   border-color: $border;

@@ -7,16 +7,22 @@ import { ClockHour, ClockHourExtra, ClockHourTick, ClockTick } from './clock.int
 const clock = new Namespace('clock')
 
 const CLOCK_HOUR_TICKS: ClockHourTick[] = []
-const CLOCK_TICKS: ClockTick[] = [
-  'Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅴ', 'Ⅵ',
-  'Ⅶ', 'Ⅷ', 'Ⅸ', 'Ⅹ', 'Ⅺ', 'Ⅻ'
-]
-CLOCK_TICKS.forEach((tick: ClockTick, index: number) => {
+// const CLOCK_TICKS: ClockTick[] = [
+//   'Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅴ', 'Ⅵ',
+//   'Ⅶ', 'Ⅷ', 'Ⅸ', 'Ⅹ', 'Ⅺ', 'Ⅻ'
+// ]
+// CLOCK_TICKS.forEach((tick: ClockTick, index: number) => {
+//   CLOCK_HOUR_TICKS.push({
+//     legend: tick,
+//     name: (index + 1) as ClockHour
+//   })
+// })
+for (let i = 1; i < 13; i++) {
   CLOCK_HOUR_TICKS.push({
-    legend: tick,
-    name: (index + 1) as ClockHour
+    legend: i % 3 === 0 ? '‖' : '|',
+    name: i as ClockHour
   })
-})
+}
 
 export default defineComponent({
   name: clock.name,
@@ -43,11 +49,18 @@ export default defineComponent({
   render() {
     return (
       <div class={clock.bem()}>
-        {
-          CLOCK_HOUR_TICKS.map(({ legend, name }) => (
-            <span class={clock.bem('tick')}>{ legend }</span>
-          ))
-        }
+        <ul class={clock.bem('dial')}>
+          {
+            CLOCK_HOUR_TICKS.map(({ legend, name }) => (
+              <li class={clock.bem('tick')}>{ legend }</li>
+            ))
+          }
+        </ul>
+        <ul class={clock.bem('hands')}>
+          <li class={clock.bem('hour-hand')} />
+          <li class={clock.bem('minute-hand')} />
+          <li class={clock.bem('second-hand')} />
+        </ul>
       </div>
     )
   }
