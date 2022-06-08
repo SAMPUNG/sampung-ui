@@ -1,7 +1,8 @@
 @use '@/styles/color' as color;
 
-$size: 300px;
 $gap: 16px;
+$size: 300px;
+$header: 48px;
 
 @function angle($n) {
   @return ($n % 12) * 30deg;
@@ -15,6 +16,7 @@ $gap: 16px;
   z-index: $z;
 }
 @mixin hand($padding, $end, $z) {
+  border-radius: 4px;
   bottom: $padding;
   left: 50%;
   position: absolute;
@@ -25,7 +27,7 @@ $gap: 16px;
 }
 
 .sam-clock {
-  height: $size;
+  height: $size + $header;
   margin: 0 auto;
   position: relative;
   width: $size;
@@ -49,16 +51,19 @@ $gap: 16px;
     );
     border-radius: 50%;
     content: ' ';
+    margin-top: $header;
   }
   &::after {
-    @include absolute(49%, 1);
-    background: color.$secondary;
+    @include absolute(49%, 9);
+    background: color.$highlight;
     border-radius: 50%;
     content: ' ';
+    margin-top: $header;
   }
 
   &-dial {
     @include absolute($gap, 1);
+    margin-top: $header;
   }
   &-tick {
     @include absolute(45%, 2);
@@ -76,20 +81,18 @@ $gap: 16px;
 
   &-hands {
     @include absolute($gap, 2);
+    margin-top: $header;
   }
   &-hour-hand {
     @include hand(48%, 20%, 3);
     background: color.$primary;
-    transform: rotate(15deg);
   }
   &-minute-hand {
     @include hand(48.5%, 15%, 4);
     background: color.$secondary;
-    transform: rotate(135deg);
   }
   &-second-hand {
     @include hand(49%, 10%, 5);
     background: color.$irrelevant;
-    transform: rotate(270deg);
   }
 }
