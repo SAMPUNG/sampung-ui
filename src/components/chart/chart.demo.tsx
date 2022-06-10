@@ -8,17 +8,17 @@ const demo = new Namespace('demo-chart')
 const defaultOptions = {
   xAxis: {
     type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   },
   yAxis: {
-    type: 'value'
+    type: 'value',
   },
   series: [
     {
       data: [150, 230, 224, 218, 135, 147, 260],
-      type: 'line'
-    }
-  ]
+      type: 'line',
+    },
+  ],
 }
 
 export default defineComponent({
@@ -39,5 +39,5 @@ export default defineComponent({
         <demo-chart id={this.id} options={this.options} />
       </div>
     )
-  }
+  },
 })

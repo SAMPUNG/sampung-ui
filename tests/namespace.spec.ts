@@ -4,7 +4,6 @@ import Namespace from '@/utils/namespace'
 const sampung = new Namespace('sampung')
 
 describe('Create Namespace', () => {
-
   it('Get block', () => {
     expect(sampung.block).toBe('sam')
   })
@@ -25,12 +24,9 @@ describe('Create Namespace', () => {
     expect(record).toHaveProperty('element', 'sampung')
     expect(record).toHaveProperty('modifier', undefined)
   })
-
 })
 
-
 describe('Resolve Bem with ([test])', () => {
-
   it('Resolve Bem', () => {
     expect(sampung.bem(['test'])).toBe('sam-sampung sam-sampung--test')
   })
@@ -43,14 +39,13 @@ describe('Resolve Bem with ([test])', () => {
     expect(record).toHaveProperty('element', 'sampung')
     expect(record).toHaveProperty('modifier', 'test')
   })
-
 })
 
-
 describe('Resolve Bem with (button, [disabled])', () => {
-
   it('Resolve Bem', () => {
-    expect(sampung.bem('button', ['disabled'])).toBe('sam-sampung-button sam-sampung-button--disabled')
+    expect(sampung.bem('button', ['disabled'])).toBe(
+      'sam-sampung-button sam-sampung-button--disabled'
+    )
   })
 
   it('Get history', () => {
@@ -61,14 +56,13 @@ describe('Resolve Bem with (button, [disabled])', () => {
     expect(record).toHaveProperty('element', 'sampung-button')
     expect(record).toHaveProperty('modifier', 'disabled')
   })
-
 })
 
-
 describe('Resolve Bem with (button, [disabled, loading])', () => {
-
   it('Resolve Bem', () => {
-    expect(sampung.bem('button', ['disabled', 'loading'])).toBe('sam-sampung-button sam-sampung-button--disabled sam-sampung-button--loading')
+    expect(sampung.bem('button', ['disabled', 'loading'])).toBe(
+      'sam-sampung-button sam-sampung-button--disabled sam-sampung-button--loading'
+    )
   })
 
   it('Get history', () => {
@@ -84,12 +78,9 @@ describe('Resolve Bem with (button, [disabled, loading])', () => {
     expect(loading).toHaveProperty('element', 'sampung-button')
     expect(loading).toHaveProperty('modifier', 'loading')
   })
-
 })
 
-
 describe('Resolve Bem with (button)', () => {
-
   it('Resolve Bem', () => {
     expect(sampung.bem('button')).toBe('sam-sampung-button')
   })
@@ -102,5 +93,4 @@ describe('Resolve Bem with (button)', () => {
     expect(record).toHaveProperty('element', 'sampung-button')
     expect(record).toHaveProperty('modifier', undefined)
   })
-
 })

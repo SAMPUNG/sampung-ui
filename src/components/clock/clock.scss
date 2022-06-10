@@ -3,6 +3,7 @@
 $gap: 16px;
 $size: 300px;
 $header: 48px;
+$radius: $size / 2 - 18px;
 
 @function angle($n) {
   @return ($n % 12) * 30deg;
@@ -74,7 +75,7 @@ $header: 48px;
 
     @for $i from 1 to 13 {
       &:nth-child(#{$i}) {
-        transform: rotate(angle($i)) translateY($size / 2 - 18px);
+        transform: rotate(angle($i)) translateY($radius);
       }
     }
   }

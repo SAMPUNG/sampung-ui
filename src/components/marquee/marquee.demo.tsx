@@ -28,6 +28,6 @@ export default defineComponent({
     )
   },
   data: () => ({
-    size: 25 as number
-  })
+    size: 25 as number,
+  }),
 })

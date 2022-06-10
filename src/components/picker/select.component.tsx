@@ -1,5 +1,5 @@
-import { computed, defineComponent, defineEmits, withDefaults } from "vue";
-import type { ComputedRef } from "vue";
+import { computed, defineComponent, defineEmits, withDefaults } from 'vue'
+import type { ComputedRef } from 'vue'
 import bem from '@/utils/bem'
 import SelectMultiple from './select-multiple.component'
 import SelectSingle from './select-single.component'
@@ -11,16 +11,18 @@ export default defineComponent({
   name,
   components: {
     SelectMultiple,
-    SelectSingle
+    SelectSingle,
   },
   setup() {
     const emits = defineEmits<SelectEmits>()
     const props = withDefaults(defineProps<SelectProps>(), {
       multiple: false,
       placeholder: '请选择……',
-      teleport: 'body'
+      teleport: 'body',
     })
-    const target: ComputedRef<string> = computed(() => props.multiple ? 'select-multiple' : `select-single`)
+    const target: ComputedRef<string> = computed(() =>
+      props.multiple ? 'select-multiple' : `select-single`
+    )
 
     const onChange = (value: SelectValue): void => {
       emits('update:modelValue', value)
@@ -31,7 +33,7 @@ export default defineComponent({
 
     return {
       ...props,
-      target
+      target,
     }
   },
   render() {
@@ -45,5 +47,5 @@ export default defineComponent({
         onChange={this.onChange}
       />
     )
-  }
+  },
 })

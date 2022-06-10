@@ -7,8 +7,6 @@ const name = bem('mosaic')
 export default defineComponent({
   name,
   render() {
-    return (
-      <div class={style[name]}>hello, world</div>
-    )
-  }
+    return <div class={style[name]}>hello, world</div>
+  },
 })

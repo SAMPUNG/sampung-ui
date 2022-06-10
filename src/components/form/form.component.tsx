@@ -1,33 +1,72 @@
-import { defineComponent, defineEmits, defineProps, provide, ref } from 'vue'
+import { defineComponent, provide, ref } from 'vue'
 import type { Ref } from 'vue'
-import bem from '@/utils/bem'
-import type { FormEmits, FormProps } from './form.interface'
+import Namespace from '@/utils/namespace'
 import { model } from './form.provide'
-import style from './form.module.scss'
+import './form.scss'
 
-const name = bem('form')
+const form = new Namespace('form')
 
+const formEmits = {
+  reset: (name: string) => true,
+  submit: (name: string) => true,
+}
+
+const formProps = {
+  action: {
+    default: '',
+    required: false,
+    type: String,
+  },
+  autocomplete: {
+    default: 'on',
+    required: false,
+    type: String,
+  },
+  disabled: {
+    default: false,
+    required: false,
+    type: Boolean,
+  },
+  enctype: {
+    default: '',
+    required: false,
+    type: String,
+  },
+  method: {
+    default: '',
+    required: false,
+    type: String,
+  },
+  name: {
+    default: '',
+    required: false,
+    type: String,
+  },
+  target: {
+    default: '',
+    required: false,
+    type: String,
+  },
+}
 export default defineComponent({
-  name,
-  setup() {
+  name: form.name,
+  props: formProps,
+  emits: formEmits,
+  setup(props, context) {
     const el = ref<HTMLInputElement | null>(null)
-    const emit = defineEmits<FormEmits>()
-    const props = defineProps<FormProps>()
     const valid: Ref<boolean> = ref(false)
 
     provide(model, el.value)
 
     const onReset = (): void => {
-      emit('reset', props.name)
+      context.emit('reset', props.name)
     }
     const onSubmit = (): void => {
-      emit('submit', props.name)
+      context.emit('submit', props.name)
     }
 
     return {
-      ...emit,
-      ...props,
-      valid
+      valid,
     }
   },
   render() {
@@ -35,14 +74,14 @@ export default defineComponent({
       <form
         action={this.action}
         autocomplete={this.autocomplete}
-        class={style[name]}
+        class={form.bem()}
         enctype={this.enctype}
         method={this.method}
         name={this.name}
         target={this.target}
       >
-        <slot />
+        {typeof this.$slots.default === 'function' && this.$slots.default()}
       </form>
     )
-  }
+  },
 })

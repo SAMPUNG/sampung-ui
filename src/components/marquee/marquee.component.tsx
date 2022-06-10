@@ -7,20 +7,16 @@ const name = bem('marquee')
 
 export default defineComponent({
   name,
-  setup() {
-    
-  },
+  setup() {},
   render() {
-    return (
-      <span class={style[name]} style={this.style}></span>
-    )
+    return <span class={style[name]} style={this.style}></span>
   },
   props: {
     size: {
       default: 14,
       required: false,
-      type: Number
-    }
+      type: Number,
+    },
   },
   computed: {
     status() {
@@ -29,8 +25,8 @@ export default defineComponent({
     style(): Style {
       return {
         height: `${this.size}px`,
-        width: `${this.size * 2}px`
+        width: `${this.size * 2}px`,
       }
-    }
-  }
+    },
+  },
 })

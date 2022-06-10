@@ -10,15 +10,15 @@ export default class Namespace {
   history: Bem[] = []
   name: string = ''
 
-  constructor (element: string) {
+  constructor(element: string) {
     this.element = element
     this.name = this.resolveBem(element)
   }
 
-  bem (): string
-  bem (offspring: string): string
-  bem (modifiers: string[]): string
-  bem (offspring: string, modifiers: string[]): string
+  bem(): string
+  bem(offspring: string): string
+  bem(modifiers: string[]): string
+  bem(offspring: string, modifiers: string[]): string
 
   bem(a?: string | string[], b?: string[]): string {
     const offspring = typeof a === 'string' ? a : undefined
@@ -27,7 +27,7 @@ export default class Namespace {
     const element = this.resolveElement(offspring)
     const results: string[] = [this.resolveBem(element)]
 
-    modifiers?.forEach(modifier => {
+    modifiers?.forEach((modifier) => {
       results.push(this.resolveBem(element, modifier))
     })
 
@@ -40,17 +40,17 @@ export default class Namespace {
     return modifier ? `${name}--${modifier}` : name
   }
 
-  resolveElement (offspring?: string): string {
+  resolveElement(offspring?: string): string {
     const chain = [this.element]
     offspring && chain.push(offspring)
     return chain.join('-')
   }
 
-  updateHistory (element: string, modifier?: string): void {
+  updateHistory(element: string, modifier?: string): void {
     this.history.push({
       block: this.block,
       element,
-      modifier
+      modifier,
     })
   }
 }

@@ -4,11 +4,7 @@ import DemoCarousel from './carousel.component'
 
 const demo = new Namespace('demo-carousel')
 
-const demoOptions = [
-  '/img/iu.jpg',
-  '/img/jal-mahal.jpg',
-  '/img/mesa.jpg',
-]
+const demoOptions = ['/img/iu.jpg', '/img/jal-mahal.jpg', '/img/mesa.jpg']
 
 export default defineComponent({
   name: demo.bem(),

@@ -10,30 +10,36 @@ export default defineConfig(() => ({
   base: './',
   css: {
     modules: {
-      localsConvention: 'camelCase'
+      localsConvention: 'camelCase',
     },
     preprocessorOptions: {
       scss: {
-        '$block': 'sam'
-      }
-    }
+        '$block': 'sam',
+      },
+    },
   },
   plugins: [
     legacy({
-      targets: ['defaults', 'not IE 11']
+      targets: ['defaults', 'not IE 11'],
     }),
     vue(),
-    vueJsx({})
+    vueJsx({}),
   ],
+  preview: {
+    port: 7512,
+  },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src')
-    }
+      '@': resolve(__dirname, 'src'),
+    },
+  },
+  server: {
+    port: 7511,
   },
   test: {
     include: ['src/**/*.spec.{ts,tsx}', 'tests/**/*.spec.ts'],
     outputFile: 'test-results.json',
     reporters: 'json',
-    root: './'
-  }
+    root: './',
+  },
 }))

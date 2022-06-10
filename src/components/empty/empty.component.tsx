@@ -7,8 +7,6 @@ const empty = new Namespace('empty')
 export default defineComponent({
   name: empty.name,
   render() {
-    return (
-      <span class={empty.bem()}></span>
-    )
-  }
+    return <span class={empty.bem()}></span>
+  },
 })

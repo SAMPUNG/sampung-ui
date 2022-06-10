@@ -6,13 +6,13 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'home',
     component: () => import('@/views/home'),
-    children: demo
+    children: demo,
   },
 ]
 
 const router = createRouter({
   history: createWebHistory('/'),
-  routes
+  routes,
 })
 
 export default router
