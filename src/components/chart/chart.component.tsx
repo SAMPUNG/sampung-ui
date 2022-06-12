@@ -1,4 +1,4 @@
-import { getInstanceByDom, init } from 'echarts';
+import { getInstanceByDom, init } from 'echarts'
 import type { EChartsCoreOption } from 'echarts/types/dist/echarts'
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
@@ -11,51 +11,51 @@ const ChartProps = {
   id: {
     default: '',
     required: true,
-    type: String
+    type: String,
   },
   options: {
     default: '',
     required: true,
-    type: Object as PropType<EChartsCoreOption>
-  }
+    type: Object as PropType<EChartsCoreOption>,
+  },
 }
 
 // Resize Observer
-let observer: ResizeObserver | null = null;
+let observer: ResizeObserver | null = null
 
 export default defineComponent({
   name: chart.name,
   props: ChartProps,
   setup(props, context) {
     const renderChart = () => {
-      const el = resolveElement();
+      const el = resolveElement()
       if (el) {
-        getInstanceByDom(el)?.dispose();
-        init(el).setOption(props.options);
+        getInstanceByDom(el)?.dispose()
+        init(el).setOption(props.options)
       }
     }
 
     const resizeChart = () => {
-      const el = resolveElement();
-      el && getInstanceByDom(el)?.resize();
+      const el = resolveElement()
+      el && getInstanceByDom(el)?.resize()
     }
 
     const resolveElement = (): HTMLDivElement | null => {
       const selector = `#${props.id}`
-      return document.querySelector(selector);
+      return document.querySelector(selector)
     }
 
     const resolveObserver = () => {
-      const el = resolveElement();
+      const el = resolveElement()
       const options: ResizeObserverOptions = {
-        box: 'border-box'
-      };
-      observer = new ResizeObserver(resizeChart);
-      el && observer.observe(el, options);
+        box: 'border-box',
+      }
+      observer = new ResizeObserver(resizeChart)
+      el && observer.observe(el, options)
     }
 
     context.expose({
-      renderChart
+      renderChart,
     })
 
     return {
@@ -65,9 +65,7 @@ export default defineComponent({
     }
   },
   render() {
-    return (
-      <div class={chart.bem()} id={this.id} />
-    )
+    return <div class={chart.bem()} id={this.id} />
   },
   mounted() {
     this.renderChart()

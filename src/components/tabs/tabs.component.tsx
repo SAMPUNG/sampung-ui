@@ -2,7 +2,12 @@ import { defineComponent, ref, watch } from 'vue'
 import type { PropType, Ref } from 'vue'
 import { resolveUniqueId, verifyRegular } from '@/utils/data'
 import Namespace from '@/utils/namespace'
-import type { IndicatorOffset, TabsOption, TabsProps, TabsValue } from './tabs.interface'
+import type {
+  IndicatorOffset,
+  TabsOption,
+  TabsProps,
+  TabsValue,
+} from './tabs.interface'
 import TabsSelect from '../select/select.component'
 
 import './tabs.scss'
@@ -16,20 +21,20 @@ export default defineComponent({
     modelValue: {
       default: '',
       type: [String, Number, Boolean, undefined] as PropType<TabsValue>,
-      validator: verifyRegular
+      validator: verifyRegular,
     },
     options: {
       default: () => [],
-      type: Array as PropType<TabsOption[]>
-    }
+      type: Array as PropType<TabsOption[]>,
+    },
   },
   emits: {
-    'change' (value: TabsValue) {
+    'change'(value: TabsValue) {
       return value
     },
-    'update:modelValue' (value: TabsValue) {
+    'update:modelValue'(value: TabsValue) {
       return value
-    }
+    },
   },
   setup(props: TabsProps, context) {
     const dropdown: Ref<boolean> = ref(false)
@@ -60,20 +65,19 @@ export default defineComponent({
     const selectTab = (name: TabsValue): void => {
       select.value?.selectOption(name)
 
-      const selector = `#${id.value} li[data-tab-name="${name}"]`
+      const selector = `#${id.value} li[data-option="${name}"]`
       const target: HTMLLIElement | null = document.querySelector(selector)
 
       if (target) {
-        offset.value.transform = `translateX(${target.offsetLeft}px)`;
-        offset.value.width = `${target.clientWidth}px`;
+        offset.value.transform = `translateX(${target.offsetLeft}px)`
+        offset.value.width = `${target.clientWidth}px`
       }
-
     }
 
     watch(() => props.modelValue, selectTab)
 
     context.expose({
-      selectTab
+      selectTab,
     })
 
     return {
@@ -94,7 +98,7 @@ export default defineComponent({
           options={this.options}
           onChange={this.onChange}
           onSelect={this.onSelect}
-          ref="select" 
+          ref="select"
         />
         <div class={tabs.bem('controls')} onClick={this.onDropdown}>
           <button class={tabs.bem('controls-more')}>⋯</button>
@@ -105,5 +109,5 @@ export default defineComponent({
   },
   mounted() {
     this.selectTab(this.modelValue)
-  }
+  },
 })

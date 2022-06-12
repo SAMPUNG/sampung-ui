@@ -3,7 +3,7 @@ export const controls = [
     legend: '可多选',
     name: 'multiple',
     type: 'boolean',
-    value: false
+    value: false,
   },
   {
     legend: '可选项',
@@ -12,40 +12,40 @@ export const controls = [
     value: [
       {
         label: '选项 A',
-        value: 'a'
+        value: 'a',
       },
       {
         label: '选项 B',
-        value: 'b'
+        value: 'b',
       },
       {
         label: '选项 C',
-        value: 'c'
+        value: 'c',
       },
       {
         label: '选项 D',
-        value: 'D'
+        value: 'D',
       },
       {
         label: '选项 E',
-        value: 'e'
+        value: 'e',
       },
       {
         label: '选项 F',
-        value: 'f'
+        value: 'f',
       },
       {
         label: '选项 G',
-        value: 'g'
-      }
-    ]
+        value: 'g',
+      },
+    ],
   },
   {
     legend: '占位符',
     name: 'placeholder',
     type: 'string',
-    value: '请选择……'
-  }
+    value: '请选择……',
+  },
 ]
 
 export const source = {
@@ -53,32 +53,32 @@ export const source = {
   options: [
     {
       label: '选项 A',
-      value: 'a'
+      value: 'a',
     },
     {
       label: '选项 B',
-      value: 'b'
+      value: 'b',
     },
     {
       label: '选项 C',
-      value: 'c'
+      value: 'c',
     },
     {
       label: '选项 D',
-      value: 'D'
+      value: 'D',
     },
     {
       label: '选项 E',
-      value: 'e'
+      value: 'e',
     },
     {
       label: '选项 F',
-      value: 'f'
+      value: 'f',
     },
     {
       label: '选项 G',
-      value: 'g'
-    }
+      value: 'g',
+    },
   ],
   placeholder: '请选择……',
 }

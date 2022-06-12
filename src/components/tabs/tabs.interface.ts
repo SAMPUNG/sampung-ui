@@ -1,4 +1,7 @@
-import type { SelectOptionRecord, SelectValue } from '../select/select.interface'
+import type {
+  SelectOptionRecord,
+  SelectValue,
+} from '../select/select.interface'
 
 export declare type ControlPayload = Record<string, unknown>
 

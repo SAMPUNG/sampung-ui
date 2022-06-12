@@ -6,34 +6,39 @@ const name = bem('fieldset')
 
 export default defineComponent({
   name,
-  render() {
-    return (
-      <fieldset class={style[name]} disabled={this.disabled} form={this.form} name={this.name}>
-        <legend>{this.legend}</legend>
-        <slot />
-      </fieldset>
-    )
-  },
   props: {
     disabled: {
       default: false,
       required: false,
-      type: Boolean
+      type: Boolean,
     },
     form: {
       default: undefined,
       required: false,
-      type: String
+      type: String,
     },
     legend: {
       default: undefined,
       required: false,
-      type: String
+      type: String,
     },
     name: {
       default: undefined,
       required: false,
-      type: String
+      type: String,
     },
+  },
+  render() {
+    return (
+      <fieldset
+        class={style[name]}
+        disabled={this.disabled}
+        form={this.form}
+        name={this.name}
+      >
+        <legend>{this.legend}</legend>
+        {typeof this.$slots.default === 'function' && this.$slots.default()}
+      </fieldset>
+    )
   },
 })

@@ -24,7 +24,6 @@ export default defineComponent({
     const today: Ref<number> = ref(0)
     const year: Ref<number> = ref(0)
 
-
     const changeDate = (step = 0) => {
       // Parse Date
       const cursor = parseDate()
@@ -80,7 +79,9 @@ export default defineComponent({
       resolveCalendar()
     }
     const parseDate = (defaultDate?: number): Date => {
-      const anchor = `${year.value}-${month.value}-${defaultDate || date.value} ${time.value}`
+      const anchor = `${year.value}-${month.value}-${
+        defaultDate || date.value
+      } ${time.value}`
       return new Date(anchor)
     }
     const resolveCalendar = () => {
@@ -99,7 +100,7 @@ export default defineComponent({
           tag: resolveTag(cursor),
           time: cursor.getTime(),
           type: cursor.getTime() < today.value ? 'before' : '',
-          year: cursor.getFullYear()
+          year: cursor.getFullYear(),
         })
         if (results.length > 28) {
           const nextMonth = cursor.getMonth() === month.value % 12
@@ -113,7 +114,9 @@ export default defineComponent({
       list.value = results.slice()
     }
     const resolveSelected = (item: CalendarRecord) => {
-      return (item.date === date.value && item.month === month.value) ? 'selected' : ''
+      return item.date === date.value && item.month === month.value
+        ? 'selected'
+        : ''
     }
     const resolveTag = (date: Date) => {
       return Math.ceil(Math.random() * 31) > date.getDate() ? 'with-data' : ''
@@ -133,7 +136,7 @@ export default defineComponent({
       month,
       resolveSelected,
       selectDate,
-      year
+      year,
     }
   },
   render() {
@@ -142,7 +145,7 @@ export default defineComponent({
         <div class="header">
           <span onClick={() => this.changeYear(-1)}>«</span>
           <span onClick={() => this.changeMonth(-1)}>‹</span>
-          <i class="fks-icon-d-arrow-left"  />
+          <i class="fks-icon-d-arrow-left" />
           <i class="fks-icon-arrow-left" />
           <div class="title">
             <span class="month">{this.month}</span>
@@ -162,25 +165,28 @@ export default defineComponent({
             <li>Sun</li>
           </ul>
           <ul class="date-list">
-            {
-              this.list?.map((item: CalendarRecord, index: number) => (
-                <li
-                  key={index}
-                  class={['date-cell', item.type, item.tag, this.resolveSelected(item)]}
-                  onClick={() => this.selectDate(item)}
-                >
-                  <span class="tag">
-                    <span>{item.date}</span>
-                  </span>
-                </li>
-              ))
-            }
+            {this.list?.map((item: CalendarRecord, index: number) => (
+              <li
+                key={index}
+                class={[
+                  'date-cell',
+                  item.type,
+                  item.tag,
+                  this.resolveSelected(item),
+                ]}
+                onClick={() => this.selectDate(item)}
+              >
+                <span class="tag">
+                  <span>{item.date}</span>
+                </span>
+              </li>
+            ))}
           </ul>
         </div>
-      </div >
+      </div>
     )
   },
   mounted() {
     this.initCalendar()
-  }
+  },
 })

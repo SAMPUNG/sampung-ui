@@ -10,6 +10,6 @@ export const resolveUniqueId = () => {
 
 export const verifyRegular = (value: unknown): boolean => {
   const type = typeof value
-  const regular =  ['string', 'number', 'boolean', 'undefined']
+  const regular = ['string', 'number', 'boolean', 'undefined']
   return regular.includes(type)
 }

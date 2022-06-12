@@ -1,7 +1,7 @@
 export type PlaygroundControl = {
   legend: string
-  name: string,
-  type: string,
+  name: string
+  type: string
   value: unknown
 }
 export type PlaygroundControls = PlaygroundControl[]

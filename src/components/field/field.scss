@@ -1,0 +1,14 @@
+.sam-field {
+  background: hotpink;
+  padding: 10px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+
+  &-label {
+    position: absolute;
+  }
+  &-legend {
+    padding: 0 4px;
+  }
+}

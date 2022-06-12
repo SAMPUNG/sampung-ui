@@ -22,13 +22,18 @@ export declare type SelectOption = {
   value: string | number | boolean
 }
 
-
 export declare type SelectProps = {
   multiple?: boolean
-  modelValue: SelectValue,
+  modelValue: SelectValue
   options: SelectOption[]
   placeholder?: string
   teleport?: string
 }
 
-export declare type SelectValue = string | number | boolean | unknown[] | Record<string, unknown> | undefined
+export declare type SelectValue =
+  | string
+  | number
+  | boolean
+  | unknown[]
+  | Record<string, unknown>
+  | undefined

@@ -17,7 +17,7 @@ const defaultTabs = [
   {
     legend: 'Tab C',
     name: 'c',
-  }
+  },
 ]
 
 export default defineComponent({
@@ -34,16 +34,20 @@ export default defineComponent({
     return {
       options,
       selected,
-      onChange
+      onChange,
     }
   },
   render() {
     return (
       <div class="demo">
-        <demo-tabs vModel={this.selected} options={this.options} onChange={this.onChange} />
+        <demo-tabs
+          vModel={this.selected}
+          options={this.options}
+          onChange={this.onChange}
+        />
         <br />
         <span>{this.selected}</span>
       </div>
     )
-  }
+  },
 })

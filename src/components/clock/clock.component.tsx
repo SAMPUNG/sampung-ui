@@ -2,7 +2,12 @@ import { defineComponent, ref, type Ref } from 'vue'
 import Namespace from '@/utils/namespace'
 import type { Style } from '@/types/component'
 import './clock.scss'
-import { ClockHour, ClockHourExtra, ClockHourTick, ClockTick } from './clock.interface'
+import {
+  ClockHour,
+  ClockHourExtra,
+  ClockHourTick,
+  ClockTick,
+} from './clock.interface'
 
 const clock = new Namespace('clock')
 
@@ -20,7 +25,7 @@ const CLOCK_HOUR_TICKS: ClockHourTick[] = []
 for (let i = 1; i < 13; i++) {
   CLOCK_HOUR_TICKS.push({
     legend: i % 3 === 0 ? '‖' : '|',
-    name: i as ClockHour
+    name: i as ClockHour,
   })
 }
 
@@ -28,8 +33,8 @@ const clockProps = {
   modelValue: {
     default: () => new Date(),
     required: false,
-    type: [Date, Number, String]
-  }
+    type: [Date, Number, String],
+  },
 }
 
 export default defineComponent({
@@ -46,11 +51,15 @@ export default defineComponent({
       timer && clearTimeout(timer)
     }
 
+    const onHover = (event: MouseEvent): void => {
+      console.log(event)
+    }
+
     const resolveAngle = (value: number, base: 12 | 60): Style => {
       // deg = value / base * 360
-      const deg: number = value / base * 360
+      const deg: number = (value / base) * 360
       return {
-        transform: `rotate(${deg}deg)`
+        transform: `rotate(${deg}deg)`,
       }
     }
 
@@ -75,10 +84,11 @@ export default defineComponent({
       dispose,
       hour,
       minute,
+      onHover,
       resolveAngle,
       resolveLabel,
       resolveClock,
-      second
+      second,
     }
   },
   render() {
@@ -91,17 +101,24 @@ export default defineComponent({
           <span>:</span>
           <span>{this.resolveLabel(this.second)}</span>
         </div>
-        <ul class={clock.bem('dial')}>
-          {
-            CLOCK_HOUR_TICKS.map(({ legend, name }) => (
-              <li class={clock.bem('tick')}>{ legend }</li>
-            ))
-          }
+        <ul class={clock.bem('dial')} onMouseenter={this.onHover}>
+          {CLOCK_HOUR_TICKS.map(({ legend, name }) => (
+            <li class={clock.bem('tick')}>{legend}</li>
+          ))}
         </ul>
         <ul class={clock.bem('hands')}>
-          <li class={clock.bem('hour-hand')} style={this.resolveAngle(this.hour, 12)} />
-          <li class={clock.bem('minute-hand')} style={this.resolveAngle(this.minute, 60)} />
-          <li class={clock.bem('second-hand')} style={this.resolveAngle(this.second, 60)} />
+          <li
+            class={clock.bem('hour-hand')}
+            style={this.resolveAngle(this.hour, 12)}
+          />
+          <li
+            class={clock.bem('minute-hand')}
+            style={this.resolveAngle(this.minute, 60)}
+          />
+          <li
+            class={clock.bem('second-hand')}
+            style={this.resolveAngle(this.second, 60)}
+          />
         </ul>
       </div>
     )
@@ -111,5 +128,5 @@ export default defineComponent({
   },
   destroyed() {
     this.dispose()
-  }
+  },
 })

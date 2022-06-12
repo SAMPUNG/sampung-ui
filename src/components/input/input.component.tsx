@@ -1,31 +1,81 @@
-import { defineComponent, defineEmits, defineProps } from 'vue'
-import bem from '@/utils/bem'
-import type { InputEmits, InputProps, InputValue } from './input.interface'
-import style from './input.module.scss'
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
+import { verifyRegular } from '@/utils/data'
+import Namespace from '@/utils/namespace'
+import type { InputValue } from './input.interface'
+import './input.scss'
 
-const name = bem('input')
+const input = new Namespace('input')
+
+const inputEmits = {
+  blur: (name: string) => true,
+  foucs: (name: string) => true,
+  'update:modelValue': (value: InputValue, name: string) => true,
+}
+
+const inputProps = {
+  inline: {
+    default: false,
+    required: false,
+    type: Boolean,
+  },
+  max: {
+    default: undefined,
+    required: false,
+    type: Number,
+  },
+  min: {
+    default: undefined,
+    required: false,
+    type: Number,
+  },
+  modelValue: {
+    default: undefined,
+    required: true,
+    // type: [String, Number, Boolean, undefined] as PropType<InputValue>,
+    validator: verifyRegular,
+  },
+  name: {
+    default: '',
+    required: false,
+    type: String,
+  },
+  placeholder: {
+    default: '',
+    required: false,
+    type: String,
+  },
+  step: {
+    default: undefined,
+    required: false,
+    type: Number,
+  },
+  type: {
+    default: 'text',
+    required: false,
+    type: String,
+  },
+}
 
 export default defineComponent({
-  name,
-  setup() {
-    const emits = defineEmits<InputEmits>()
-    const props = defineProps<InputProps>()
-
-    const inputHandler = (event: Event): void => {
+  name: input.name,
+  props: inputProps,
+  emits: inputEmits,
+  setup(props, context) {
+    const onInput = (event: Event): void => {
       const target = event.target as HTMLInputElement
       const value: InputValue = target.value
-      emits('update:modelValue', value, props.name)
+      context.emit('update:modelValue', value, props.name)
     }
 
     return {
-      inputHandler,
-      ...props
+      onInput,
     }
   },
   render() {
     return (
       <input
-        class={style[name]}
+        class={input.bem()}
         max={this.max}
         min={this.min}
         name={this.name}
@@ -33,7 +83,7 @@ export default defineComponent({
         step={this.step}
         type={this.type}
         value={this.modelValue}
-        onInput={this.inputHandler}
+        onInput={this.onInput}
       />
     )
   },

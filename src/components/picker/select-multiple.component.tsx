@@ -9,17 +9,17 @@ export default defineComponent({
     modelValue: {
       default: undefined,
       required: true,
-      type: Array
+      type: Array,
     },
     options: {
       default: () => [],
       required: false,
-      type: Array as PropType<SelectOption[]>
+      type: Array as PropType<SelectOption[]>,
     },
     placeholder: {
       default: '请选择……',
       required: false,
-      type: String
+      type: String,
     },
   },
   data: () => ({
@@ -28,10 +28,10 @@ export default defineComponent({
       bottom: 'unset',
       left: 'unset',
       right: 'unset',
-      top: 'unset'
+      top: 'unset',
     },
     results: [] as string[],
-    teleport: 'body'
+    teleport: 'body',
   }),
   computed: {
     status() {
@@ -51,7 +51,7 @@ export default defineComponent({
       const target = event.target as HTMLDivElement
       this.dropdown = true
       this.offset.left = target.offsetLeft + 'px'
-      this.offset.top = target.offsetTop  + target.offsetHeight + 'px'
+      this.offset.top = target.offsetTop + target.offsetHeight + 'px'
     },
     onSelect(value: SelectValue, label: string): void {
       this.dropdown = false
@@ -67,5 +67,5 @@ export default defineComponent({
       }
       this.$emit('update:modelValue', values)
     },
-  }
+  },
 })
