@@ -1,5 +1,9 @@
+@use '@/styles/size' as size;
+
 .sam-input {
   background: aqua;
   border: none;
+  height: size.$input;
   outline: none;
+  width: 100%;
 }

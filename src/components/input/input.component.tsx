@@ -14,6 +14,11 @@ const inputEmits = {
 }
 
 const inputProps = {
+  autocomplete: {
+    default: 'off',
+    required: false,
+    type: String,
+  },
   inline: {
     default: false,
     required: false,
@@ -75,6 +80,7 @@ export default defineComponent({
   render() {
     return (
       <input
+        autocomplete={this.autocomplete}
         class={input.bem()}
         max={this.max}
         min={this.min}

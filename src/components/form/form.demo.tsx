@@ -18,9 +18,13 @@ export default defineComponent({
   render() {
     return (
       <div class={demo.bem()}>
-        <demo-form autocomplete="off" name="demo">
-          <demo-field legend="Legend" name="name">
-            <demo-input vModel={this.value} name="name" placeholder="Please input something……" />
+        <demo-form autocomplete='off' name='demo'>
+          <demo-field legend='Legend' name='name'>
+            <demo-input
+              vModel={this.value}
+              name='demo-name'
+              placeholder='Please input something……'
+            />
           </demo-field>
         </demo-form>
       </div>

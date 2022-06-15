@@ -1,9 +1,42 @@
+// ($MIN, $MIN)----($LFT, $MIN)   ($LRS, $MIN)-------($MAX, $MIN)
+// |($BOD, $BOD)---($LFT, $BOD)   ($LRS, $BOD)------($BRR, $BOD)|
+// ||                                                          ||
+// |($BOD, $BRT)------------------------------------($BRR, $BRT)|
+// ($MIN, $MAX)--------------------------------------($MAX, $MAX)
+$min: 0;
+$max: 100%;
+$border: 2%;
+$reverse: 98%;
+$left: 5%;
+$right: 30%;
+
 .sam-field {
   background: hotpink;
-  padding: 10px;
+  clip-path: polygon(
+    0 0,
+    0 100%,
+    100% 100%,
+    100% 0,
+    $right 0,
+    $right $border,
+    $reverse $border,
+    $reverse $reverse,
+    $border $reverse,
+    $border $border,
+    $left $border,
+    $left 0
+  );
+  border-color: hotpink;
+  border-style: solid;
+  border-width: 1px;
+  padding: 0 0 0 10px;
   position: relative;
   text-align: left;
   width: 100%;
+
+  &:hover {
+    border-color: aqua;
+  }
 
   &-label {
     position: absolute;
