@@ -1,9 +1,20 @@
 @use '@/styles/size' as size;
 
 .sam-input {
-  background: aqua;
+  background: transparent;
+  caret-color: white;
+  color: white;
   border: none;
   height: size.$input;
   outline: none;
   width: 100%;
+
+  &:focus::placeholder {
+    color: hotpink;
+    transition-duration: .3s;
+  }
+
+  &::placeholder {
+    color: transparent;
+  }
 }

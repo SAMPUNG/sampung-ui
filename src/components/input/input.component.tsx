@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
 import type { PropType } from 'vue'
 import { verifyRegular } from '@/utils/data'
 import Namespace from '@/utils/namespace'
@@ -9,7 +9,7 @@ const input = new Namespace('input')
 
 const inputEmits = {
   blur: (name: string) => true,
-  foucs: (name: string) => true,
+  focus: (name: string) => true,
   'update:modelValue': (value: InputValue, name: string) => true,
 }
 
@@ -67,6 +67,15 @@ export default defineComponent({
   props: inputProps,
   emits: inputEmits,
   setup(props, context) {
+    const field = inject('field')
+
+    const onBlur = (): void => {
+      context.emit('blur', props.name)
+    }
+    const onFoucs = (): void => {
+      context.emit('focus', props.name)
+      console.log(field)
+    }
     const onInput = (event: Event): void => {
       const target = event.target as HTMLInputElement
       const value: InputValue = target.value
@@ -74,6 +83,8 @@ export default defineComponent({
     }
 
     return {
+      onBlur,
+      onFoucs,
       onInput,
     }
   },
@@ -89,6 +100,8 @@ export default defineComponent({
         step={this.step}
         type={this.type}
         value={this.modelValue}
+        onBlur={() => this.onBlur()}
+        onFocus={() => this.onFoucs()}
         onInput={this.onInput}
       />
     )

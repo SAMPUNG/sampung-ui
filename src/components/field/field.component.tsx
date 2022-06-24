@@ -1,4 +1,4 @@
-import { defineComponent, inject, ref } from 'vue'
+import { defineComponent, inject, provide, ref } from 'vue'
 import type { PropType, Ref } from 'vue'
 import type { InputValue } from '@/components/input/input.interface'
 import { model } from '@/components/form/form.provide'
@@ -48,7 +48,6 @@ export default defineComponent({
   setup(props, context) {
     const el = inject(model)
     const empty: Ref<boolean> = ref(false)
-    const pending: Ref<boolean> = ref(true)
     const required: Ref<boolean> = ref(false)
     const valid: Ref<boolean> = ref(true)
 
@@ -58,10 +57,15 @@ export default defineComponent({
     const onFocus = (): void => {
       context.emit('foucs', props.name)
     }
-
-    const updatePending = (): boolean => {
-      return pending.value
+    const updateEmpty = (e: boolean): void => {
+      empty.value = e
     }
+
+    provide('field', {
+      onBlur,
+      onFocus,
+      updateEmpty,
+    })
 
     return {
       el,
@@ -74,7 +78,6 @@ export default defineComponent({
     return (
       <fieldset class={field.bem()}>
         <legend class={field.bem('legend')}>{this.legend}</legend>
-        <label class={field.bem('label')} for={this.name}>{this.legend}</label>
         {typeof this.$slots.default === 'function' && this.$slots.default()}
       </fieldset>
     )

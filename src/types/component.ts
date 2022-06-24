@@ -1,6 +1,15 @@
-export declare type Appearance = 'fill' | 'legacy' | 'outline'
+export declare type AbsolutePosition = {
+  bottom?: number | string
+  left?: number | string
+  right?: number | string
+  top?: number | string
+  zIndex?: number | string
+}
+export declare type AbsolutePositionStyle = AbsolutePosition & {
+  position: 'absolute'
+}
 
-export const RegularValue = [String, Number, Boolean, undefined]
+export declare type Appearance = 'fill' | 'legacy' | 'outline'
 
 export declare type Style = {
   height?: string
