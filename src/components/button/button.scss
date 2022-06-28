@@ -1,4 +1,4 @@
-@keyframes conic {
+@keyframes conic-after {
   0% {
     clip-path: inset(0 0 95% 0);
   }
@@ -15,7 +15,7 @@
     clip-path: inset(0 0 95% 0);
   }
 }
-@keyframes conic-delay {
+@keyframes conic-before {
   0% {
     clip-path: inset(95% 0 0 0);
   }
@@ -46,33 +46,74 @@
   box-sizing: border-box;
   color: crimson;
   cursor: pointer;
-  padding: 0 280px;
-  line-height: 320px;
+  height: 32px;
+  padding: 0 8px;
+  line-height: 32px;
   overflow: hidden;
   position: relative;
 
-  & > * {
-    pointer-events: none;
-  }
-
-  &:hover {
+  &--off:hover {
     background: rgba(219, 20, 60, 0.5);
     color: white;
   }
 
-  &--active::after,
-  &--active::before {
-    animation-name: conic-delay;
+  &--disabled,
+  &--disabled:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border-color: rgba(219, 20, 60, 0.5);
+    color: rgba(219, 20, 60, 0.5);
+    cursor: not-allowed;
+  }
+
+  &--loading {
+    cursor: wait;
+  }
+  &--loading::before {
+    backdrop-filter: blur(1px);
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    bottom: 0;
+    box-sizing: border-box;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;    
+    z-index: 1;
+  }
+
+  &--on {
+    background: crimson;
+    color: white;
+  }
+  &--on::after,
+  &--on::before {
     animation-duration: 3s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     border: 1px solid gold;
+    border-radius: 4px;
     bottom: 0;
+    box-sizing: border-box;
     content: '';
     left: 0;
     position: absolute;
     right: 0;
     top: 0;
+  }
+  &--on::after {
+    animation-name: conic-after;
+  }
+  &--on::before {
+    animation-name: conic-before;
+  }
+
+  & + & {
+    margin-left: 8px;
+  }
+
+  & > * {
+    pointer-events: none;
   }
 
   &-effect {

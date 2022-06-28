@@ -7,12 +7,15 @@ export declare type ButtonEffect = {
 }
 
 export declare type ButtonEmits = {
-  (event: 'blur', name?: string): void
-  (event: 'foucs', name?: string): void
+  change: (value: 'on' | 'off', name: string) => true
+  click: (name: string) => true
 }
+
+export declare type ButtonMode = 'off' | 'on' | 'loading' | 'disabled'
 
 export declare type ButtonProps = {
   appearance?: Appearance
+  disabled: boolean
   legend: string
   name: string
   type: ButtonType

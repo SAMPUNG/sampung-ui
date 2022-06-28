@@ -1,18 +1,15 @@
 import { defineComponent, type PropType, ref, Ref } from 'vue'
 import type { Appearance, Style } from '@/types/component'
 import { absolute, createNamespace, debounce, resolveUniqueId } from '@/utils/'
-import type { ButtonEffect, ButtonType } from './button.interface'
+import type { ButtonEffect, ButtonMode, ButtonType } from './button.interface'
 import './button.scss'
 
 const bem = createNamespace('button')
 
 const buttonEmits = {
-  enable: (name: string) => true,
-  blur: (name: string) => true,
+  change: (value: 'on' | 'off', name: string) => true,
   click: (name: string) => true,
-  disable: (name: string) => true,
-  error: (message: string, name: string) => true,
-  foucs: (name: string) => true,
+  // 'update:mode': (value: 'on' | 'off', name: string) => true,
 }
 
 const buttonProps = {
@@ -25,6 +22,11 @@ const buttonProps = {
     default: '',
     required: false,
     type: String,
+  },
+  mode: {
+    default: 'off',
+    required: false,
+    type: String as PropType<ButtonMode>,
   },
   name: {
     default: '',
@@ -45,11 +47,7 @@ export default defineComponent({
   setup(props, context) {
     const effects: Ref<ButtonEffect[]> = ref([])
 
-    const clearEffects = debounce((type: string) => {
-      effects.value = effects.value.filter((item) => item.type !== type)
-    }, 1000)
-
-    const onClick = (event: MouseEvent) => {
+    const addEffect = (event: MouseEvent): void => {
       const { clientHeight, clientWidth } = event.target as HTMLButtonElement
       const { offsetX, offsetY } = event
       const id: string = resolveUniqueId()
@@ -67,21 +65,53 @@ export default defineComponent({
           top: offsetY - radius / 2,
         })
       )
-
       effects.value.push({ id, style, type: 'ripple' })
-      context.emit('click', props.name)
-
       clearEffects('ripple')
+    }
+    const clearEffects = debounce((type: string) => {
+      effects.value = effects.value.filter((item) => item.type !== type)
+    }, 1000)
+
+    const onClick = (event: MouseEvent) => {
+      switch (props.mode) {
+        case 'disabled':
+        case 'loading': {
+          break
+        }
+        case 'off': {
+          addEffect(event)
+          context.emit('click', props.name)
+          context.emit('change', 'on', props.name)
+          // context.emit('update:mode', 'on', props.name)
+          break
+        }
+        case 'on': {
+          context.emit('click', props.name)
+          context.emit('change', 'off', props.name)
+          // context.emit('update:mode', 'off', props.name)
+          break
+        }
+        default: {
+          context.emit('click', props.name)
+        }
+      }
     }
 
     return {
       effects,
+      status,
+
       onClick,
     }
   },
   render() {
     return (
-      <button class={bem()} type={this.type} onClick={this.onClick}>
+      <button
+        class={bem([this.mode])}
+        disabled={this.mode === 'disabled'}
+        type={this.type}
+        onClick={this.onClick}
+      >
         <span class={bem('legend')}>{this.legend}</span>
         {this.effects.map((item) => (
           <span class={bem('effect')} style={item.style} />
