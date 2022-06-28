@@ -1,15 +1,15 @@
 import { defineComponent } from 'vue'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import DemoCalendar from './calendar.component'
 
-const calendar = new Namespace('demo-calendar')
+const bem = createNamespace('calendar-demo')
 
 export default defineComponent({
-  name: calendar.bem(),
+  name: bem(),
   components: { DemoCalendar },
   render() {
     return (
-      <div class={calendar.bem()}>
+      <div class={bem()}>
         <demo-calendar />
       </div>
     )

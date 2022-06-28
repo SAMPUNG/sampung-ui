@@ -1,9 +1,9 @@
 import { defineComponent, ref } from 'vue'
 import type { Ref } from 'vue'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import DemoTabs from './tabs.component'
 
-const demo = new Namespace('demo-tabs')
+const bem = createNamespace('tabs-demo')
 
 const defaultTabs = [
   {
@@ -21,7 +21,7 @@ const defaultTabs = [
 ]
 
 export default defineComponent({
-  name: demo.name,
+  name: bem(),
   components: { DemoTabs },
   setup() {
     const options = ref(defaultTabs)

@@ -1,9 +1,11 @@
 import { defineComponent, PropType } from 'vue'
-import bem from '@/utils/bem'
+import createNamespace from '@/utils/namespace'
 import type { SelectOption, SelectValue } from './select.interface'
 
+const bem = createNamespace('select-multiple')
+
 export default defineComponent({
-  name: bem('select-multiple'),
+  name: bem(),
   emits: ['update:modelValue'],
   props: {
     modelValue: {
@@ -35,10 +37,10 @@ export default defineComponent({
   }),
   computed: {
     status() {
-      return bem('select-multiple')
+      return bem()
     },
     selection() {
-      return bem('selection-multiple', this.dropdown ? 'dropdown' : '')
+      return bem([this.dropdown ? 'dropdown' : ''])
     },
   },
   methods: {

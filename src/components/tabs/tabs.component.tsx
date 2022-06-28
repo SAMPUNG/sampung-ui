@@ -1,7 +1,7 @@
 import { defineComponent, ref, watch } from 'vue'
 import type { PropType, Ref } from 'vue'
 import { resolveUniqueId, verifyRegular } from '@/utils/data'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import type {
   IndicatorOffset,
   TabsOption,
@@ -12,10 +12,10 @@ import TabsSelect from '../select/select.component'
 
 import './tabs.scss'
 
-const tabs = new Namespace('tabs')
+const bem = createNamespace('tabs')
 
 export default defineComponent({
-  name: tabs.name,
+  name: bem(),
   components: { TabsSelect },
   props: {
     modelValue: {
@@ -29,7 +29,7 @@ export default defineComponent({
     },
   },
   emits: {
-    'change'(value: TabsValue) {
+    change(value: TabsValue) {
       return value
     },
     'update:modelValue'(value: TabsValue) {
@@ -92,7 +92,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={[tabs.bem()]} id={this.id}>
+      <div class={[bem()]} id={this.id}>
         <tabs-select
           vModel={this.selected}
           options={this.options}
@@ -100,10 +100,10 @@ export default defineComponent({
           onSelect={this.onSelect}
           ref="select"
         />
-        <div class={tabs.bem('controls')} onClick={this.onDropdown}>
-          <button class={tabs.bem('controls-more')}>⋯</button>
+        <div class={bem('controls')} onClick={this.onDropdown}>
+          <button class={bem('controls-more')}>⋯</button>
         </div>
-        <div class={tabs.bem('indicator')} style={this.offset} />
+        <div class={bem('indicator')} style={this.offset} />
       </div>
     )
   },

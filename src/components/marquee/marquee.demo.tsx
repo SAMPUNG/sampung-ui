@@ -1,13 +1,15 @@
 import { defineComponent } from 'vue'
-import bem from '@/utils/bem'
+import createNamespace from '@/utils/namespace'
 import '@/styles/demo.scss'
 
+const bem = createNamespace('marquee-demo')
+
 export default defineComponent({
-  name: bem('demo-marquee'),
+  name: bem(),
   render() {
     return (
-      <div class="demo">
-        <div class="demo-playground">
+      <div class={bem()}>
+        <div class="playground-demo">
           <sam-marquee size={this.size} />
         </div>
         <sam-form name="controls">

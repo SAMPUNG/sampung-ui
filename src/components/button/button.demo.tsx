@@ -1,16 +1,16 @@
 import { defineComponent } from 'vue'
 import createNamespace from '@/utils/namespace'
-import DemoEmpty from './empty.component'
+import DemoButton from './button.component'
 
-const bem = createNamespace('empty-demo')
+const bem = createNamespace('button-demo')
 
 export default defineComponent({
   name: bem(),
-  components: { DemoEmpty },
+  components: { DemoButton },
   render() {
     return (
       <div class={bem()}>
-        <demo-empty />
+        <demo-button legend="Legend" />
       </div>
     )
   },

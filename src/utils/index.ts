@@ -1,2 +1,5 @@
+export * from './data'
 export * from './install'
 export * from './namespace'
+export * from './reactive'
+export * from './style'

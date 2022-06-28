@@ -1,10 +1,10 @@
 import { defineComponent, provide, ref } from 'vue'
 import type { Ref } from 'vue'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import { model } from './form.provide'
 import './form.scss'
 
-const form = new Namespace('form')
+const bem = createNamespace('form')
 
 const formEmits = {
   reset: (name: string) => true,
@@ -49,7 +49,7 @@ const formProps = {
   },
 }
 export default defineComponent({
-  name: form.name,
+  name: bem(),
   props: formProps,
   emits: formEmits,
   setup(props, context) {
@@ -74,7 +74,7 @@ export default defineComponent({
       <form
         action={this.action}
         autocomplete={this.autocomplete}
-        class={form.bem()}
+        class={bem()}
         enctype={this.enctype}
         method={this.method}
         name={this.name}

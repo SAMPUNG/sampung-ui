@@ -1,11 +1,15 @@
 import { defineComponent, inject } from 'vue'
-import type { PropType } from 'vue'
-import { verifyRegular } from '@/utils/data'
-import Namespace from '@/utils/namespace'
+// import type { PropType } from 'vue'
+import {
+  type FieldProvide,
+  fieldProvide,
+} from '@/components/field/field.interface'
+import { verifyEmpty, verifyRegular } from '@/utils/data'
+import createNamespace from '@/utils/namespace'
 import type { InputValue } from './input.interface'
 import './input.scss'
 
-const input = new Namespace('input')
+const bem = createNamespace('input')
 
 const inputEmits = {
   blur: (name: string) => true,
@@ -63,23 +67,26 @@ const inputProps = {
 }
 
 export default defineComponent({
-  name: input.name,
+  name: bem(),
   props: inputProps,
   emits: inputEmits,
   setup(props, context) {
-    const field = inject('field')
+    const field: FieldProvide = inject(fieldProvide)
 
     const onBlur = (): void => {
       context.emit('blur', props.name)
+      field?.updateStatus('focus', false)
     }
     const onFoucs = (): void => {
       context.emit('focus', props.name)
-      console.log(field)
+      field?.updateStatus('focus', true)
     }
     const onInput = (event: Event): void => {
       const target = event.target as HTMLInputElement
       const value: InputValue = target.value
       context.emit('update:modelValue', value, props.name)
+      const empty = verifyEmpty(value)
+      field?.updateStatus('empty', empty)
     }
 
     return {
@@ -92,7 +99,7 @@ export default defineComponent({
     return (
       <input
         autocomplete={this.autocomplete}
-        class={input.bem()}
+        class={bem()}
         max={this.max}
         min={this.min}
         name={this.name}

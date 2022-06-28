@@ -1,13 +1,13 @@
 import { defineComponent, ref, type Ref } from 'vue'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import DemoCarousel from './carousel.component'
 
-const demo = new Namespace('demo-carousel')
+const bem = createNamespace('carousel-demo')
 
 const demoOptions = ['/img/iu.jpg', '/img/jal-mahal.jpg', '/img/mesa.jpg']
 
 export default defineComponent({
-  name: demo.bem(),
+  name: bem(),
   components: { DemoCarousel },
   setup() {
     const options: Ref<string[]> = ref(demoOptions)
@@ -17,7 +17,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={demo.bem()}>
+      <div class={bem()}>
         <demo-carousel options={this.options} />
       </div>
     )

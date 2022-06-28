@@ -1,8 +1,8 @@
 import { defineComponent, ref, type Ref } from 'vue'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import './calendar.scss'
 
-const calendar = new Namespace('calendar')
+const bem = createNamespace('calendar')
 
 declare type CalendarRecord = {
   date: number
@@ -14,7 +14,7 @@ declare type CalendarRecord = {
 }
 
 export default defineComponent({
-  name: calendar.name,
+  name: bem(),
   setup(props) {
     const date: Ref<number> = ref(0)
     const list: Ref<CalendarRecord[]> = ref([])
@@ -141,7 +141,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={[calendar.bem()]}>
+      <div class={[bem()]}>
         <div class="header">
           <span onClick={() => this.changeYear(-1)}>«</span>
           <span onClick={() => this.changeMonth(-1)}>‹</span>

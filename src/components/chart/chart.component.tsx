@@ -2,10 +2,10 @@ import { getInstanceByDom, init } from 'echarts'
 import type { EChartsCoreOption } from 'echarts/types/dist/echarts'
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import './chart.scss'
 
-const chart = new Namespace('chart')
+const bem = createNamespace('chart')
 
 const ChartProps = {
   id: {
@@ -24,7 +24,7 @@ const ChartProps = {
 let observer: ResizeObserver | null = null
 
 export default defineComponent({
-  name: chart.name,
+  name: bem(),
   props: ChartProps,
   setup(props, context) {
     const renderChart = () => {
@@ -65,7 +65,7 @@ export default defineComponent({
     }
   },
   render() {
-    return <div class={chart.bem()} id={this.id} />
+    return <div class={bem()} id={this.id} />
   },
   mounted() {
     this.renderChart()

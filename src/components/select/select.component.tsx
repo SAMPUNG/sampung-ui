@@ -1,7 +1,7 @@
 import { defineComponent, ref, watch } from 'vue'
 import type { PropType } from 'vue'
 import { resolveUniqueId, verifyRegular } from '@/utils/data'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import type {
   SelectOption,
   SelectOptionRecord,
@@ -11,7 +11,7 @@ import type {
 
 import './select.scss'
 
-const select = new Namespace('select')
+const bem = createNamespace('select')
 
 export const SelectCommonProps = {
   modelValue: {
@@ -27,13 +27,13 @@ export const SelectCommonProps = {
 }
 
 export default defineComponent({
-  name: select.name,
+  name: bem(),
   props: SelectCommonProps,
   emits: {
-    'change'(value: SelectValue) {
+    change(value: SelectValue) {
       return value
     },
-    'select'(target: HTMLLIElement) {
+    select(target: HTMLLIElement) {
       return target
     },
     'update:modelValue'(value: SelectValue) {
@@ -112,10 +112,10 @@ export default defineComponent({
   },
   render() {
     return (
-      <ul class={select.bem()} id={this.id}>
+      <ul class={bem()} id={this.id}>
         {this.options.map((item) => (
           <li
-            class={[select.bem('item'), this.resolveSelected(item)]}
+            class={[bem('item'), this.resolveSelected(item)]}
             data-option={this.resolveName(item)}
             onClick={(event: Event) =>
               this.onSelect(item, event.target as HTMLLIElement)

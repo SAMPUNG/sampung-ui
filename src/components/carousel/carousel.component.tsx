@@ -1,11 +1,11 @@
 import { computed, defineComponent, ref } from 'vue'
 import type { PropType } from 'vue'
 import type { ComputedRef, Ref } from 'vue'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import type { Style } from '@/types/component'
 import './carousel.scss'
 
-const carousel = new Namespace('carousel')
+const bem = createNamespace('carousel')
 
 const CarouselProps = {
   options: {
@@ -16,7 +16,7 @@ const CarouselProps = {
 }
 
 export default defineComponent({
-  name: carousel.bem(),
+  name: bem(),
   props: CarouselProps,
   setup(props) {
     const offset: Ref<number> = ref(0)
@@ -57,7 +57,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={carousel.bem()}>
+      <div class={bem()}>
         <div class="carousel-view">
           <ul class="carousel-list" style={this.listStyle}>
             {this.options?.map((url: string, index: number) => (

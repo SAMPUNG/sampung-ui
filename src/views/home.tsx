@@ -1,18 +1,18 @@
 import { defineComponent } from 'vue'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import demo from '@/components/demo'
 
-const home = new Namespace('home')
+const bem = createNamespace('home')
 
 export default defineComponent({
-  name: home.bem(),
+  name: bem(),
   render() {
     return (
-      <div class={home.bem()}>
-        <span class={home.bem('title')}>hello, sampung</span>
-        <ul class={home.bem('nav')} id="nav">
+      <div class={bem()}>
+        <span class={bem('title')}>hello, sampung</span>
+        <ul class={bem('nav')} id='nav'>
           {demo.map(({ name, path }) => (
-            <li class={home.bem('nav-item')}>
+            <li class={bem('nav-item')}>
               <router-link to={'/' + path}>
                 <span>{name}</span>
               </router-link>

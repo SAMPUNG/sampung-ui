@@ -1,15 +1,15 @@
 import { defineComponent } from 'vue'
 import { Style } from '@/types/component'
-import bem from '@/utils/bem'
+import createNamespace from '@/utils/namespace'
 import style from './marquee.module.scss'
 
-const name = bem('marquee')
+const bem = createNamespace('marquee')
 
 export default defineComponent({
-  name,
+  name: bem(),
   setup() {},
   render() {
-    return <span class={style[name]} style={this.style}></span>
+    return <span class={style[bem()]} style={this.style}></span>
   },
   props: {
     size: {

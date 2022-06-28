@@ -1,9 +1,9 @@
 import { defineComponent, ref } from 'vue'
 import type { Ref } from 'vue'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import DemoChart from './chart.component'
 
-const demo = new Namespace('demo-chart')
+const bem = createNamespace('chart-demo')
 
 const defaultOptions = {
   xAxis: {
@@ -22,10 +22,10 @@ const defaultOptions = {
 }
 
 export default defineComponent({
-  name: demo.name,
+  name: bem(),
   components: { DemoChart },
   setup() {
-    const id: Ref<string> = ref('demo-chart')
+    const id: Ref<string> = ref('chart-demo')
     const options = ref(defaultOptions)
 
     return {
@@ -35,7 +35,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class="demo">
+      <div class={bem()}>
         <demo-chart id={this.id} options={this.options} />
       </div>
     )

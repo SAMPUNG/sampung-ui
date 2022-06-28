@@ -1,56 +1,54 @@
-declare type Bem = {
-  block: string
-  element?: string
-  modifier?: string
-}
+import type { Bem } from '@/types/component'
 
-export default class Namespace {
-  block: string = 'sam'
-  element: string = ''
-  history: Bem[] = []
-  name: string = ''
-
-  constructor(element: string) {
-    this.element = element
-    this.name = this.resolveBem(element)
+const createNamespace = (element: string) => {
+  const resolveBem = (element: string, modifier?: string): string => {
+    const name = `${block}-${element}`
+    updateHistory(element, modifier)
+    return modifier ? `${name}--${modifier}` : name
   }
 
-  bem(): string
-  bem(offspring: string): string
-  bem(modifiers: string[]): string
-  bem(offspring: string, modifiers: string[]): string
+  const resolveElement = (offspring?: string): string => {
+    const chain = [element]
+    offspring && chain.push(offspring)
+    return chain.join('-')
+  }
 
-  bem(a?: string | string[], b?: string[]): string {
+  const updateHistory = (element: string, modifier?: string): void => {
+    history.push({
+      block: block,
+      element,
+      modifier,
+    })
+  }
+
+  const block: string = 'sam'
+  const history: Bem[] = []
+  const name: string = block + element
+
+  function bem(): string
+  function bem(offspring: string): string
+  function bem(modifiers: string[]): string
+  function bem(offspring: string, modifiers: string[]): string
+  function bem(a?: string | string[], b?: string[]): string {
     const offspring = typeof a === 'string' ? a : undefined
     const modifiers = Array.isArray(a) ? a : b
 
-    const element = this.resolveElement(offspring)
-    const results: string[] = [this.resolveBem(element)]
+    const element = resolveElement(offspring)
+    const results: string[] = [resolveBem(element)]
 
     modifiers?.forEach((modifier) => {
-      results.push(this.resolveBem(element, modifier))
+      modifier && results.push(resolveBem(element, modifier))
     })
 
     return results.join(' ')
   }
 
-  resolveBem(element: string, modifier?: string): string {
-    const name = `${this.block}-${element}`
-    this.updateHistory(element, modifier)
-    return modifier ? `${name}--${modifier}` : name
-  }
+  bem.prototype.block = block
+  bem.prototype.name = name
+  bem.prototype.history = history
 
-  resolveElement(offspring?: string): string {
-    const chain = [this.element]
-    offspring && chain.push(offspring)
-    return chain.join('-')
-  }
-
-  updateHistory(element: string, modifier?: string): void {
-    this.history.push({
-      block: this.block,
-      element,
-      modifier,
-    })
-  }
+  return bem
 }
+
+export default createNamespace
+export { createNamespace }

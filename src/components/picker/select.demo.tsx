@@ -1,13 +1,15 @@
 import { defineComponent } from 'vue'
-import bem from '@/utils/bem'
+import createNamespace from '@/utils/namespace'
 import '@/styles/demo.scss'
 
+const bem = createNamespace('select-demo')
+
 export default defineComponent({
-  name: bem('demo-marquee'),
+  name: bem(),
   render() {
     return (
       <div class="demo">
-        <div class="demo-playground">
+        <div class="playground-demo">
           <sam-select
             vModel={this.value}
             options={this.options}
@@ -32,18 +34,18 @@ export default defineComponent({
     options: [
       {
         label: 'AA',
-        value: 'aa'
+        value: 'aa',
       },
       {
         label: 'BB',
-        value: 'bb'
+        value: 'bb',
       },
       {
         label: 'CC',
-        value: 'cc'
-      }
+        value: 'cc',
+      },
     ],
     placeholder: '请选择……',
-    value: undefined
-  })
+    value: undefined,
+  }),
 })

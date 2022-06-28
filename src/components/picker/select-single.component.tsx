@@ -1,9 +1,11 @@
 import { defineComponent, PropType } from 'vue'
 import type { SelectOption, SelectValue } from './select.interface'
-import bem from '@/utils/bem'
+import createNamespace from '@/utils/namespace'
+
+const bem = createNamespace('select-single')
 
 export default defineComponent({
-  name: bem('select-single'),
+  name: bem(),
   emits: ['update:modelValue'],
   props: {
     modelValue: {
@@ -35,10 +37,10 @@ export default defineComponent({
   }),
   computed: {
     status() {
-      return bem('select-single')
+      return bem()
     },
     selection() {
-      return bem('selection-single', this.dropdown ? 'dropdown' : '')
+      return bem([this.dropdown ? 'dropdown' : ''])
     },
   },
   methods: {

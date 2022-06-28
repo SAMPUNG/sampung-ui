@@ -1,9 +1,9 @@
 export declare type AbsolutePosition = {
-  bottom?: number | string
-  left?: number | string
-  right?: number | string
-  top?: number | string
-  zIndex?: number | string
+  bottom?: StyleProperty
+  left?: StyleProperty
+  right?: StyleProperty
+  top?: StyleProperty
+  zIndex?: number
 }
 export declare type AbsolutePositionStyle = AbsolutePosition & {
   position: 'absolute'
@@ -11,10 +11,23 @@ export declare type AbsolutePositionStyle = AbsolutePosition & {
 
 export declare type Appearance = 'fill' | 'legacy' | 'outline'
 
-export declare type Style = {
-  height?: string
-  transform?: string
-  width?: string
+export declare type Bem = {
+  block: string
+  element?: string
+  modifier?: string
 }
+
+export declare type Transform = {
+  transform?: string
+}
+
+export declare type Style = AbsolutePositionStyle & Size & Transform
+
+export declare type Size = {
+  height?: StyleProperty
+  width?: StyleProperty
+}
+
+export declare type StyleProperty = number | string | undefined
 
 export declare type Theme = 'dark' | 'light'

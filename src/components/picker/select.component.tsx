@@ -1,14 +1,14 @@
 import { computed, defineComponent, defineEmits, withDefaults } from 'vue'
 import type { ComputedRef } from 'vue'
-import bem from '@/utils/bem'
+import createNamespace from '@/utils/namespace'
 import SelectMultiple from './select-multiple.component'
 import SelectSingle from './select-single.component'
 import { SelectEmits, SelectProps, SelectValue } from './select.interface'
 
-const name = bem('select')
+const bem = createNamespace('select')
 
 export default defineComponent({
-  name,
+  name: bem(),
   components: {
     SelectMultiple,
     SelectSingle,

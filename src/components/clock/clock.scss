@@ -3,7 +3,7 @@
 $gap: 16px;
 $size: 300px;
 $header: 48px;
-$radius: $size / 2 - 18px;
+$radius: calc(($size - $gap) / 2);
 
 @function angle($n) {
   @return ($n % 12) * 30deg;

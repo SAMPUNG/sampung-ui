@@ -1,11 +1,11 @@
 import { defineComponent } from 'vue'
-import bem from '@/utils/bem'
+import createNamespace from '@/utils/namespace'
 import style from './fieldset.module.scss'
 
-const name = bem('fieldset')
+const bem = createNamespace('fieldset')
 
 export default defineComponent({
-  name,
+  name: bem(),
   props: {
     disabled: {
       default: false,
@@ -31,7 +31,7 @@ export default defineComponent({
   render() {
     return (
       <fieldset
-        class={style[name]}
+        class={style[bem()]}
         disabled={this.disabled}
         form={this.form}
         name={this.name}

@@ -1,12 +1,19 @@
-import { defineComponent, inject, provide, ref } from 'vue'
-import type { PropType, Ref } from 'vue'
-import type { InputValue } from '@/components/input/input.interface'
+import {
+  defineComponent,
+  inject,
+  type PropType,
+  provide,
+  type Ref,
+  ref,
+} from 'vue'
+import { type InputValue } from '@/components/input/input.interface'
 import { model } from '@/components/form/form.provide'
 import type { Appearance } from '@/types/component'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
+import { fieldProvide } from './field.interface'
 import './field.scss'
 
-const field = new Namespace('field')
+const bem = createNamespace('field')
 
 const fieldEmits = {
   enable: (name: string) => true,
@@ -42,42 +49,49 @@ const fieldProps = {
 }
 
 export default defineComponent({
-  name: field.name,
+  name: bem(),
   props: fieldProps,
   emits: fieldEmits,
   setup(props, context) {
     const el = inject(model)
-    const empty: Ref<boolean> = ref(false)
     const required: Ref<boolean> = ref(false)
+    const status: Ref<string[]> = ref(['empty'])
     const valid: Ref<boolean> = ref(true)
 
     const onBlur = (): void => {
       context.emit('blur', props.name)
+      updateStatus('foucs', false)
     }
     const onFocus = (): void => {
       context.emit('foucs', props.name)
+      updateStatus('foucs', true)
     }
-    const updateEmpty = (e: boolean): void => {
-      empty.value = e
+    const updateStatus = (key: string, value: boolean): void => {
+      const index = status.value.indexOf(key)
+      if (value && index === -1) {
+        status.value.push(key)
+      } else if (index !== -1) {
+        status.value.splice(index, 1)
+      }
     }
 
-    provide('field', {
+    provide(fieldProvide, {
       onBlur,
       onFocus,
-      updateEmpty,
+      updateStatus,
     })
 
     return {
       el,
-      empty,
       required,
+      status,
       valid,
     }
   },
   render() {
     return (
-      <fieldset class={field.bem()}>
-        <legend class={field.bem('legend')}>{this.legend}</legend>
+      <fieldset class={[bem(this.status)]}>
+        <legend class={bem('legend')}>{this.legend}</legend>
         {typeof this.$slots.default === 'function' && this.$slots.default()}
       </fieldset>
     )

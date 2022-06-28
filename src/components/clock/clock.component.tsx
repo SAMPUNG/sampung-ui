@@ -1,5 +1,5 @@
 import { defineComponent, ref, type Ref } from 'vue'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import type { Style } from '@/types/component'
 import './clock.scss'
 import {
@@ -9,7 +9,7 @@ import {
   ClockTick,
 } from './clock.interface'
 
-const clock = new Namespace('clock')
+const bem = createNamespace('clock')
 
 const CLOCK_HOUR_TICKS: ClockHourTick[] = []
 // const CLOCK_TICKS: ClockTick[] = [
@@ -38,7 +38,7 @@ const clockProps = {
 }
 
 export default defineComponent({
-  name: clock.name,
+  name: bem(),
   props: clockProps,
   setup(props) {
     const moment: Date = new Date(props.modelValue)
@@ -93,30 +93,30 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={clock.bem()}>
-        <div class={clock.bem('field')}>
+      <div class={bem()}>
+        <div class={bem('field')}>
           <span>{this.resolveLabel(this.hour)}</span>
           <span>:</span>
           <span>{this.resolveLabel(this.minute)}</span>
           <span>:</span>
           <span>{this.resolveLabel(this.second)}</span>
         </div>
-        <ul class={clock.bem('dial')} onMouseenter={this.onHover}>
+        <ul class={bem('dial')} onMouseenter={this.onHover}>
           {CLOCK_HOUR_TICKS.map(({ legend, name }) => (
-            <li class={clock.bem('tick')}>{legend}</li>
+            <li class={bem('tick')}>{legend}</li>
           ))}
         </ul>
-        <ul class={clock.bem('hands')}>
+        <ul class={bem('hands')}>
           <li
-            class={clock.bem('hour-hand')}
+            class={bem('hour-hand')}
             style={this.resolveAngle(this.hour, 12)}
           />
           <li
-            class={clock.bem('minute-hand')}
+            class={bem('minute-hand')}
             style={this.resolveAngle(this.minute, 60)}
           />
           <li
-            class={clock.bem('second-hand')}
+            class={bem('second-hand')}
             style={this.resolveAngle(this.second, 60)}
           />
         </ul>

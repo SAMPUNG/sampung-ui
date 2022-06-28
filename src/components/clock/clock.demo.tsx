@@ -1,15 +1,15 @@
 import { defineComponent } from 'vue'
-import Namespace from '@/utils/namespace'
+import createNamespace from '@/utils/namespace'
 import DemoClock from './clock.component'
 
-const demo = new Namespace('demo-clock')
+const bem = createNamespace('clock-demo')
 
 export default defineComponent({
-  name: demo.bem(),
+  name: bem(),
   components: { DemoClock },
   render() {
     return (
-      <div class={demo.bem()}>
+      <div class={bem()}>
         <demo-clock />
       </div>
     )

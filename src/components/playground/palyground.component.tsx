@@ -1,6 +1,6 @@
 import { defineComponent, defineEmits, defineProps, ref } from 'vue'
 import type { Ref } from 'vue'
-import bem from '@/utils/bem'
+import createNamespace from '@/utils/namespace'
 import style from './playground.module.scss'
 import type {
   PlaygroundControls,
@@ -13,10 +13,10 @@ import pgField from '@/components/field/field.component'
 import pgForm from '@/components/form/form.component'
 import pgInput from '@/components/input/input.component'
 
-const name = bem('playground')
+const bem = createNamespace('playground')
 
 export default defineComponent({
-  name,
+  name: bem(),
   components: { pgField, pgForm, pgInput },
   setup() {
     const controls: Ref<PlaygroundControls> = ref([])
@@ -35,15 +35,15 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={style[name]}>
-        <div class="demo-playground">
+      <div class={style[bem()]}>
+        <div class="playground-demo">
           <component
             v-model={this.value}
             v-bind={this.source}
             is={this.target}
           />
         </div>
-        <pg-form class="demo-controls" name="controls">
+        <pg-form class="controls-demo" name="controls">
           {this.controls.map((item, index) => (
             <pg-field key={index} legend={item.legend} name={item.name}>
               <pg-input v-model={this.source[item.name]} type={item.type} />
