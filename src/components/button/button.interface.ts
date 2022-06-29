@@ -1,4 +1,4 @@
-import type { Appearance, Style } from '@/types/component'
+import type { Appearance, Palette, Style } from '@/types/component'
 
 export declare type ButtonEffect = {
   id: string
@@ -16,6 +16,7 @@ export declare type ButtonProps = {
   diode: boolean
   legend: string
   name: string
+  palette: Palette
   status: ButtonStatus
   type: ButtonType
 }

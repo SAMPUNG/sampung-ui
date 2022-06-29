@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('@/assets/font/FontAwesome.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.sam-icon {
+  display: inline-block;
+  font-family: 'FontAwesome';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+
+  &::before {
+    content: attr(data-font);
+  }
+}
+
+// @font-face {
+//   font-family: 'Weather';
+//   src: url('/fonts/Weather.ttf') format('truetype');
+// }
+
+// [class^='qi-']::before,
+// [class*=' qi-']::before {
+//   display: inline-block
+//   font-family: 'Weather';
+//   font-style: normal;
+//   font-weight: normal;
+//   font-variant: normal;
+//   text-transform: none;
+//   line-height: 1;
+//   vertical-align: -0.125em;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+// }

@@ -9,13 +9,25 @@ export declare type AbsolutePositionStyle = AbsolutePosition & {
   position: 'absolute'
 }
 
-export declare type Appearance = 'fill' | 'legacy' | 'outline'
+export declare type Appearance =
+  | 'fill'
+  | 'outline'
+  | 'dashed'
+  | 'legacy'
+  | 'text'
 
 export declare type Bem = {
   block: string
   element?: string
   modifier?: string
 }
+
+export declare type Palette =
+  | 'default'
+  | 'primary'
+  | 'danger'
+  | 'warning'
+  | 'success'
 
 export declare type Transform = {
   transform?: string

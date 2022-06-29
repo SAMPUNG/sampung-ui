@@ -1,5 +1,5 @@
 import { defineComponent, type PropType, ref, Ref } from 'vue'
-import type { Appearance, Style } from '@/types/component'
+import type { Appearance, Palette, Style } from '@/types/component'
 import { absolute, createNamespace, debounce, resolveUniqueId } from '@/utils/'
 import type { ButtonEffect, ButtonStatus, ButtonType } from './button.interface'
 import './button.scss'
@@ -14,7 +14,7 @@ const buttonEmits = {
 
 const buttonProps = {
   appearance: {
-    default: 'legacy',
+    default: 'outline',
     required: false,
     type: String as PropType<Appearance>,
   },
@@ -32,6 +32,11 @@ const buttonProps = {
     default: '',
     required: false,
     type: String,
+  },
+  palette: {
+    default: 'default',
+    required: false,
+    type: String as PropType<Palette>,
   },
   status: {
     default: 'off',
@@ -113,7 +118,10 @@ export default defineComponent({
   render() {
     return (
       <button
-        class={bem([this.status])}
+        class={bem([this.appearance, this.palette, this.status])}
+        data-appearance={this.appearance}
+        data-palette={this.palette}
+        data-status={this.status}
         disabled={this.status === 'disabled'}
         type={this.type}
         onClick={this.onClick}

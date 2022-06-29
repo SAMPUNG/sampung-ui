@@ -30,6 +30,11 @@ export default [
     component: () => import('@/components/form/form.demo'),
   },
   {
+    path: 'icon-demo',
+    name: 'Demo: Icon',
+    component: () => import('@/components/icon/icon.demo'),
+  },
+  {
     path: 'tabs-demo',
     name: 'Demo: Tabs',
     component: () => import('@/components/tabs/tabs.demo'),
