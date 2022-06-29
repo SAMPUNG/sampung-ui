@@ -17,14 +17,10 @@ export default defineComponent({
   render() {
     return (
       <div class={bem()}>
-        <demo-button legend="Button: OFF" />
-        <demo-button
-          legend="Button: Switch"
-          mode={this.status}
-          onChange={(value: string) => (this.status = value)}
-        />
-        <demo-button legend="Button: Loading" mode="loading" />
-        <demo-button legend="Button: Disabled" mode="disabled" />
+        <demo-button legend="Button" />
+        <demo-button vModel:status={this.status} diode legend="Button: Diode" />
+        <demo-button legend="Button: Loading" status="loading" />
+        <demo-button legend="Button: Disabled" status="disabled" />
       </div>
     )
   },

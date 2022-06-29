@@ -38,17 +38,30 @@
     opacity: 0;
   }
 }
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg) scale(0.5);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 
 .sam-button {
   background: transparent;
-  border: 1px solid crimson;
+  border: none;
   border-radius: 4px;
   box-sizing: border-box;
   color: crimson;
   cursor: pointer;
-  height: 32px;
-  padding: 0 8px;
-  line-height: 32px;
+  height: 64px;
+  padding: 0 18px;
+  line-height: 64px;
+  outline: 1px solid crimson;
+  outline-offset: -1px;
   overflow: hidden;
   position: relative;
 
@@ -60,9 +73,9 @@
   &--disabled,
   &--disabled:hover {
     background: rgba(0, 0, 0, 0.1);
-    border-color: rgba(219, 20, 60, 0.5);
     color: rgba(219, 20, 60, 0.5);
     cursor: not-allowed;
+    outline-color: rgba(219, 20, 60, 0.5);
   }
 
   &--loading {
@@ -78,8 +91,24 @@
     left: 0;
     position: absolute;
     right: 0;
-    top: 0;    
+    top: 0;
     z-index: 1;
+  }
+  &--loading::after {
+    animation-name: rotate;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    bottom: 0;
+    color: crimson;
+    content: '∵';
+    font-size: 1.5em;
+    font-weight: bolder;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
   }
 
   &--on {

@@ -11,14 +11,15 @@ export declare type ButtonEmits = {
   click: (name: string) => true
 }
 
-export declare type ButtonMode = 'off' | 'on' | 'loading' | 'disabled'
-
 export declare type ButtonProps = {
   appearance?: Appearance
-  disabled: boolean
+  diode: boolean
   legend: string
   name: string
+  status: ButtonStatus
   type: ButtonType
 }
+
+export declare type ButtonStatus = 'off' | 'on' | 'loading' | 'disabled'
 
 export declare type ButtonType = 'button' | 'submit' | 'reset'
