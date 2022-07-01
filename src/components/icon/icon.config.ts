@@ -1,4 +1,4 @@
-export default {
+const manifest: Record<string, string> = {
   '500px': 'f26e',
   'address-book': 'f2b9',
   'address-book-o': 'f2ba',
@@ -786,3 +786,12 @@ export default {
   'youtube-play': 'f16a',
   'youtube-square': 'f166',
 }
+
+const resolveSymbol = (name: string): string => {
+  const value = '0x' + manifest[name]
+  const code = Number(value)
+  return String.fromCharCode(code)
+}
+
+export default resolveSymbol
+export { manifest, resolveSymbol }

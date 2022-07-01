@@ -13,7 +13,6 @@ export declare type ButtonEmits = {
 
 export declare type ButtonProps = {
   appearance?: Appearance
-  diode: boolean
   legend: string
   name: string
   palette: Palette
@@ -21,6 +20,6 @@ export declare type ButtonProps = {
   type: ButtonType
 }
 
-export declare type ButtonStatus = 'off' | 'on' | 'loading' | 'disabled'
+export declare type ButtonStatus = 'loading' | 'disabled' | 'off' | 'on'
 
-export declare type ButtonType = 'button' | 'submit' | 'reset'
+export declare type ButtonType = 'button' | 'reset' | 'submit'

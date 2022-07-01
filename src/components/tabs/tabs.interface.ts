@@ -5,11 +5,6 @@ import type {
 
 export declare type ControlPayload = Record<string, unknown>
 
-export declare type IndicatorOffset = {
-  transform: string
-  width: string
-}
-
 export declare type TabsEmits = {
   (event: 'control', payload: ControlPayload): void
   (event: 'update:modelValue', value: string): void

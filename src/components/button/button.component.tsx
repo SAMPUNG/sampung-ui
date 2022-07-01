@@ -1,4 +1,5 @@
 import { defineComponent, type PropType, ref, Ref } from 'vue'
+import ButtonIcon from '@/components/icon/icon.component'
 import type { Appearance, Palette, Style } from '@/types/component'
 import { absolute, createNamespace, debounce, resolveUniqueId } from '@/utils/'
 import type { ButtonEffect, ButtonStatus, ButtonType } from './button.interface'
@@ -18,10 +19,10 @@ const buttonProps = {
     required: false,
     type: String as PropType<Appearance>,
   },
-  diode: {
-    default: false,
+  icon: {
+    default: '',
     required: false,
-    type: Boolean,
+    type: String,
   },
   legend: {
     default: '',
@@ -34,7 +35,7 @@ const buttonProps = {
     type: String,
   },
   palette: {
-    default: 'default',
+    default: 'primary',
     required: false,
     type: String as PropType<Palette>,
   },
@@ -52,6 +53,9 @@ const buttonProps = {
 
 export default defineComponent({
   name: bem(),
+  components: {
+    ButtonIcon,
+  },
   props: buttonProps,
   emits: buttonEmits,
   setup(props, context) {
@@ -91,7 +95,7 @@ export default defineComponent({
         case 'off': {
           addEffect(event)
 
-          if (props.diode) {
+          if (props.appearance === 'fill' || props.appearance === 'outline') {
             context.emit('change', 'on', props.name)
             context.emit('update:status', 'on', props.name)
           }
@@ -118,14 +122,16 @@ export default defineComponent({
   render() {
     return (
       <button
-        class={bem([this.appearance, this.palette, this.status])}
+        class={bem()}
         data-appearance={this.appearance}
         data-palette={this.palette}
+        data-legend={this.legend}
         data-status={this.status}
         disabled={this.status === 'disabled'}
         type={this.type}
         onClick={this.onClick}
       >
+        {this.icon && <button-icon class={bem('icon')} name={this.icon} />}
         <span class={bem('legend')}>{this.legend}</span>
         {this.effects.map((item) => (
           <span class={bem('effect')} style={item.style} />

@@ -19,7 +19,7 @@
   position: relative;
 
   &::before {
-    content: attr(data-font);
+    content: attr(data-symbol);
   }
 }
 

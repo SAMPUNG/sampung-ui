@@ -8,8 +8,8 @@
 
 html,
 body {
-  background: color.$background;
-  color: color.$font;
+  background: var(--background);
+  color: var(--text);
 }
 
 ul {

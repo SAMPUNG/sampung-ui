@@ -30,15 +30,9 @@ export default defineComponent({
   name: bem(),
   props: SelectCommonProps,
   emits: {
-    change(value: SelectValue) {
-      return value
-    },
-    select(target: HTMLLIElement) {
-      return target
-    },
-    'update:modelValue'(value: SelectValue) {
-      return value
-    },
+    change: (value: SelectValue) => true,
+    select: (target: HTMLLIElement) => true,
+    'update:modelValue': (value: SelectValue) => true,
   },
   setup(props: SelectProps, context) {
     const id = ref<string>(resolveUniqueId())
@@ -52,12 +46,6 @@ export default defineComponent({
       context.emit('change', name)
       context.emit('select', target)
       context.emit('update:modelValue', name)
-      console.log(
-        'select on select | change :>:> ',
-        name,
-        props.modelValue,
-        selected.value
-      )
     }
 
     const resolveLegend = (item: SelectOption): SelectValue => {
@@ -83,10 +71,8 @@ export default defineComponent({
         const index: number = props.options.findIndex((item: SelectOption) => {
           return resolveName(item) === name
         })
-        console.log('select select :>:> ', name, index)
         if (index !== -1) {
           const target: Element | undefined = list.value?.children[index]
-          console.dir(list)
           if (target !== undefined) {
             onSelect(props.options[index], target as HTMLLIElement)
           }
@@ -112,8 +98,13 @@ export default defineComponent({
   },
   render() {
     return (
-      <ul class={bem()} id={this.id}>
-        {this.options.map((item) => (
+      <ul
+        class={bem()}
+        data-total={this.options.length}
+        data-value={this.modelValue}
+        id={this.id}
+      >
+        {this.options.map((item, index) => (
           <li
             class={[bem('item'), this.resolveSelected(item)]}
             data-option={this.resolveName(item)}

@@ -1,35 +1,53 @@
 @use '@/styles/color' as color;
+@use '@/styles/size' as size;
 
 .sam-tabs {
+  align-items: center;
+  background: color.$black;
   border-bottom: 1px solid #eee;
-  box-shadow: 0px 0px 5px #eee;
-  height: 48px;
+  display: flex;
+  flex-direction: row;
+  height: size.$tabs;
+  justify-content: space-between;
   margin: 0 0 15px 0;
   position: relative;
   text-align: left;
   width: 100%;
 
-  &-controls {
-    float: right;
+  &-viewport {
+    flex-grow: 1;
+    overflow: hidden;
     padding: 0 8px;
-    line-height: 48px;
-  
-    &-more {
-      background: transparent;
-      border: none;
-      color: color.$font;
-      cursor: pointer;
-      font-weight: 600;
-      letter-spacing: 2px;
-    }
   }
-  
+
+  &-select {
+    display: block;
+    padding: 0;
+    transition-duration: .5s;
+  }
+
   &-indicator {
     background: color.$primary;
     bottom: 0px;
     height: 2px;
     position: absolute;
     transition-duration: 0.2s;
-    width: 32px;
+  }
+
+  &-controls {
+    height: size.$tabs;
+    line-height: size.$tabs;
+  }
+
+  &-more {
+    background: transparent;
+    border: none;
+    color: color.$font;
+    cursor: pointer;
+    font-weight: 600;
+    height: size.$tabs;
+    letter-spacing: 2px;
+    line-height: size.$tabs;
+    padding: 0 16px;
   }
 }

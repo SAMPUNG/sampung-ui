@@ -9,12 +9,7 @@ export declare type AbsolutePositionStyle = AbsolutePosition & {
   position: 'absolute'
 }
 
-export declare type Appearance =
-  | 'fill'
-  | 'outline'
-  | 'dashed'
-  | 'legacy'
-  | 'text'
+export declare type Appearance = 'dashed' | 'fill' | 'legacy' | 'outline'
 
 export declare type Bem = {
   block: string
@@ -23,14 +18,19 @@ export declare type Bem = {
 }
 
 export declare type Palette =
-  | 'default'
+  | 'error'
   | 'primary'
-  | 'danger'
-  | 'warning'
+  | 'secondary'
   | 'success'
+  | 'warning'
 
 export declare type Transform = {
   transform?: string
+}
+
+export declare type ScrollStyle = {
+  transform: string
+  width: string
 }
 
 export declare type Style = AbsolutePositionStyle & Size & Transform

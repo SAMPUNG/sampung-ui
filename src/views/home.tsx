@@ -1,16 +1,34 @@
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import createNamespace from '@/utils/namespace'
 import demo from '@/components/demo'
+import '@/styles/demo.scss'
 
 const bem = createNamespace('home')
 
 export default defineComponent({
   name: bem(),
+  setup() {
+    const dark = ref<boolean>(true)
+    const changeTheme = (): void => {
+      dark.value = !dark.value
+      document.documentElement.dataset.theme = dark.value ? 'dark' : 'light'
+    }
+
+    return {
+      changeTheme,
+    }
+  },
   render() {
     return (
       <div class={bem()}>
         <span class={bem('title')}>hello, sampung</span>
-        <ul class={bem('nav')} id='nav'>
+        <sam-button
+          class={bem('theme')}
+          legend="Click To Change Theme"
+          onClick={this.changeTheme}
+          palette="primary"
+        />
+        <ul class={bem('nav')}>
           {demo.map(({ name, path }) => (
             <li class={bem('nav-item')}>
               <router-link to={'/' + path}>
@@ -22,5 +40,8 @@ export default defineComponent({
         <router-view />
       </div>
     )
+  },
+  mounted() {
+    document.documentElement.dataset.theme = 'dark'
   },
 })

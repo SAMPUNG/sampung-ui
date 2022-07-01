@@ -1,14 +1,10 @@
-import { defineComponent, ref, watch } from 'vue'
-import type { PropType, Ref } from 'vue'
+import { defineComponent, type PropType, ref, watch } from 'vue'
+import type { Item, List } from '@/components/select/select.interface'
+import TabsSelect from '@/components/select/select.component'
+import type { ScrollStyle } from '@/types/component'
 import { resolveUniqueId, verifyRegular } from '@/utils/data'
 import createNamespace from '@/utils/namespace'
-import type {
-  IndicatorOffset,
-  TabsOption,
-  TabsProps,
-  TabsValue,
-} from './tabs.interface'
-import TabsSelect from '../select/select.component'
+import type { TabsOption, TabsProps, TabsValue } from './tabs.interface'
 
 import './tabs.scss'
 
@@ -37,16 +33,36 @@ export default defineComponent({
     },
   },
   setup(props: TabsProps, context) {
-    const dropdown: Ref<boolean> = ref(false)
+    const dropdown = ref<boolean>(false)
     const id = ref<string>(resolveUniqueId())
-    const offset: Ref<IndicatorOffset> = ref({
+    const indicator = ref<ScrollStyle>({
       transform: 'translateX(8px)',
       width: '32px',
     })
+    const menu = ref<ScrollStyle>({
+      transform: 'translateX(0px)',
+      width: '9999px',
+    })
     const select = ref<typeof TabsSelect | null>(null)
     const selected = ref<TabsValue>(props.modelValue)
+    const viewport = ref<HTMLDivElement | null>(null)
 
     const onChange = (value: TabsValue) => {
+      const limit = viewport.value?.clientWidth || 0
+      const target: Item = resolveOption(value)
+
+      if (target) {
+        const offset = target.offsetLeft - limit / 2
+        const max = Number(menu.value.width.replace(/px/, '')) - limit * 0.95
+        if (offset > max) {
+          menu.value.transform = `translateX(${-max}px)`
+        } else if (offset > 0) {
+          menu.value.transform = `translateX(${-offset}px)`
+        } else {
+          menu.value.transform = 'translateX(0px)'
+        }
+      }
+
       context.emit('change', value)
       context.emit('update:modelValue', value)
     }
@@ -62,15 +78,27 @@ export default defineComponent({
       console.dir(target)
     }
 
+    const resolveOption = (name?: TabsValue): Item => {
+      const ul: List = document.querySelector(`#${id.value} ul[role="select"]`)
+      const selector = name ? `li[data-option="${name}"]` : 'li:last-child'
+      return ul?.querySelector(selector)
+    }
+
     const selectTab = (name: TabsValue): void => {
       select.value?.selectOption(name)
 
-      const selector = `#${id.value} li[data-option="${name}"]`
-      const target: HTMLLIElement | null = document.querySelector(selector)
-
+      const target: Item = resolveOption(name)
       if (target) {
-        offset.value.transform = `translateX(${target.offsetLeft}px)`
-        offset.value.width = `${target.clientWidth}px`
+        indicator.value.transform = `translateX(${target.offsetLeft}px)`
+        indicator.value.width = `${target.clientWidth * 0.618}px`
+      }
+    }
+
+    const updateViewport = (): void => {
+      const end: Item = resolveOption()
+      if (end) {
+        const width = end.offsetWidth + end.offsetLeft + 1
+        menu.value.width = `${width}px`
       }
     }
 
@@ -82,32 +110,42 @@ export default defineComponent({
 
     return {
       id,
-      offset,
+      indicator,
+      menu,
       onChange,
       onDropdown,
       onSelect,
       selected,
       selectTab,
+      updateViewport,
+      viewport,
     }
   },
   render() {
     return (
-      <div class={[bem()]} id={this.id}>
-        <tabs-select
-          vModel={this.selected}
-          options={this.options}
-          onChange={this.onChange}
-          onSelect={this.onSelect}
-          ref="select"
-        />
-        <div class={bem('controls')} onClick={this.onDropdown}>
-          <button class={bem('controls-more')}>⋯</button>
+      <div class={[bem()]} data-value={this.modelValue} id={this.id}>
+        <div class={bem('viewport')} ref="viewport">
+          <div class={bem('view')} style={this.menu}>
+            <tabs-select
+              vModel={this.selected}
+              class={bem('select')}
+              options={this.options}
+              onChange={this.onChange}
+              onSelect={this.onSelect}
+              ref="select"
+              role="select"
+            />
+            <div class={bem('indicator')} style={this.indicator} />
+          </div>
         </div>
-        <div class={bem('indicator')} style={this.offset} />
+        <div class={bem('controls')} onClick={this.onDropdown}>
+          <button class={bem('more')}>⋯</button>
+        </div>
       </div>
     )
   },
   mounted() {
     this.selectTab(this.modelValue)
+    this.updateViewport()
   },
 })

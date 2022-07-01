@@ -1,0 +1,46 @@
+// Theme: Faiz
+:root {
+  // Color: Palette
+  --error: violet;
+  --primary: crimson;
+  --secondary: hotpink;
+  --success: lime;
+  --warning: aqua;
+  // Size
+  --input: 32px;
+  --nav: 48px;
+}
+// Theme: Dark
+:root[data-theme="dark"] {
+  // Color: Base
+  --background: #212121;
+  --border: #dedede;
+  --mask: rgba(0, 0, 0, 0.5);
+  --text: white;
+  // Color: Responsive
+  --disabled: rgba(0, 0, 0, 0.1);
+  --highlight: white;
+  --on: gold;
+  // Color: More
+  --card: #1a1a1a;
+  --board: #292929;
+  --irrelevant: Lavender;
+  --panel: black;
+}
+// Theme: Light
+:root[data-theme="light"] {
+  // Color: Base
+  --background: white;
+  --border: #dedede;
+  --mask: rgba(0, 0, 0, 0.5);
+  --text: black;
+  // Color: Responsive
+  --disabled: rgba(0, 0, 0, 0.1);
+  --highlight: white;
+  --on: aqua;
+  // Color: More
+  --board: #292929;
+  --card: #1a1a1a;
+  --irrelevant: Lavender;
+  --panel: #dedede;
+}

@@ -5,20 +5,14 @@ $pantone25l: #292929;
 $pantone_reverse: #dedede;
 
 $background: $pantone;
-$border: whitesmoke;
+$border: #060505;
 $content: white;
 $font: white;
 $panel: black;
 $panel2: darkgrey;
-$primary: hotpink;
-$secondary: pink;
+$primary: crimson;
+$secondary: hotpink;
 $irrelevant: Lavender;
-// $primary: violet;
-// $secondary: plum;
-// $irrelevant: Thistle;
 $focus: aqua;
 $highlight: dodgerblue;
 
-@mixin border {
-  border-color: $border;
-}

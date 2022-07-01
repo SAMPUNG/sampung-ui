@@ -1,4 +1,41 @@
-.demo {
+.sam-home {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+
+  &-title {
+    font-size: 32px;
+    line-height: 3;
+  }
+  &-nav {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 16px;
+
+    li {
+      line-height: 2;
+      width: 200px;
+    }
+    a {
+      color: var(--text);
+      font-weight: bold;
+      text-decoration: none;
+
+      &.router-link-exact-active {
+        color: var(--primary);
+      }
+    }
+  }
+  &-theme {
+    position: absolute;
+    right: 20px;
+    top: 16px;
+  }
+}
+
+.sam-demo {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -12,5 +49,51 @@
   }
   &-controls {
     width: 50%;
+  }
+}
+
+.sam-button-demo {
+  position: relative;
+
+  &-table {
+    border-collapse: collapse;
+    border-color: var(--primary);
+    border-style: solid;
+    border-width: 1px;
+    width: 100%;
+
+    th, td {
+      border-color: var(--primary);
+      border-style: solid;
+      border-width: 1px;
+      height: var(--input);
+      min-width: 60px;
+    }
+  }
+  &-line {
+    margin: 24px 0;
+  }
+}
+
+.sam-icon-demo {
+  background: var(--panel);
+
+  &-list {
+    list-style-type: disc;
+  }
+  &-item {
+    align-items: center;
+    display: flex;
+    height: 2.5em;
+    text-align: left;
+  }
+  &-icon {
+    color: var(--primary);
+    font-size: 1.5em;
+    text-align: center;
+    width: 2.5em;
+  }
+  &-text {
+    color: var(--text);
   }
 }
