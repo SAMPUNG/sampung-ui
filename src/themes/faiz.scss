@@ -1,11 +1,11 @@
 // Theme: Faiz
 :root {
   // Color: Palette
-  --error: violet;
+  --error: teal;
   --primary: crimson;
-  --secondary: hotpink;
-  --success: lime;
-  --warning: aqua;
+  --secondary: fuchsia;
+  --success: forestgreen;
+  --warning: tomato;
   // Size
   --input: 32px;
   --nav: 48px;
@@ -16,6 +16,8 @@
   --background: #212121;
   --border: #dedede;
   --mask: rgba(0, 0, 0, 0.5);
+  --shadow: rgba(0, 0, 0, 0.75);
+  --legacy: goldenrod;
   --text: white;
   // Color: Responsive
   --disabled: rgba(0, 0, 0, 0.1);
@@ -31,8 +33,10 @@
 :root[data-theme="light"] {
   // Color: Base
   --background: white;
-  --border: #dedede;
+  --border: #212121;
   --mask: rgba(0, 0, 0, 0.5);
+  --shadow: rgba(255, 255, 255, 0.75);
+  --legacy: goldenrod;
   --text: black;
   // Color: Responsive
   --disabled: rgba(0, 0, 0, 0.1);

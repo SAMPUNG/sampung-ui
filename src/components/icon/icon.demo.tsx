@@ -12,12 +12,12 @@ export default defineComponent({
     return (
       <div class={bem()}>
         <ul class={bem('list')}>
-          {Object.keys(manifest).map((item) => (
+          {manifest.map(({ name }) => (
             <li class={bem('item')}>
               <div class={bem('icon')}>
-                <demo-icon name={item} />
+                <demo-icon name={name} />
               </div>
-              <span class={bem('text')}>{item}</span>
+              <span class={bem('text')}>{name}</span>
             </li>
           ))}
         </ul>

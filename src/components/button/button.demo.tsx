@@ -1,8 +1,10 @@
 import { defineComponent, ref } from 'vue'
 import createNamespace from '@/utils/namespace'
 import DemoButton from './button.component'
+import { manifest } from '@/components/icon/icon.config'
 import DemoSelect from '@/components/select/select.component'
-import { ButtonStatus } from './button.interface'
+import type { Appearance, Palette } from '@/types/component'
+import type { ButtonStatus } from './button.interface'
 
 const bem = createNamespace('button-demo')
 
@@ -24,7 +26,12 @@ const options = {
       legend: 'Outline',
       name: 'outline',
     },
+    {
+      legend: 'Text',
+      name: 'text',
+    },
   ],
+  icon: manifest.slice(0, 4).map(({ name }) => ({ icon: name, legend: name, name })),
   palette: [
     {
       legend: 'Error',
@@ -71,12 +78,14 @@ export default defineComponent({
   name: bem(),
   components: { DemoButton, DemoSelect },
   setup() {
-    const appearance = ref('outline')
-    const palette = ref('primary')
-    const status = ref('on')
+    const appearance = ref<Appearance>('outline')
+    const icon = ref<string>(manifest[0].name)
+    const palette = ref<Palette>('primary')
+    const status = ref<ButtonStatus>('off')
 
     return {
       appearance,
+      icon,
       palette,
       status,
     }
@@ -86,14 +95,16 @@ export default defineComponent({
       <div class={bem()}>
         <demo-button
           appearance={this.appearance}
-          vModel:status={this.status}
+          icon={this.icon}
           legend="Button"
           palette={this.palette}
+          vModel:status={this.status}
         />
         <hr class={bem('line')} />
         <demo-select vModel={this.appearance} options={options.appearance} />
         <demo-select vModel={this.palette} options={options.palette} />
         <demo-select vModel={this.status} options={options.status} />
+        <demo-select vModel={this.icon} options={options.icon} />
       </div>
     )
   },

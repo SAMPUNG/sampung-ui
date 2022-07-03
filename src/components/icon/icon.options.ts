@@ -1,6 +1,4 @@
-import { IconRecord } from "./icon.interface"
-
-const manifest: IconRecord[] = [
+export default [
   { code: 0xf26e, name: '500px', },
   { code: 0xf2b9, name: 'address-book', },
   { code: 0xf2ba, name: 'address-book-o', },
@@ -788,11 +786,3 @@ const manifest: IconRecord[] = [
   { code: 0xf16a, name: 'youtube-play', },
   { code: 0xf166, name: 'youtube-square', },
 ]
-
-const resolveSymbol = (name: string): string => {
-  const result = manifest.find((record: IconRecord) => record.name === name)
-  return result ? String.fromCharCode(result.code) : ''
-}
-
-export default resolveSymbol
-export { manifest, resolveSymbol }

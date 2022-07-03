@@ -9,3 +9,8 @@ export declare type IconProps = {
   name: string
   palette?: Palette
 }
+
+export declare type IconRecord = {
+  code: number,
+  name: string
+}

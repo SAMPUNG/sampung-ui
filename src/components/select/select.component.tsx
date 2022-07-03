@@ -1,5 +1,6 @@
 import { defineComponent, ref, watch } from 'vue'
 import type { PropType } from 'vue'
+import SelectIcon from '@/components/icon/icon.component'
 import { resolveUniqueId, verifyRegular } from '@/utils/data'
 import createNamespace from '@/utils/namespace'
 import type {
@@ -28,6 +29,7 @@ export const SelectCommonProps = {
 
 export default defineComponent({
   name: bem(),
+  components: { SelectIcon },
   props: SelectCommonProps,
   emits: {
     change: (value: SelectValue) => true,
@@ -37,15 +39,20 @@ export default defineComponent({
   setup(props: SelectProps, context) {
     const id = ref<string>(resolveUniqueId())
     const list = ref<HTMLElement | null>(null)
-    const selected = ref<SelectValue>(props.modelValue)
 
     const onSelect = (option: SelectOption, target: HTMLLIElement): void => {
       const name: SelectValue = resolveName(option)
-      selected.value = name
 
       context.emit('change', name)
       context.emit('select', target)
       context.emit('update:modelValue', name)
+    }
+
+    const resolveIcon = (item: SelectOption): string | undefined => {
+      if (typeof item === 'object') {
+        return (item as SelectOptionRecord).icon
+      }
+      return undefined
     }
 
     const resolveLegend = (item: SelectOption): SelectValue => {
@@ -63,7 +70,7 @@ export default defineComponent({
     }
 
     const resolveSelected = (item: SelectOption): SelectValue => {
-      return resolveName(item) === selected.value ? 'selected' : ''
+      return resolveName(item) === props.modelValue ? 'selected' : ''
     }
 
     const selectOption = (name: SelectValue): void => {
@@ -89,10 +96,10 @@ export default defineComponent({
     return {
       id,
       onSelect,
+      resolveIcon,
       resolveLegend,
       resolveName,
       resolveSelected,
-      selected,
       selectOption,
     }
   },
@@ -104,7 +111,7 @@ export default defineComponent({
         data-value={this.modelValue}
         id={this.id}
       >
-        {this.options.map((item, index) => (
+        {this.options.map((item: SelectOption) => (
           <li
             class={[bem('item'), this.resolveSelected(item)]}
             data-option={this.resolveName(item)}
@@ -112,6 +119,7 @@ export default defineComponent({
               this.onSelect(item, event.target as HTMLLIElement)
             }
           >
+            {this.resolveIcon(item) && <select-icon class={bem('icon')} name={(item as SelectOptionRecord).icon} />}
             <span>{this.resolveLegend(item)}</span>
           </li>
         ))}

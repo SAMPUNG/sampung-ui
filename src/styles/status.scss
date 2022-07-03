@@ -3,7 +3,6 @@
 [data-status="disabled"] {
   &,
   &:hover {
-    color: var(--highlight);
     cursor: not-allowed;
     filter: brightness(0.75);
   }
@@ -56,9 +55,9 @@
   }
 }
 
-[data-status="off"] {
-  &:hover {
-    color:  var(--highlight);
-    transition-duration: 0.3s;
-  }
-}
+// [data-status="off"] {
+//   &:hover {
+//     color:  var(--highlight);
+//     transition-duration: 0.3s;
+//   }
+// }

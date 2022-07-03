@@ -9,7 +9,7 @@ export declare type AbsolutePositionStyle = AbsolutePosition & {
   position: 'absolute'
 }
 
-export declare type Appearance = 'dashed' | 'fill' | 'legacy' | 'outline'
+export declare type Appearance = 'dashed' | 'fill' | 'legacy' | 'outline' | 'text'
 
 export declare type Bem = {
   block: string

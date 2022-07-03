@@ -1,4 +1,4 @@
-button:not([data-appearance="legacy"]) {
+button:not([data-appearance="text"]) {
   height: var(--input);
   line-height: var(--input);
   padding: 0 8px;
@@ -9,17 +9,68 @@ button:not([data-appearance="fill"]):not(:hover) {
 
 
 [data-appearance="dashed"] {
-  border-style: dashed;
   outline-style: dashed;
   outline-width: 1px;
   outline-offset: -1px;
+
+  &:hover {
+    box-shadow: inset 0px 0px 16px 2px var(--shadow);
+    color:  var(--highlight);
+  }
 }
 
 [data-appearance="fill"] {
   color: var(--highlight);
+  outline-color: var(--border);
+  outline-style: solid;
+  outline-offset: -1px;
+  outline-width: 0;
+
+  &:hover {
+    box-shadow: inset 0px 0px 8px 4px var(--shadow);
+    color:  var(--highlight);
+    outline-width: 1px;
+  }
 }
 
 [data-appearance="legacy"] {
+  outline-style: solid;
+  outline-width: 1px;
+  outline-offset: -1px;
+
+  &:hover {
+    box-shadow: inset 0px 0px 16px 2px var(--shadow);
+    color:  var(--highlight);
+  }
+  &:hover::before {
+    height: 100%;
+    opacity: 0.5;
+    transition-duration: 0.5s;
+  }
+  &::before {
+    background: var(--legacy);
+    bottom: 0;
+    content: ' ';
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: 0;
+  }
+}
+
+[data-appearance="outline"] {
+  outline-style: solid;
+  outline-width: 1px;
+  outline-offset: -1px;
+
+  &:hover {
+    box-shadow: inset 0px 0px 16px 2px var(--shadow);
+    color:  var(--highlight);
+  }
+}
+
+[data-appearance="text"] {
   border: none;
   display: inline;
   padding: 0;
@@ -28,10 +79,4 @@ button:not([data-appearance="fill"]):not(:hover) {
   &:hover {
     background: transparent;
   }
-}
-
-[data-appearance="outline"] {
-  outline-style: solid;
-  outline-width: 1px;
-  outline-offset: -1px;
 }

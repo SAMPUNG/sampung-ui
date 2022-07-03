@@ -39,7 +39,9 @@ export default defineComponent({
       context.emit('click', props.name)
     }
 
-    watch(() => props.name, resolveSymbol)
+    watch(() => props.name, (name) => {
+      symbol.value = resolveSymbol(name)
+    })
 
     return {
       symbol,

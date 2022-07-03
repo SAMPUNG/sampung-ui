@@ -1,4 +1,4 @@
-import { defineComponent, type PropType, ref, Ref } from 'vue'
+import { defineComponent, type PropType, ref, watch } from 'vue'
 import ButtonIcon from '@/components/icon/icon.component'
 import type { Appearance, Palette, Style } from '@/types/component'
 import { absolute, createNamespace, debounce, resolveUniqueId } from '@/utils/'
@@ -8,9 +8,9 @@ import './button.scss'
 const bem = createNamespace('button')
 
 const buttonEmits = {
-  change: (value: 'on' | 'off', name: string) => true,
+  change: (value: ButtonStatus, name: string) => true,
   click: (name: string) => true,
-  'update:status': (value: 'on' | 'off', name: string) => true,
+  'update:status': (value: ButtonStatus, name: string) => true,
 }
 
 const buttonProps = {
@@ -59,7 +59,7 @@ export default defineComponent({
   props: buttonProps,
   emits: buttonEmits,
   setup(props, context) {
-    const effects: Ref<ButtonEffect[]> = ref([])
+    const effects = ref<ButtonEffect[]>([])
 
     const addEffect = (event: MouseEvent): void => {
       const { clientHeight, clientWidth } = event.target as HTMLButtonElement
@@ -113,6 +113,19 @@ export default defineComponent({
         }
       }
     }
+
+    watch(() => props.appearance, (apperance) => {
+      if (apperance !== 'fill') {
+        context.emit('change', 'off', props.name)
+        context.emit('update:status', 'off', props.name)
+      }
+    })
+    watch(() => props.status, () => {
+      if (props.appearance !== 'fill') {
+        context.emit('change', 'off', props.name)
+        context.emit('update:status', 'off', props.name)
+      }
+    })
 
     return {
       effects,

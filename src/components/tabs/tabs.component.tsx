@@ -44,7 +44,6 @@ export default defineComponent({
       width: '9999px',
     })
     const select = ref<typeof TabsSelect | null>(null)
-    const selected = ref<TabsValue>(props.modelValue)
     const viewport = ref<HTMLDivElement | null>(null)
 
     const onChange = (value: TabsValue) => {
@@ -115,7 +114,6 @@ export default defineComponent({
       onChange,
       onDropdown,
       onSelect,
-      selected,
       selectTab,
       updateViewport,
       viewport,
@@ -127,8 +125,8 @@ export default defineComponent({
         <div class={bem('viewport')} ref="viewport">
           <div class={bem('view')} style={this.menu}>
             <tabs-select
-              vModel={this.selected}
               class={bem('select')}
+              modelValue={this.modelValue}
               options={this.options}
               onChange={this.onChange}
               onSelect={this.onSelect}
