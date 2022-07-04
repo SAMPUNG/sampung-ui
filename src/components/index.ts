@@ -1,5 +1,6 @@
 export * from './button/button.module'
 export * from './calendar/calendar.module'
+export * from './dropdown/dropdown.module'
 export * from './field/field.module'
 export * from './fieldset/fieldset.module'
 export * from './form/form.module'

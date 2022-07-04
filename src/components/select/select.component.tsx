@@ -1,6 +1,7 @@
 import { defineComponent, ref, watch } from 'vue'
 import type { PropType } from 'vue'
 import SelectIcon from '@/components/icon/icon.component'
+import type { Direction } from '@/types/component'
 import { resolveUniqueId, verifyRegular } from '@/utils/data'
 import createNamespace from '@/utils/namespace'
 import type {
@@ -15,6 +16,11 @@ import './select.scss'
 const bem = createNamespace('select')
 
 export const SelectCommonProps = {
+  direction: {
+    default: 'horizontal',
+    required: false,
+    type: String as PropType<Direction>,
+  },
   modelValue: {
     default: undefined,
     required: true,
@@ -107,6 +113,7 @@ export default defineComponent({
     return (
       <ul
         class={bem()}
+        data-direction={this.direction}
         data-total={this.options.length}
         data-value={this.modelValue}
         id={this.id}
@@ -119,7 +126,12 @@ export default defineComponent({
               this.onSelect(item, event.target as HTMLLIElement)
             }
           >
-            {this.resolveIcon(item) && <select-icon class={bem('icon')} name={(item as SelectOptionRecord).icon} />}
+            {this.resolveIcon(item) && (
+              <select-icon
+                class={bem('icon')}
+                name={(item as SelectOptionRecord).icon}
+              />
+            )}
             <span>{this.resolveLegend(item)}</span>
           </li>
         ))}

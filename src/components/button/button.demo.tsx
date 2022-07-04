@@ -31,7 +31,9 @@ const options = {
       name: 'text',
     },
   ],
-  icon: manifest.slice(0, 4).map(({ name }) => ({ icon: name, legend: name, name })),
+  icon: manifest
+    .slice(0, 4)
+    .map(({ name }) => ({ icon: name, legend: name, name })),
   palette: [
     {
       legend: 'Error',
@@ -95,9 +97,9 @@ export default defineComponent({
       <div class={bem()}>
         <demo-button
           appearance={this.appearance}
-          icon={this.icon}
           legend="Button"
           palette={this.palette}
+          prefix-icon={this.icon}
           vModel:status={this.status}
         />
         <hr class={bem('line')} />

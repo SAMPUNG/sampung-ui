@@ -18,8 +18,11 @@
     pointer-events: none;
   }
 
-  &-icon {
+  &-prefix-icon {
     margin: 0 4px 0 0;
+  }
+  &-suffix-icon {
+    margin: 0 0 0 4px;
   }
   &-effect {
     animation-name: ripple;

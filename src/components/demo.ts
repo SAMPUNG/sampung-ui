@@ -1,42 +1,47 @@
 export default [
   {
     path: 'button-demo',
-    name: 'Demo: Button',
+    name: 'Button',
     component: () => import('@/components/button/button.demo'),
   },
   {
     path: 'calendar-demo',
-    name: 'Demo: Calendar',
+    name: 'Calendar',
     component: () => import('@/components/calendar/calendar.demo'),
   },
   {
     path: 'carousel-demo',
-    name: 'Demo: Carousel',
+    name: 'Carousel',
     component: () => import('@/components/carousel/carousel.demo'),
   },
   {
     path: 'chart-demo',
-    name: 'Demo: Chart',
+    name: 'Chart',
     component: () => import('@/components/chart/chart.demo'),
   },
   {
     path: 'clock-demo',
-    name: 'Demo: Clock',
+    name: 'Clock',
     component: () => import('@/components/clock/clock.demo'),
   },
   {
+    path: 'dropdown-demo',
+    name: 'Dropdown',
+    component: () => import('@/components/dropdown/dropdown.demo'),
+  },
+  {
     path: 'form-demo',
-    name: 'Demo: Form',
+    name: 'Form',
     component: () => import('@/components/form/form.demo'),
   },
   {
     path: 'icon-demo',
-    name: 'Demo: Icon',
+    name: 'Icon',
     component: () => import('@/components/icon/icon.demo'),
   },
   {
     path: 'tabs-demo',
-    name: 'Demo: Tabs',
+    name: 'Tabs',
     component: () => import('@/components/tabs/tabs.demo'),
   },
 ]

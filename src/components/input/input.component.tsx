@@ -83,16 +83,24 @@ export default defineComponent({
     }
     const onInput = (event: Event): void => {
       const target = event.target as HTMLInputElement
-      const value: InputValue = target.value
+      updateValue(target.value)
+    }
+
+    const updateValue = (value: InputValue): void => {
       context.emit('update:modelValue', value, props.name)
       const empty = verifyEmpty(value)
       field?.updateStatus('empty', empty)
     }
 
+    context.expose({
+      updateValue,
+    })
+
     return {
       onBlur,
       onFoucs,
       onInput,
+      updateValue,
     }
   },
   render() {
@@ -112,5 +120,8 @@ export default defineComponent({
         onInput={this.onInput}
       />
     )
+  },
+  mounted() {
+    this.updateValue(this.modelValue)
   },
 })

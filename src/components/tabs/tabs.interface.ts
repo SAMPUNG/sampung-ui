@@ -1,7 +1,7 @@
 import type {
   SelectOptionRecord,
   SelectValue,
-} from '../select/select.interface'
+} from '@/components/select/select.interface'
 
 export declare type ControlPayload = Record<string, unknown>
 

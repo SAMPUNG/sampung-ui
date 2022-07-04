@@ -39,10 +39,20 @@ const buttonProps = {
     required: false,
     type: String as PropType<Palette>,
   },
+  prefixIcon: {
+    default: '',
+    required: false,
+    type: String,
+  },
   status: {
     default: 'off',
     required: false,
     type: String as PropType<ButtonStatus>,
+  },
+  suffixIcon: {
+    default: '',
+    required: false,
+    type: String,
   },
   type: {
     default: 'button',
@@ -114,18 +124,24 @@ export default defineComponent({
       }
     }
 
-    watch(() => props.appearance, (apperance) => {
-      if (apperance !== 'fill') {
-        context.emit('change', 'off', props.name)
-        context.emit('update:status', 'off', props.name)
+    watch(
+      () => props.appearance,
+      (apperance) => {
+        if (apperance !== 'fill') {
+          context.emit('change', 'off', props.name)
+          context.emit('update:status', 'off', props.name)
+        }
       }
-    })
-    watch(() => props.status, () => {
-      if (props.appearance !== 'fill') {
-        context.emit('change', 'off', props.name)
-        context.emit('update:status', 'off', props.name)
+    )
+    watch(
+      () => props.status,
+      () => {
+        if (props.appearance !== 'fill') {
+          context.emit('change', 'off', props.name)
+          context.emit('update:status', 'off', props.name)
+        }
       }
-    })
+    )
 
     return {
       effects,
@@ -144,8 +160,13 @@ export default defineComponent({
         type={this.type}
         onClick={this.onClick}
       >
-        {this.icon && <button-icon class={bem('icon')} name={this.icon} />}
+        {this.prefixIcon && (
+          <button-icon class={bem('prefix-icon')} name={this.prefixIcon} />
+        )}
         <span class={bem('legend')}>{this.legend}</span>
+        {this.suffixIcon && (
+          <button-icon class={bem('suffix-icon')} name={this.suffixIcon} />
+        )}
         {this.effects.map((item) => (
           <span class={bem('effect')} style={item.style} />
         ))}

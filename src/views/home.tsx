@@ -21,18 +21,22 @@ export default defineComponent({
   render() {
     return (
       <div class={bem()}>
-        <span class={bem('title')}>hello, sampung</span>
+        <router-link class={bem('title')} to="/">
+          <span>hello, sampung</span>
+        </router-link>
         <sam-button
           class={bem('theme')}
           legend="Click To Change Theme"
           onClick={this.changeTheme}
+          prefix-icon="adjust"
           palette="primary"
         />
         <ul class={bem('nav')}>
           {demo.map(({ name, path }) => (
             <li class={bem('nav-item')}>
               <router-link to={'/' + path}>
-                <span>{name}</span>
+                <span class="label">Demo</span>
+                <span class="value">{name}</span>
               </router-link>
             </li>
           ))}

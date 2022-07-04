@@ -2,15 +2,16 @@
 
 .sam-input {
   background: transparent;
-  caret-color: white;
-  color: white;
+  caret-color: var(--text);
+  color: var(--text);
   border: none;
   height: size.$input;
   outline: none;
+  padding: 0 0 0 8px;
   width: 100%;
 
   &:focus::placeholder {
-    color: hotpink;
+    color: var(--placeholder);
     transition-duration: .3s;
   }
 

@@ -13,10 +13,7 @@
     line-height: 19px;
     height: 100%;
     padding: 15px 0 14px 0;
-  
-    &:not(:first-child) {
-      margin: 0 0 0 32px;
-    }
+
     &:hover {
       color: color.$primary;
     }
@@ -30,5 +27,13 @@
   }
   &-icon {
     margin: 0 4px 0 0;
+  }
+}
+
+[data-direction="horizontal"] {
+  li {
+    &:not(:first-child) {
+      margin: 0 0 0 32px;
+    }
   }
 }

@@ -4,8 +4,14 @@
   text-align: center;
 
   &-title {
+    color: var(--text);
     font-size: 32px;
     line-height: 3;
+    text-decoration: none;
+
+    :hover {
+      color: var(--primary);
+    }
   }
   &-nav {
     align-items: center;
@@ -17,15 +23,39 @@
     li {
       line-height: 2;
       width: 200px;
+
+      :hover {
+        background: var(--primary);
+        color: var(--highlight)
+      }
     }
     a {
       color: var(--text);
+      display: block;
       font-weight: bold;
       text-decoration: none;
 
       &.router-link-exact-active {
         color: var(--primary);
       }
+      &:hover {
+        color: var(--text);
+      }
+    }
+    .label {
+      display: inline-block;
+      text-align: right;
+      width: 50%;
+
+      &::after {
+        content: ':';
+        margin: 0 8px 0 0;
+      }
+    }
+    .value {
+      display: inline-block;
+      text-align: left;
+      width: 50%;
     }
   }
   &-theme {
@@ -72,6 +102,14 @@
   }
   &-line {
     margin: 24px 0;
+  }
+}
+
+.sam-dropdown-demo {
+  position: relative;
+
+  &-display {
+    margin: 64px 0 0 0;
   }
 }
 

@@ -55,7 +55,7 @@ export default defineComponent({
   setup(props, context) {
     const el = inject(model)
     const required: Ref<boolean> = ref(false)
-    const status: Ref<string[]> = ref(['empty'])
+    const status: Ref<string[]> = ref([])
     const valid: Ref<boolean> = ref(true)
 
     const onBlur = (): void => {

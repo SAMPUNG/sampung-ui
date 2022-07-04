@@ -1,6 +1,6 @@
 .sam-field {
   background-clip: border-box;
-  border-color: crimson;
+  border-color: var(--border);
   border-style: solid;
   border-width: 1px;
   padding: 0 0 0 10px;
@@ -10,7 +10,7 @@
   width: 100%;
 
   &--empty {
-    border-color: transparent transparent crimson transparent;
+    border-color: transparent transparent var(--border) transparent;
   }
   &--empty &-legend {
     transform: translateY(135%);
@@ -18,7 +18,7 @@
   }
 
   &--focus {
-    border-color: crimson;
+    border-color: var(--border);
   }
   &--focus &-legend {
     transform: translateY(0);
