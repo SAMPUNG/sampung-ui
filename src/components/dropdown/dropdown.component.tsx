@@ -87,6 +87,7 @@ export default defineComponent({
     const onChange = (value: DropdownValue) => {
       context.emit('change', value)
       context.emit('update:modelValue', value)
+      onDropdown(false)
     }
 
     const onDropdown = (value?: boolean): void => {
@@ -97,28 +98,11 @@ export default defineComponent({
       }
     }
 
-    const onSelect = (target: HTMLLIElement): void => {
-      console.log('Dropdown on select :>:> ')
-      console.dir(target)
-      onDropdown(false)
-    }
-
-    const selectOption = (value: DropdownValue): void => {
-      console.log('Dropdown on select :>:> ', value)
-    }
-
-    watch(() => props.modelValue, selectOption)
-
-    context.expose({
-      selectOption,
-    })
-
     return {
       dropdown,
       id,
       onChange,
       onDropdown,
-      onSelect,
     }
   },
   render() {
@@ -131,7 +115,7 @@ export default defineComponent({
           legend={this.legend}
           onClick={this.onDropdown}
           prefix-icon={this.icon}
-          suffix-icon="angle-down"
+          suffix-icon="keyboard_arrow_down"
         />
         <div
           class={bem('panel')}
@@ -148,7 +132,6 @@ export default defineComponent({
             modelValue={this.modelValue}
             options={this.options}
             onChange={this.onChange}
-            onSelect={this.onSelect}
             ref="select"
             role="select"
           />

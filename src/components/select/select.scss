@@ -15,11 +15,7 @@
     padding: 15px 0 14px 0;
 
     &:hover {
-      color: color.$primary;
-    }
-    &.selected {
-      color: color.$primary;
-      cursor: text;
+      color: var(--secondary);
     }
     & > span {
       pointer-events: none;
@@ -30,10 +26,25 @@
   }
 }
 
+li[data-selected="selected"] {
+  color: var(--primary);
+  cursor: text;
+}
+
 [data-direction="horizontal"] {
   li {
     &:not(:first-child) {
       margin: 0 0 0 32px;
     }
+  }
+}
+
+[data-direction="vertical"] {
+  li[data-selected="selected"] {
+    background: linear-gradient(
+      to right,
+      var(--primary) 4px,
+      var(--mask) 4px
+    );
   }
 }

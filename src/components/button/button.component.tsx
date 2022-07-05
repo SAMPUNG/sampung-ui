@@ -163,7 +163,7 @@ export default defineComponent({
         {this.prefixIcon && (
           <button-icon class={bem('prefix-icon')} name={this.prefixIcon} />
         )}
-        <span class={bem('legend')}>{this.legend}</span>
+        {this.legend && <span class={bem('legend')}>{this.legend}</span>}
         {this.suffixIcon && (
           <button-icon class={bem('suffix-icon')} name={this.suffixIcon} />
         )}

@@ -32,7 +32,7 @@ const options = {
     },
   ],
   icon: manifest
-    .slice(0, 4)
+    .slice(300, 304)
     .map(({ name }) => ({ icon: name, legend: name, name })),
   palette: [
     {
@@ -81,7 +81,7 @@ export default defineComponent({
   components: { DemoButton, DemoSelect },
   setup() {
     const appearance = ref<Appearance>('outline')
-    const icon = ref<string>(manifest[0].name)
+    const icon = ref<string>(manifest[300].name)
     const palette = ref<Palette>('primary')
     const status = ref<ButtonStatus>('off')
 

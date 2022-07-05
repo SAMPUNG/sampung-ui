@@ -15,7 +15,8 @@
   // Color: Base
   --background: #212121;
   --border: #dedede;
-  --mask: rgba(0, 0, 0, 0.5);
+  --dialog: rgba(0, 0, 0, 0.5);
+  --mask: rgba(255, 255, 255, 0.2);
   --shadow: rgba(0, 0, 0, 0.75);
   --legacy: goldenrod;
   --placeholder: darkslategrey;
@@ -35,7 +36,8 @@
   // Color: Base
   --background: white;
   --border: #212121;
-  --mask: rgba(0, 0, 0, 0.5);
+  --dialog: rgba(255, 255, 255, 0.5);
+  --mask: rgba(0, 0, 0, 0.2);
   --shadow: rgba(255, 255, 255, 0.75);
   --legacy: goldenrod;
   --placeholder: lightgrey;

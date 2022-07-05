@@ -25,6 +25,11 @@ export default [
     component: () => import('@/components/clock/clock.demo'),
   },
   {
+    path: 'dialog-demo',
+    name: 'Dialog',
+    component: () => import('@/components/dialog/dialog.demo'),
+  },
+  {
     path: 'dropdown-demo',
     name: 'Dropdown',
     component: () => import('@/components/dropdown/dropdown.demo'),

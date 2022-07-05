@@ -121,6 +121,7 @@ export default defineComponent({
         {this.options.map((item: SelectOption) => (
           <li
             class={[bem('item'), this.resolveSelected(item)]}
+            data-selected={this.resolveSelected(item)}
             data-option={this.resolveName(item)}
             onClick={(event: Event) =>
               this.onSelect(item, event.target as HTMLLIElement)
