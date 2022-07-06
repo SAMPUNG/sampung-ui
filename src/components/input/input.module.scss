@@ -1,12 +1,9 @@
-@use 'src/styles/color' as color;
-@use 'src/styles/size' as size;
-
 .input {
-  border-color: color.$border;
+  border-color: (--border);
   border-style: solid;
-  border-width: size.$border;
+  border-width: 1px;
   box-sizing: border-box;
-  height: size.$input;
+  height: var(--input);
   padding: 0 8px;
   position: relative;
   text-align: left;

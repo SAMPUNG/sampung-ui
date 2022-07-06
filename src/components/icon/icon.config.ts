@@ -1,12 +1,18 @@
-import type { IconRecord } from './icon.interface'
-import FONT_AWSESOME from './font-awesome'
-import MATERIAL_DESIGN from './material-design'
-import WEATHER from './weather'
+import type { IconRecord, IconRecordsMap } from './icon.interface'
+import FONT_AWSESOME from './configs/font-awesome'
+import MATERIAL_DESIGN from './configs/material-design'
+import WEATHER from './configs/weather'
 
-const manifest: IconRecord[] = MATERIAL_DESIGN
+const manifest: IconRecordsMap = {
+  'font-awesome': FONT_AWSESOME,
+  'material-design': MATERIAL_DESIGN,
+  weather: WEATHER,
+}
 
-const resolveSymbol = (name: string): string => {
-  const result = manifest.find((record: IconRecord) => record.name === name)
+const resolveSymbol = (name: string, font: string): string => {
+  const result = manifest[font].find(
+    (record: IconRecord) => record.name === name
+  )
   return result ? String.fromCharCode(result.code) : ''
 }
 

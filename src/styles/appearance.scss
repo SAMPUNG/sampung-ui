@@ -48,7 +48,7 @@ button:not([data-appearance="fill"]):not(:hover) {
     transition-duration: 0.5s;
   }
   &::before {
-    background: var(--legacy);
+    background: var(--active);
     bottom: 0;
     content: ' ';
     height: 1px;

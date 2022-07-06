@@ -1,13 +1,10 @@
-@use '@/styles/color' as color;
-@use '@/styles/size' as size;
-
 .sam-tabs {
   align-items: center;
-  background: color.$black;
+  background: var(--panel);
   border-bottom: 1px solid #eee;
   display: flex;
   flex-direction: row;
-  height: size.$tabs;
+  height: var(--nav);
   justify-content: space-between;
   margin: 0 0 15px 0;
   position: relative;
@@ -27,7 +24,7 @@
   }
 
   &-indicator {
-    background: color.$primary;
+    background: var(--primary);
     bottom: 0px;
     height: 2px;
     position: absolute;
@@ -35,19 +32,19 @@
   }
 
   &-controls {
-    height: size.$tabs;
-    line-height: size.$tabs;
+    height: var(--nav);
+    line-height: var(--nav);
   }
 
   &-more {
     background: transparent;
     border: none;
-    color: color.$font;
+    color: var(--text);
     cursor: pointer;
     font-weight: 600;
-    height: size.$tabs;
+    height: var(--nav);
     letter-spacing: 2px;
-    line-height: size.$tabs;
+    line-height: var(--nav);
     padding: 0 16px;
   }
 }

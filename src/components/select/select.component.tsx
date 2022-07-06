@@ -15,6 +15,12 @@ import './select.scss'
 
 const bem = createNamespace('select')
 
+const selectEmits = {
+  change: (value: SelectValue) => true,
+  select: (target: HTMLLIElement) => true,
+  'update:modelValue': (value: SelectValue) => true,
+}
+
 export const SelectCommonProps = {
   direction: {
     default: 'horizontal',
@@ -37,11 +43,7 @@ export default defineComponent({
   name: bem(),
   components: { SelectIcon },
   props: SelectCommonProps,
-  emits: {
-    change: (value: SelectValue) => true,
-    select: (target: HTMLLIElement) => true,
-    'update:modelValue': (value: SelectValue) => true,
-  },
+  emits: selectEmits,
   setup(props: SelectProps, context) {
     const id = ref<string>(resolveUniqueId())
     const list = ref<HTMLElement | null>(null)

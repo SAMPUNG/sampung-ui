@@ -1,5 +1,3 @@
-@use '@/styles/color' as color;
-
 $gap: 16px;
 $size: 300px;
 $header: 48px;
@@ -36,19 +34,19 @@ $radius: calc(($size - $gap) / 2);
   &::before {
     @include absolute(0, 0);
     background: conic-gradient(
-      color.$black 15deg,
-      color.$pantone25d 15deg 45deg,
-      color.$pantone25l 45deg 75deg,
-      color.$black 75deg 105deg,
-      color.$pantone25l 105deg 135deg,
-      color.$pantone25d 135deg 165deg,
-      color.$black 165deg 195deg,
-      color.$pantone25d 195deg 225deg,
-      color.$pantone25l 225deg 255deg,
-      color.$black 255deg 285deg,
-      color.$pantone25l 285deg 315deg,
-      color.$pantone25d 315deg 345deg,
-      color.$black 345deg 360deg
+      var(--panel) 15deg,
+      var(--card) 15deg 45deg,
+      var(--board) 45deg 75deg,
+      var(--panel) 75deg 105deg,
+      var(--board) 105deg 135deg,
+      var(--card) 135deg 165deg,
+      var(--panel) 165deg 195deg,
+      var(--card) 195deg 225deg,
+      var(--board) 225deg 255deg,
+      var(--panel) 255deg 285deg,
+      var(--board) 285deg 315deg,
+      var(--card) 315deg 345deg,
+      var(--panel) 345deg 360deg
     );
     border-radius: 50%;
     content: ' ';
@@ -56,7 +54,7 @@ $radius: calc(($size - $gap) / 2);
   }
   &::after {
     @include absolute(49%, 9);
-    background: color.$highlight;
+    background: var(--highlight);
     border-radius: 50%;
     content: ' ';
     margin-top: $header;
@@ -86,14 +84,14 @@ $radius: calc(($size - $gap) / 2);
   }
   &-hour-hand {
     @include hand(48%, 20%, 3);
-    background: color.$primary;
+    background: var(--primary);
   }
   &-minute-hand {
     @include hand(48.5%, 15%, 4);
-    background: color.$secondary;
+    background:var(--secondary);
   }
   &-second-hand {
     @include hand(49%, 10%, 5);
-    background: color.$irrelevant;
+    background: var(--irrelevant);
   }
 }

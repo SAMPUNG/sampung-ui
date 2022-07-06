@@ -7,8 +7,9 @@ export declare type ButtonEffect = {
 }
 
 export declare type ButtonEmits = {
-  change: (value: 'on' | 'off', name: string) => true
+  change: (value: ButtonStatus, name: string) => true
   click: (name: string) => true
+  'update:status': (value: ButtonStatus, name: string) => true
 }
 
 export declare type ButtonProps = {
@@ -20,6 +21,6 @@ export declare type ButtonProps = {
   type: ButtonType
 }
 
-export declare type ButtonStatus = 'loading' | 'disabled' | 'off' | 'on'
+export declare type ButtonStatus = 'active' | 'disabled' | 'loading' | 'none'
 
 export declare type ButtonType = 'button' | 'reset' | 'submit'

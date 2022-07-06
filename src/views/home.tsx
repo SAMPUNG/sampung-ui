@@ -9,13 +9,13 @@ export default defineComponent({
   name: bem(),
   setup() {
     const dark = ref<boolean>(true)
-    const changeTheme = (): void => {
+    const changeMode = (): void => {
       dark.value = !dark.value
-      document.documentElement.dataset.theme = dark.value ? 'dark' : 'light'
+      document.documentElement.dataset.mode = dark.value ? 'dark' : 'light'
     }
 
     return {
-      changeTheme,
+      changeMode,
     }
   },
   render() {
@@ -25,9 +25,9 @@ export default defineComponent({
           <span>hello, sampung</span>
         </router-link>
         <sam-button
-          class={bem('theme')}
-          legend="Click To Change Theme"
-          onClick={this.changeTheme}
+          class={bem('mode')}
+          legend="Click To Change Mode"
+          onClick={this.changeMode}
           prefix-icon="adjust"
           palette="primary"
         />

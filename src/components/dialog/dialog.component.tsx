@@ -9,8 +9,8 @@ import './dialog.scss'
 const bem = createNamespace('dialog')
 
 const dropdownEmits = {
-  close: (name: string) => true,
   change: (value: boolean) => true,
+  close: (name: string) => true,
   open: (name: string) => true,
   'update:modelValue': (value: boolean) => true,
 }

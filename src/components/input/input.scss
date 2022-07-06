@@ -1,11 +1,9 @@
-@use '@/styles/size' as size;
-
 .sam-input {
   background: transparent;
   caret-color: var(--text);
   color: var(--text);
   border: none;
-  height: size.$input;
+  height: var(--input);
   outline: none;
   padding: 0 0 0 8px;
   width: 100%;

@@ -8,9 +8,9 @@ import './button.scss'
 const bem = createNamespace('button')
 
 const buttonEmits = {
-  change: (value: ButtonStatus, name: string) => true,
-  click: (name: string) => true,
-  'update:status': (value: ButtonStatus, name: string) => true,
+  change: (value: ButtonStatus, name: string) => ({ name, value }),
+  click: (name: string) => name,
+  'update:status': (value: ButtonStatus, name: string) => ({ name, value }),
 }
 
 const buttonProps = {
@@ -45,7 +45,7 @@ const buttonProps = {
     type: String,
   },
   status: {
-    default: 'off',
+    default: 'none',
     required: false,
     type: String as PropType<ButtonStatus>,
   },
@@ -98,24 +98,24 @@ export default defineComponent({
 
     const onClick = (event: MouseEvent): void => {
       switch (props.status) {
+        case 'active': {
+          context.emit('click', props.name)
+          context.emit('change', 'none', props.name)
+          context.emit('update:status', 'none', props.name)
+          break
+        }
         case 'disabled':
         case 'loading': {
           break
         }
-        case 'off': {
+        case 'none': {
           addEffect(event)
 
           if (props.appearance === 'fill' || props.appearance === 'outline') {
-            context.emit('change', 'on', props.name)
-            context.emit('update:status', 'on', props.name)
+            context.emit('change', 'active', props.name)
+            context.emit('update:status', 'active', props.name)
           }
           context.emit('click', props.name)
-          break
-        }
-        case 'on': {
-          context.emit('click', props.name)
-          context.emit('change', 'off', props.name)
-          context.emit('update:status', 'off', props.name)
           break
         }
         default: {
@@ -125,20 +125,11 @@ export default defineComponent({
     }
 
     watch(
-      () => props.appearance,
-      (apperance) => {
-        if (apperance !== 'fill') {
-          context.emit('change', 'off', props.name)
-          context.emit('update:status', 'off', props.name)
-        }
-      }
-    )
-    watch(
-      () => props.status,
-      () => {
-        if (props.appearance !== 'fill') {
-          context.emit('change', 'off', props.name)
-          context.emit('update:status', 'off', props.name)
+      () => [props.appearance, props.status],
+      ([appearance]) => {
+        if (appearance !== 'fill' && appearance !== 'outline') {
+          context.emit('change', 'none', props.name)
+          context.emit('update:status', 'none', props.name)
         }
       }
     )
@@ -168,7 +159,11 @@ export default defineComponent({
           <button-icon class={bem('suffix-icon')} name={this.suffixIcon} />
         )}
         {this.effects.map((item) => (
-          <span class={bem('effect')} style={item.style} />
+          <span
+            class={bem('effect')}
+            data-effect={item.type}
+            style={item.style}
+          />
         ))}
       </button>
     )

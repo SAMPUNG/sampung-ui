@@ -1,18 +1,18 @@
-// Theme: Faiz
+/* Theme: Faiz */
 :root {
-  // Color: Palette
+  /* Color: Palette */
   --error: teal;
   --primary: crimson;
   --secondary: fuchsia;
   --success: forestgreen;
   --warning: tomato;
-  // Size
+  /* Size */
   --input: 32px;
   --nav: 48px;
 }
-// Mode: Dark
+/* Mode: Dark */
 :root[data-mode="dark"] {
-  // Color: Base
+  /* Color: Base */
   --background: #212121;
   --border: #dedede;
   --dialog: rgba(0, 0, 0, 0.5);
@@ -20,19 +20,19 @@
   --shadow: rgba(0, 0, 0, 0.75);
   --placeholder: darkslategrey;
   --text: white;
-  // Color: Responsive
+  /* Color: Responsive */
   --active: goldenrod;
   --disabled: rgba(0, 0, 0, 0.1);
   --highlight: white;
-  // Color: More
+  /* Color: More */
   --card: #1a1a1a;
   --board: #292929;
   --irrelevant: Lavender;
   --panel: black;
 }
-// Mode: Light
+/* Mode: Light */
 :root[data-mode="light"] {
-  // Color: Base
+  /* Color: Base */
   --background: white;
   --border: #212121;
   --dialog: rgba(255, 255, 255, 0.5);
@@ -40,11 +40,11 @@
   --shadow: rgba(255, 255, 255, 0.75);
   --placeholder: lightgrey;
   --text: black;
-  // Color: Responsive
+  /* Color: Responsive */
   --active: goldenrod;
   --disabled: rgba(0, 0, 0, 0.1);
   --highlight: white;
-  // Color: More
+  /* Color: More */
   --board: #292929;
   --card: #1a1a1a;
   --irrelevant: Lavender;

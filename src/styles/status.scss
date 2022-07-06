@@ -33,7 +33,7 @@
 }
 
 
-[data-status="on"] {
+[data-status="active"] {
   color: var(--highlight);
 
   &::after,
@@ -42,7 +42,7 @@
     animation-duration: 3s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    border: 1px solid var(--on);
+    border: 1px solid var(--active);
     box-sizing: border-box;
     content: '';
   }
@@ -53,10 +53,3 @@
     animation-name: conic-before;
   }
 }
-
-// [data-status="off"] {
-//   &:hover {
-//     color:  var(--highlight);
-//     transition-duration: 0.3s;
-//   }
-// }

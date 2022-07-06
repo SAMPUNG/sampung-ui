@@ -1,4 +1,4 @@
-import { defineComponent, type PropType, ref, watch } from 'vue'
+import { defineComponent, type PropType, ref } from 'vue'
 import DropdownButton from '@/components/button/button.component'
 import DropdownSelect from '@/components/select/select.component'
 import type { Appearance } from '@/types/component'
@@ -115,7 +115,7 @@ export default defineComponent({
           legend={this.legend}
           onClick={this.onDropdown}
           prefix-icon={this.icon}
-          suffix-icon="keyboard_arrow_down"
+          suffix-icon="expand-more"
         />
         <div
           class={bem('panel')}

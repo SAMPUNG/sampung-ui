@@ -12,7 +12,7 @@ export default defineComponent({
     return (
       <div class={bem()}>
         <ul class={bem('list')}>
-          {manifest.map(({ name }) => (
+          {manifest['material-design'].map(({ name }) => (
             <li class={bem('item')}>
               <div class={bem('icon')}>
                 <demo-icon name={name} />

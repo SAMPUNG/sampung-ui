@@ -3,7 +3,7 @@
   overflow: visible;
   position: relative;
 
-  &-entry [data-icon='keyboard_arrow_down'] {
+  &-entry [data-icon='expand-more'] {
     transition-duration: 0.5s;
   }
   &-panel {
@@ -21,7 +21,7 @@
   }
 }
 
-[data-dropdown='dropdown'] [data-icon='keyboard_arrow_down'] {
+[data-dropdown='dropdown'] [data-icon='expand-more'] {
   transform: rotate(180deg);
 }
 [data-panel='hidden'] {

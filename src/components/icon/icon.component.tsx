@@ -16,8 +16,13 @@ const iconProps = {
     required: false,
     type: String as PropType<Appearance>,
   },
+  font: {
+    default: 'material-design',
+    required: false,
+    type: String,
+  },
   name: {
-    default: 'fa',
+    default: 'label-important',
     required: false,
     type: String,
   },
@@ -33,15 +38,24 @@ export default defineComponent({
   props: iconProps,
   emits: iconEmits,
   setup(props, context) {
-    const symbol: Ref<string> = ref(resolveSymbol(props.name))
+    const symbol: Ref<string> = ref(resolveSymbol(props.name, props.font))
 
     const onClick = () => {
       context.emit('click', props.name)
     }
 
-    watch(() => props.name, (name) => {
-      symbol.value = resolveSymbol(name)
-    })
+    watch(
+      () => props.name,
+      (name) => {
+        symbol.value = resolveSymbol(name, props.font)
+      }
+    )
+    watch(
+      () => props.font,
+      (font) => {
+        symbol.value = resolveSymbol(props.name, font)
+      }
+    )
 
     return {
       symbol,
@@ -52,9 +66,11 @@ export default defineComponent({
     return (
       <i
         class={bem()}
+        data-font={this.font}
         data-icon={this.name}
         data-symbol={this.symbol}
         onClick={() => this.onClick()}
+        style={{ fontFamily: this.font }}
       />
     )
   },

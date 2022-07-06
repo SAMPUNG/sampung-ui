@@ -58,12 +58,12 @@ const options = {
   ],
   status: [
     {
-      legend: 'Off',
-      name: 'off',
+      legend: 'None',
+      name: 'none',
     },
     {
-      legend: 'On',
-      name: 'on',
+      legend: 'Active',
+      name: 'active',
     },
     {
       legend: 'Loading',
@@ -83,7 +83,7 @@ export default defineComponent({
     const appearance = ref<Appearance>('outline')
     const icon = ref<string>(manifest[300].name)
     const palette = ref<Palette>('primary')
-    const status = ref<ButtonStatus>('off')
+    const status = ref<ButtonStatus>('none')
 
     return {
       appearance,
