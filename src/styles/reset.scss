@@ -20,6 +20,10 @@ ul {
   }
 }
 
+button + button {
+  margin-left: 8px;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

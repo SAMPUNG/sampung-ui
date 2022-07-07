@@ -7,17 +7,21 @@
   position: relative;
 
   &:hover {
-    transition-duration: 0.3s;
-  }
-
-  & + & {
-    margin-left: 8px;
+    transition-duration: 0.2s;
   }
 
   &-prefix-icon {
     margin: 0 4px 0 0;
   }
   &-suffix-icon {
+    display: none;
     margin: 0 0 0 4px;
+  }
+
+  &[data-mode="switch"] &-prefix-icon {
+    display: none;
+  }
+  &[data-mode="switch"] &-suffix-icon {
+    display: inherit;
   }
 }

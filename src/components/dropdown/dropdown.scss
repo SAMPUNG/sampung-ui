@@ -3,7 +3,7 @@
   overflow: visible;
   position: relative;
 
-  &-entry [data-icon='expand-more'] {
+  &-entry i {
     transition-duration: 0.5s;
   }
   &-panel {
@@ -21,14 +21,14 @@
   }
 }
 
-[data-dropdown='dropdown'] [data-icon='expand-more'] {
+[data-dropdown="dropdown"] i {
   transform: rotate(180deg);
 }
-[data-panel='hidden'] {
+[data-panel="hidden"] {
   height: 0;
   visibility: hidden;
 }
-[data-panel='dropdown'] {
+[data-panel="dropdown"] {
   animation-name: fade-dropdown;
   animation-duration: 0.5s;
   box-shadow: 0 0 8px 4px var(--shadow);

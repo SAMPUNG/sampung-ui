@@ -144,9 +144,12 @@
   position: relative;
 
   &-cube {
-    border: 1px solid var(--primary);
     height: 300px;
     margin: 32px auto;
+    outline-color: var(--primary);
+    outline-offset: -1px;
+    outline-style: solid;
+    outline-width: 1px;
     position: relative;
     width: 300px;
   }

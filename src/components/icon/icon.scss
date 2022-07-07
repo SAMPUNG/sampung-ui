@@ -9,6 +9,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
+  vertical-align: bottom;
 
   &::before {
     content: attr(data-symbol);

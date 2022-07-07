@@ -1,25 +1,13 @@
-import { defineComponent, type PropType, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 
-import type { Palette, Style } from '@/types/component'
+import type { Style } from '@/types/component'
 import { absolute, createNamespace, debounce, resolveUniqueId } from '@/utils/'
 
-import type { EffectContainer, EffectRecord } from './effect.interface'
+import type { EffectRecord, EffectType } from './effect.interface'
+import effectProps from './effect.props'
 import './effect.scss'
 
 const bem = createNamespace('effect')
-
-const effectProps = {
-  container: {
-    default: 'parent',
-    required: false,
-    type: String as PropType<EffectContainer>,
-  },
-  palette: {
-    default: 'primary',
-    required: false,
-    type: String as PropType<Palette>,
-  },
-}
 
 export default defineComponent({
   name: bem(),
@@ -32,38 +20,36 @@ export default defineComponent({
       effects.value = []
     }
 
-    const drop = debounce((type: string) => {
+    const drop = (type: EffectType) => {
+      effects.value = effects.value.filter((item) => item.type !== type)
+    }
+
+    const dropLater = debounce((type: EffectType) => {
       effects.value = effects.value.filter((item) => item.type !== type)
     }, 1000)
+
+    const has = (type: EffectType): boolean =>
+      effects.value?.some((item: EffectRecord) => item.type === type)
 
     const onClick = (event: MouseEvent): void => {
       push('ripple', event)
       context.emit('click', event)
     }
 
-    const push = (type: string, event: MouseEvent): void => {
+    const push = (type: EffectType, event: MouseEvent): void => {
       const id: string = resolveUniqueId()
-      switch (type) {
-        // case 'active':
-        // case 'loading':
-        case 'ripple': {
-          effects.value.push({
-            id,
-            style: resolveRipple(event),
-            type,
-          })
-          drop(type)
-          break
-        }
-        default: {
-          effects.value.push({
-            id,
-            style: absolute(),
-            type: type,
-          })
-          break
-        }
+      let style: Style = absolute()
+
+      if (type === 'ripple') {
+        style = resolveRipple(event)
+        dropLater(type)
       }
+
+      effects.value.push({
+        id,
+        style,
+        type,
+      })
     }
 
     const resolveRipple = (event: MouseEvent): Style => {
@@ -74,7 +60,6 @@ export default defineComponent({
         clientHeight + offsetY,
         clientWidth + offsetX
       )
-      console.log(clientHeight, clientWidth, offsetX, offsetY)
       const style: Style = Object.assign(
         {
           height: `${radius}px`,
@@ -88,28 +73,34 @@ export default defineComponent({
       return style
     }
 
+    const update = (id: string, type: EffectType, style?: Style) => {
+      const index = effects.value.findIndex(
+        (item: EffectRecord) => item.id === id
+      )
+      if (index !== -1) {
+        effects.value[index].type = type
+        if (style) {
+          effects.value[index].style = style
+        }
+      }
+    }
+
     context.expose({
       clear,
       drop,
+      has,
       push,
+      update,
     })
 
-    return {
-      effects,
-      onClick,
-    }
-  },
-  render() {
-    return (
-      <div class={bem()} onClick={this.onClick}>
+    return () => (
+      <div class={bem()} data-container={props.container} onClick={onClick}>
         <ul class={bem('list')}>
-          {this.effects.map((item: EffectRecord) => (
+          {effects.value.map((item: EffectRecord) => (
             <li
               class={bem('item')}
-              data-container={this.container}
               data-effect={item.type}
               data-id={item.id}
-              data-palette={this.palette}
               style={item.style}
             />
           ))}

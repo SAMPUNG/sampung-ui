@@ -1,53 +1,22 @@
-import { defineComponent, type PropType, ref, watch } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
+
 import DialogButton from '@/components/button/button.component'
 import DialogIcon from '@/components/icon/icon.component'
-import type { Appearance } from '@/types/component'
+
 import { resolveUniqueId } from '@/utils/data'
 import createNamespace from '@/utils/namespace'
+
+import dialogEmits from './dialog.emits'
+import dialogProps from './dialog.props'
 import './dialog.scss'
 
 const bem = createNamespace('dialog')
 
-const dropdownEmits = {
-  change: (value: boolean) => true,
-  close: (name: string) => true,
-  open: (name: string) => true,
-  'update:modelValue': (value: boolean) => true,
-}
-
-const dropdownProps = {
-  appearance: {
-    default: 'outline',
-    required: false,
-    type: String as PropType<Appearance>,
-  },
-  icon: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  legend: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  modelValue: {
-    default: false,
-    required: true,
-    type: Boolean,
-  },
-  name: {
-    default: '',
-    required: false,
-    type: String,
-  },
-}
-
 export default defineComponent({
   name: bem(),
   components: { DialogButton, DialogIcon },
-  props: dropdownProps,
-  emits: dropdownEmits,
+  props: dialogProps,
+  emits: dialogEmits,
   setup(props, context) {
     const dialog = ref<HTMLDialogElement | null>(null)
     const id = ref<string>(resolveUniqueId())
@@ -97,9 +66,9 @@ export default defineComponent({
             <dialog-button
               appearance="text"
               class={bem('esc')}
+              icon="close"
               onClick={() => this.toggle(false)}
               palette="error"
-              prefix-icon="close"
             />
           </header>
           <article class={bem('body')}>

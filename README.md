@@ -13,6 +13,7 @@
 - Appearance
 - Icon
 - Legend
+- Mode
 - Name
 - Palette
 - Type
@@ -70,7 +71,6 @@
 ## Props
 
 - Container
-- Palette
 
 ## Emits
 
@@ -84,13 +84,8 @@
 
 - Clear
 - Drop
-- Get
 - Push
 - Update
-
-## Attrs
-
-- History
 
 # Grid
 

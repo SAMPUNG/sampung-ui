@@ -78,5 +78,7 @@ button:not([data-appearance="fill"]):not(:hover) {
 
   &:hover {
     background: transparent;
+    box-shadow: 0px 0px 16px 2px var(--shadow);
+    color: var(--active);
   }
 }

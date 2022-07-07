@@ -35,7 +35,7 @@ const dropdownProps = {
     type: String as PropType<Appearance>,
   },
   icon: {
-    default: '',
+    default: 'expand-more',
     required: false,
     type: String,
   },
@@ -111,11 +111,11 @@ export default defineComponent({
         <dropdown-button
           class={bem('entry')}
           data-dropdown={this.dropdown ? 'dropdown' : 'rollup'}
+          icon={this.icon}
           id={this.id}
           legend={this.legend}
+          mode="switch"
           onClick={this.onDropdown}
-          prefix-icon={this.icon}
-          suffix-icon="expand-more"
         />
         <div
           class={bem('panel')}

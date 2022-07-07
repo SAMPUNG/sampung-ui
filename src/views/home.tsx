@@ -18,6 +18,9 @@ export default defineComponent({
       changeMode,
     }
   },
+  mounted() {
+    document.documentElement.dataset.theme = 'dark'
+  },
   render() {
     return (
       <div class={bem()}>
@@ -26,9 +29,9 @@ export default defineComponent({
         </router-link>
         <sam-button
           class={bem('mode')}
+          icon="adjust"
           legend="Click To Change Mode"
           onClick={this.changeMode}
-          prefix-icon="adjust"
           palette="primary"
         />
         <ul class={bem('nav')}>
@@ -44,8 +47,5 @@ export default defineComponent({
         <router-view />
       </div>
     )
-  },
-  mounted() {
-    document.documentElement.dataset.theme = 'dark'
   },
 })

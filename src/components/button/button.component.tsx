@@ -1,69 +1,15 @@
-import { defineComponent, type PropType, ref, watch } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 
 import ButtonEffect from '@/components/effect/effect.component'
 import ButtonIcon from '@/components/icon/icon.component'
 
-import type { Appearance, Palette } from '@/types/component'
 import { createNamespace } from '@/utils/'
 
-import type { ButtonStatus, ButtonType } from './button.interface'
+import buttonEmits from './button.emits'
+import buttonProps from './button.props'
 import './button.scss'
 
 const bem = createNamespace('button')
-
-const buttonEmits = {
-  change: (value: ButtonStatus, name: string) => ({ name, value }),
-  click: (name: string) => name,
-  'update:status': (value: ButtonStatus, name: string) => ({ name, value }),
-}
-
-const buttonProps = {
-  appearance: {
-    default: 'outline',
-    required: false,
-    type: String as PropType<Appearance>,
-  },
-  icon: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  legend: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  name: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  palette: {
-    default: 'primary',
-    required: false,
-    type: String as PropType<Palette>,
-  },
-  prefixIcon: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  status: {
-    default: 'none',
-    required: false,
-    type: String as PropType<ButtonStatus>,
-  },
-  suffixIcon: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  type: {
-    default: 'button',
-    required: false,
-    type: String as PropType<ButtonType>,
-  },
-}
 
 export default defineComponent({
   name: bem(),
@@ -74,25 +20,18 @@ export default defineComponent({
   props: buttonProps,
   emits: buttonEmits,
   setup(props, context) {
-    const effect = ref<typeof ButtonEffect | null>(null)
+    const effect = ref<typeof ButtonEffect>()
 
     const onClick = (): void => {
-      switch (props.status) {
-        case 'active': {
-          context.emit('click', props.name)
-          context.emit('change', 'none', props.name)
-          context.emit('update:status', 'none', props.name)
-          effect.value?.drop('active')
-          break
-        }
+      switch (props.mode) {
         case 'disabled':
         case 'loading': {
           break
         }
-        case 'none': {
-          if (props.appearance === 'fill' || props.appearance === 'outline') {
-            context.emit('change', 'active', props.name)
-            context.emit('update:status', 'active', props.name)
+        case 'switch': {
+          if (effect.value?.has('active')) {
+            effect.value?.drop('active')
+          } else {
             effect.value?.push('active')
           }
           context.emit('click', props.name)
@@ -105,40 +44,38 @@ export default defineComponent({
     }
 
     watch(
-      () => [props.appearance, props.status],
-      ([appearance, status]) => {
+      () => [props.appearance, props.mode],
+      ([appearance, mode]) => {
         effect.value?.clear()
         if (appearance !== 'fill' && appearance !== 'outline') {
           context.emit('change', 'none', props.name)
           context.emit('update:status', 'none', props.name)
         }
-        if (status !== 'none') {
-          effect.value?.push(props.status)
+        if (mode !== 'normal') {
+          effect.value?.push(props.mode)
         }
       }
     )
 
-    return {
-      effect,
+    context.expose({
       onClick,
-    }
-  },
-  render() {
-    return (
+    })
+
+    return () => (
       <button
         class={bem()}
-        data-appearance={this.appearance}
-        data-palette={this.palette}
-        data-legend={this.legend}
-        data-status={this.status}
-        disabled={this.status === 'disabled'}
-        type={this.type}
-        onClick={this.onClick}
+        data-appearance={props.appearance}
+        data-legend={props.legend}
+        data-mode={props.mode}
+        data-palette={props.palette}
+        disabled={props.mode === 'disabled'}
+        type={props.type}
+        onClick={onClick}
       >
-        <button-icon class={bem('prefix-icon')} name={this.prefixIcon} />
-        <span class={bem('legend')}>{this.legend}</span>
-        <button-icon class={bem('suffix-icon')} name={this.suffixIcon} />
-        <button-effect ref="effect" />
+        <button-icon class={bem('prefix-icon')} name={props.icon} />
+        <span class={bem('legend')}>{props.legend}</span>
+        <button-icon class={bem('suffix-icon')} name={props.icon} />
+        <button-effect ref={effect} />
       </button>
     )
   },

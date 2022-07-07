@@ -1,26 +1,25 @@
-import type { Appearance, Palette, Style } from '@/types/component'
+import type { ComponentPublicInstance, ExtractPropTypes } from 'vue'
 
-export declare type ButtonEffect = {
-  id: string
-  style: Style
-  type: string
+import buttonProps from './button.props'
+
+export declare type ButtonExpose = {
+  onClick: () => void
 }
 
-export declare type ButtonEmits = {
-  change: (value: ButtonStatus, name: string) => true
-  click: (name: string) => true
-  'update:status': (value: ButtonStatus, name: string) => true
-}
+export declare type ButtonMode =
+  | 'diode'
+  | 'disabled'
+  | 'loading'
+  | 'normal'
+  | 'switch'
 
-export declare type ButtonProps = {
-  appearance?: Appearance
-  legend: string
-  name: string
-  palette: Palette
-  status: ButtonStatus
-  type: ButtonType
-}
+export declare type ButtonProps = ExtractPropTypes<typeof buttonProps>
 
 export declare type ButtonStatus = 'active' | 'disabled' | 'loading' | 'none'
 
 export declare type ButtonType = 'button' | 'reset' | 'submit'
+
+export declare type EffectInstance = ComponentPublicInstance<
+  ButtonProps,
+  ButtonExpose
+>
