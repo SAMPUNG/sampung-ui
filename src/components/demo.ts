@@ -35,6 +35,11 @@ export default [
     component: () => import('@/components/dropdown/dropdown.demo'),
   },
   {
+    path: 'effect-demo',
+    name: 'Effect',
+    component: () => import('@/components/effect/effect.demo'),
+  },
+  {
     path: 'form-demo',
     name: 'Form',
     component: () => import('@/components/form/form.demo'),

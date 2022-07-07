@@ -65,6 +65,33 @@
 - Close
 - Open
 
+# Effect
+
+## Props
+
+- Container
+- Palette
+
+## Emits
+
+- Clear
+- Click
+- Drop
+- Push
+- Update
+
+## Methods
+
+- Clear
+- Drop
+- Get
+- Push
+- Update
+
+## Attrs
+
+- History
+
 # Grid
 
 ## Props

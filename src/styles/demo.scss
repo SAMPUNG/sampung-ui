@@ -139,3 +139,15 @@
     color: var(--text);
   }
 }
+
+.sam-effect-demo {
+  position: relative;
+
+  &-cube {
+    border: 1px solid var(--primary);
+    height: 300px;
+    margin: 32px auto;
+    position: relative;
+    width: 300px;
+  }
+}

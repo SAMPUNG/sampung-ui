@@ -1,8 +1,12 @@
 import { defineComponent, type PropType, ref, watch } from 'vue'
+
+import ButtonEffect from '@/components/effect/effect.component'
 import ButtonIcon from '@/components/icon/icon.component'
-import type { Appearance, Palette, Style } from '@/types/component'
-import { absolute, createNamespace, debounce, resolveUniqueId } from '@/utils/'
-import type { ButtonEffect, ButtonStatus, ButtonType } from './button.interface'
+
+import type { Appearance, Palette } from '@/types/component'
+import { createNamespace } from '@/utils/'
+
+import type { ButtonStatus, ButtonType } from './button.interface'
 import './button.scss'
 
 const bem = createNamespace('button')
@@ -64,44 +68,21 @@ const buttonProps = {
 export default defineComponent({
   name: bem(),
   components: {
+    ButtonEffect,
     ButtonIcon,
   },
   props: buttonProps,
   emits: buttonEmits,
   setup(props, context) {
-    const effects = ref<ButtonEffect[]>([])
+    const effect = ref<typeof ButtonEffect | null>(null)
 
-    const addEffect = (event: MouseEvent): void => {
-      const { clientHeight, clientWidth } = event.target as HTMLButtonElement
-      const { offsetX, offsetY } = event
-      const id: string = resolveUniqueId()
-      const radius: number = Math.max(
-        clientHeight + offsetY,
-        clientWidth + offsetX
-      )
-      const style: Style = Object.assign(
-        {
-          height: `${radius}px`,
-          width: `${radius}px`,
-        },
-        absolute({
-          left: offsetX - radius / 2,
-          top: offsetY - radius / 2,
-        })
-      )
-      effects.value.push({ id, style, type: 'ripple' })
-      clearEffects('ripple')
-    }
-    const clearEffects = debounce((type: string) => {
-      effects.value = effects.value.filter((item) => item.type !== type)
-    }, 1000)
-
-    const onClick = (event: MouseEvent): void => {
+    const onClick = (): void => {
       switch (props.status) {
         case 'active': {
           context.emit('click', props.name)
           context.emit('change', 'none', props.name)
           context.emit('update:status', 'none', props.name)
+          effect.value?.drop('active')
           break
         }
         case 'disabled':
@@ -109,11 +90,10 @@ export default defineComponent({
           break
         }
         case 'none': {
-          addEffect(event)
-
           if (props.appearance === 'fill' || props.appearance === 'outline') {
             context.emit('change', 'active', props.name)
             context.emit('update:status', 'active', props.name)
+            effect.value?.push('active')
           }
           context.emit('click', props.name)
           break
@@ -126,16 +106,20 @@ export default defineComponent({
 
     watch(
       () => [props.appearance, props.status],
-      ([appearance]) => {
+      ([appearance, status]) => {
+        effect.value?.clear()
         if (appearance !== 'fill' && appearance !== 'outline') {
           context.emit('change', 'none', props.name)
           context.emit('update:status', 'none', props.name)
+        }
+        if (status !== 'none') {
+          effect.value?.push(props.status)
         }
       }
     )
 
     return {
-      effects,
+      effect,
       onClick,
     }
   },
@@ -151,20 +135,10 @@ export default defineComponent({
         type={this.type}
         onClick={this.onClick}
       >
-        {this.prefixIcon && (
-          <button-icon class={bem('prefix-icon')} name={this.prefixIcon} />
-        )}
-        {this.legend && <span class={bem('legend')}>{this.legend}</span>}
-        {this.suffixIcon && (
-          <button-icon class={bem('suffix-icon')} name={this.suffixIcon} />
-        )}
-        {this.effects.map((item) => (
-          <span
-            class={bem('effect')}
-            data-effect={item.type}
-            style={item.style}
-          />
-        ))}
+        <button-icon class={bem('prefix-icon')} name={this.prefixIcon} />
+        <span class={bem('legend')}>{this.legend}</span>
+        <button-icon class={bem('suffix-icon')} name={this.suffixIcon} />
+        <button-effect ref="effect" />
       </button>
     )
   },

@@ -8,6 +8,10 @@ import type { ButtonStatus } from './button.interface'
 
 const bem = createNamespace('button-demo')
 
+const icons = manifest['material-design']
+  .slice(300, 304)
+  .map(({ name }) => ({ icon: name, legend: name, name }))
+
 const options = {
   appearance: [
     {
@@ -31,9 +35,7 @@ const options = {
       name: 'text',
     },
   ],
-  icon: manifest
-    .slice(300, 304)
-    .map(({ name }) => ({ icon: name, legend: name, name })),
+  icon: icons,
   palette: [
     {
       legend: 'Error',
@@ -81,7 +83,7 @@ export default defineComponent({
   components: { DemoButton, DemoSelect },
   setup() {
     const appearance = ref<Appearance>('outline')
-    const icon = ref<string>(manifest[300].name)
+    const icon = ref<string>(icons[0].name)
     const palette = ref<Palette>('primary')
     const status = ref<ButtonStatus>('none')
 
