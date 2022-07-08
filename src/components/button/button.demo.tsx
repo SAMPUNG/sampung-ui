@@ -1,10 +1,12 @@
 import { defineComponent, ref } from 'vue'
+
+import type { Appearance, Palette } from '@/types/component'
 import createNamespace from '@/utils/namespace'
-import DemoButton from './button.component'
+
+import DemoButton from '@/components/button/button.component'
+import type { ButtonMode } from '@/components/button/button.interface'
 import { manifest } from '@/components/icon/icon.config'
 import DemoSelect from '@/components/select/select.component'
-import type { Appearance, Palette } from '@/types/component'
-import type { ButtonMode } from './button.interface'
 
 const bem = createNamespace('button-demo')
 
@@ -38,12 +40,16 @@ const options = {
   icon: icons,
   mode: [
     {
-      legend: 'Active',
-      name: 'active',
+      legend: 'Diode',
+      name: 'diode',
     },
     {
       legend: 'Disabled',
       name: 'disabled',
+    },
+    {
+      legend: 'Knob',
+      name: 'knob',
     },
     {
       legend: 'Loading',
@@ -52,6 +58,10 @@ const options = {
     {
       legend: 'Normal',
       name: 'normal',
+    },
+    {
+      legend: 'Switch',
+      name: 'switch',
     },
   ],
   palette: [
@@ -87,28 +97,20 @@ export default defineComponent({
     const mode = ref<ButtonMode>('normal')
     const palette = ref<Palette>('primary')
 
-    return {
-      appearance,
-      icon,
-      mode,
-      palette,
-    }
-  },
-  render() {
-    return (
+    return () => (
       <div class={bem()}>
         <demo-button
-          appearance={this.appearance}
-          icon={this.icon}
+          appearance={appearance.value}
+          icon={icon.value}
           legend="Button"
-          mode={this.mode}
-          palette={this.palette}
+          mode={mode.value}
+          palette={palette.value}
         />
         <hr class={bem('line')} />
-        <demo-select vModel={this.appearance} options={options.appearance} />
-        <demo-select vModel={this.palette} options={options.palette} />
-        <demo-select vModel={this.mode} options={options.mode} />
-        <demo-select vModel={this.icon} options={options.icon} />
+        <demo-select vModel={appearance.value} options={options.appearance} />
+        <demo-select vModel={palette.value} options={options.palette} />
+        <demo-select vModel={mode.value} options={options.mode} />
+        <demo-select vModel={icon.value} options={options.icon} />
       </div>
     )
   },

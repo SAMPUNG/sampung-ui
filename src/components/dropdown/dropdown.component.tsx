@@ -1,79 +1,16 @@
-import { defineComponent, type PropType, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
+
+import { createNamespace, resolveUniqueId } from '@/utils/'
+
 import DropdownButton from '@/components/button/button.component'
 import DropdownSelect from '@/components/select/select.component'
-import type { Appearance } from '@/types/component'
-import { resolveUniqueId, verifyRegular } from '@/utils/data'
-import createNamespace from '@/utils/namespace'
-import type { DropdownOption, DropdownValue } from './dropdown.interface'
+
+import type { DropdownValue } from './dropdown.interface'
+import dropdownEmits from './dropdown.emits'
+import dropdownProps from './dropdown.props'
 import './dropdown.scss'
 
 const bem = createNamespace('dropdown')
-
-const dropdownEmits = {
-  change(value: DropdownValue) {
-    return value
-  },
-  'update:modelValue'(value: DropdownValue) {
-    return value
-  },
-}
-
-// - Appearance
-// - Direction
-// - Disabled
-// - MaxColumnWidth
-// - MaxHeight
-// - ModelValue
-// - MinColumnWidth
-// - Options
-// - Trigger
-
-const dropdownProps = {
-  appearance: {
-    default: 'outline',
-    required: false,
-    type: String as PropType<Appearance>,
-  },
-  icon: {
-    default: 'expand-more',
-    required: false,
-    type: String,
-  },
-  legend: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  maxColumnWidth: {
-    default: 225,
-    required: false,
-    type: Number,
-  },
-  maxHeight: {
-    default: 325,
-    required: false,
-    type: Number,
-  },
-  modelValue: {
-    default: '',
-    type: [String, Number, Boolean, undefined] as PropType<DropdownValue>,
-    validator: verifyRegular,
-  },
-  minColumnWidth: {
-    default: 125,
-    required: false,
-    type: Number,
-  },
-  name: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  options: {
-    default: () => [],
-    type: Array as PropType<DropdownOption[]>,
-  },
-}
 
 export default defineComponent({
   name: bem(),
@@ -98,40 +35,32 @@ export default defineComponent({
       }
     }
 
-    return {
-      dropdown,
-      id,
-      onChange,
-      onDropdown,
-    }
-  },
-  render() {
-    return (
+    return () => (
       <div class={bem()}>
         <dropdown-button
           class={bem('entry')}
-          data-dropdown={this.dropdown ? 'dropdown' : 'rollup'}
-          icon={this.icon}
-          id={this.id}
-          legend={this.legend}
-          mode="switch"
-          onClick={this.onDropdown}
+          data-dropdown={dropdown.value ? 'dropdown' : 'rollup'}
+          icon={props.icon}
+          id={id.value}
+          legend={props.legend}
+          mode="knob"
+          onClick={onDropdown}
         />
         <div
           class={bem('panel')}
-          data-panel={this.dropdown ? 'dropdown' : 'hidden'}
+          data-panel={dropdown.value ? 'visible' : 'hidden'}
           style={{
-            'max-height': this.maxHeight + 'px',
-            'max-width': this.maxColumnWidth + 'px',
-            'min-width': this.minColumnWidth + 'px',
+            'max-height': props.maxHeight + 'px',
+            'max-width': props.maxColumnWidth + 'px',
+            'min-width': props.minColumnWidth + 'px',
           }}
         >
           <dropdown-select
             class={bem('select')}
             direction="vertical"
-            modelValue={this.modelValue}
-            options={this.options}
-            onChange={this.onChange}
+            modelValue={props.modelValue}
+            options={props.options}
+            onChange={onChange}
             ref="select"
             role="select"
           />

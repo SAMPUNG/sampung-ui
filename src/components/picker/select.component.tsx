@@ -13,7 +13,7 @@ export default defineComponent({
     SelectMultiple,
     SelectSingle,
   },
-  setup() {
+  setup(props) {
     const emits = defineEmits<SelectEmits>()
     const props = withDefaults(defineProps<SelectProps>(), {
       multiple: false,
@@ -31,20 +31,14 @@ export default defineComponent({
       emits('update:modelValue', props.multiple ? [] : undefined)
     }
 
-    return {
-      ...props,
-      target,
-    }
-  },
-  render() {
-    return (
+    return () => (
       <component
-        vModel={this.modelValue}
-        is={this.target}
-        options={this.options}
-        placeholder={this.placeholder}
-        teleport={this.teleport}
-        onChange={this.onChange}
+        vModel={props.modelValue}
+        is={props.target}
+        options={props.options}
+        placeholder={props.placeholder}
+        teleport={props.teleport}
+        onChange={onChange}
       />
     )
   },

@@ -22,15 +22,29 @@
 }
 
 [data-effect="disabled"] {
-  &,
-  &:hover {
-    cursor: not-allowed;
-    filter: brightness(0.75);
+  cursor: not-allowed;
+  pointer-events: all;
+
+  &::before {
+    @include layout.mask(1);
+    backdrop-filter: blur(1px);
+    background: var(--mask);
+    border-radius: 4px;
+    box-sizing: border-box;
+    content: '';
+  }
+  &::after {
+    @include layout.mask(2);
+    color: var(--active);
+    content: '\e14b';
+    font-family: 'material-design';
+    font-size: 1em;
   }
 }
 
 [data-effect="loading"] {
   cursor: wait;
+  pointer-events: all;
 
   &::before {
     @include layout.mask(1);
@@ -46,9 +60,9 @@
     animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    color: var(--highlight);
-    content: '\f1ce';
-    font-family: 'FontAwesome';
+    color: var(--active);
+    content: '\e3e2';
+    font-family: 'material-design';
     font-size: 1.5em;
   }
 }

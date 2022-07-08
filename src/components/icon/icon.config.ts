@@ -1,7 +1,7 @@
-import type { IconRecord, IconRecordsMap } from './icon.interface'
 import FONT_AWSESOME from './configs/font-awesome'
 import MATERIAL_DESIGN from './configs/material-design'
 import WEATHER from './configs/weather'
+import type { IconRecord, IconRecordsMap } from './icon.interface'
 
 const manifest: IconRecordsMap = {
   'font-awesome': FONT_AWSESOME,

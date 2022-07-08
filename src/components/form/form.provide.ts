@@ -1,3 +1,3 @@
 import type { InjectionKey } from 'vue'
 
-export const model = Symbol() as InjectionKey<HTMLInputElement | null>
+export const model = Symbol() as InjectionKey<HTMLFormElement | null>

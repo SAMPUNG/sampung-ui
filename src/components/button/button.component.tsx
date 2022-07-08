@@ -1,9 +1,9 @@
-import { defineComponent, ref, watch } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
+
+import { createNamespace } from '@/utils/'
 
 import ButtonEffect from '@/components/effect/effect.component'
 import ButtonIcon from '@/components/icon/icon.component'
-
-import { createNamespace } from '@/utils/'
 
 import buttonEmits from './button.emits'
 import buttonProps from './button.props'
@@ -21,44 +21,73 @@ export default defineComponent({
   emits: buttonEmits,
   setup(props, context) {
     const effect = ref<typeof ButtonEffect>()
+    const knob = ref<boolean>(false)
+    const disabled = computed(
+      () => props.mode === 'disabled' || props.mode === 'loading'
+    )
 
     const onClick = (): void => {
       switch (props.mode) {
-        case 'disabled':
+        case 'diode': {
+          onReact()
+          onToggle()
+          break
+        }
+        case 'disabled': {
+          break
+        }
+        case 'knob': {
+          onKnob()
+          onReact()
+          break
+        }
         case 'loading': {
           break
         }
         case 'switch': {
-          if (effect.value?.has('active')) {
-            effect.value?.drop('active')
-          } else {
-            effect.value?.push('active')
-          }
-          context.emit('click', props.name)
+          onKnob()
+          onReact()
+          onToggle()
           break
         }
         default: {
-          context.emit('click', props.name)
+          onReact()
         }
       }
     }
 
+    const onKnob = (): void => {
+      knob.value = !knob.value
+      context.emit('change', knob.value, props.mode, props.name)
+    }
+
+    const onReact = (): void => {
+      context.emit('click', props.name)
+    }
+
+    const onToggle = (): void => {
+      const active = effect.value?.has('active')
+      if (active) {
+        effect.value?.drop('active')
+      } else {
+        effect.value?.push('active')
+      }
+      context.emit('change', !active, props.mode, props.name)
+    }
+
     watch(
-      () => [props.appearance, props.mode],
-      ([appearance, mode]) => {
+      () => [props.mode, props.appearance],
+      () => {
         effect.value?.clear()
-        if (appearance !== 'fill' && appearance !== 'outline') {
-          context.emit('change', 'none', props.name)
-          context.emit('update:status', 'none', props.name)
-        }
-        if (mode !== 'normal') {
+        if (props.mode === 'disabled' || props.mode === 'loading') {
           effect.value?.push(props.mode)
         }
       }
     )
 
     context.expose({
-      onClick,
+      click: onClick,
+      toggle: onToggle,
     })
 
     return () => (
@@ -68,13 +97,17 @@ export default defineComponent({
         data-legend={props.legend}
         data-mode={props.mode}
         data-palette={props.palette}
-        disabled={props.mode === 'disabled'}
+        disabled={disabled.value}
         type={props.type}
         onClick={onClick}
       >
         <button-icon class={bem('prefix-icon')} name={props.icon} />
         <span class={bem('legend')}>{props.legend}</span>
-        <button-icon class={bem('suffix-icon')} name={props.icon} />
+        <button-icon
+          class={bem('suffix-icon')}
+          data-knob={knob.value}
+          name={props.icon}
+        />
         <button-effect ref={effect} />
       </button>
     )

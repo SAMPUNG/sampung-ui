@@ -1,6 +1,9 @@
 import { defineComponent, ref } from 'vue'
+
 import createNamespace from '@/utils/namespace'
+
 import demo from '@/components/demo'
+
 import '@/styles/demo.scss'
 
 const bem = createNamespace('home')
@@ -14,15 +17,9 @@ export default defineComponent({
       document.documentElement.dataset.mode = dark.value ? 'dark' : 'light'
     }
 
-    return {
-      changeMode,
-    }
-  },
-  mounted() {
     document.documentElement.dataset.theme = 'dark'
-  },
-  render() {
-    return (
+
+    return () => (
       <div class={bem()}>
         <router-link class={bem('title')} to="/">
           <span>hello, sampung</span>
@@ -31,7 +28,7 @@ export default defineComponent({
           class={bem('mode')}
           icon="adjust"
           legend="Click To Change Mode"
-          onClick={this.changeMode}
+          onClick={changeMode}
           palette="primary"
         />
         <ul class={bem('nav')}>

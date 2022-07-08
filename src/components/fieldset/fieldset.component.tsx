@@ -1,5 +1,7 @@
 import { defineComponent } from 'vue'
+
 import createNamespace from '@/utils/namespace'
+
 import style from './fieldset.module.scss'
 
 const bem = createNamespace('fieldset')
@@ -28,16 +30,16 @@ export default defineComponent({
       type: String,
     },
   },
-  render() {
-    return (
+  setup(props, context) {
+    return () => (
       <fieldset
         class={style[bem()]}
-        disabled={this.disabled}
-        form={this.form}
-        name={this.name}
+        disabled={props.disabled}
+        form={props.form}
+        name={props.name}
       >
-        <legend>{this.legend}</legend>
-        {typeof this.$slots.default === 'function' && this.$slots.default()}
+        <legend>{props.legend}</legend>
+        {typeof context.slots.default === 'function' && context.slots.default()}
       </fieldset>
     )
   },

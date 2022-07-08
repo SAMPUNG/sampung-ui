@@ -1,8 +1,10 @@
 import { defineComponent, ref } from 'vue'
+
 import createNamespace from '@/utils/namespace'
+
 import DemoField from '@/components/field/field.component'
+import DemoForm from '@/components/form/form.component'
 import DemoInput from '@/components/input/input.component'
-import DemoForm from './form.component'
 
 const bem = createNamespace('form-demo')
 
@@ -11,17 +13,13 @@ export default defineComponent({
   components: { DemoField, DemoForm, DemoInput },
   setup() {
     const value = ref(undefined)
-    return {
-      value,
-    }
-  },
-  render() {
-    return (
+
+    return () => (
       <div class={bem()}>
         <demo-form autocomplete="off" name="demo">
           <demo-field legend="Legend" name="name">
             <demo-input
-              vModel={this.value}
+              vModel={value.value}
               name="name-demo"
               placeholder="Please input something……"
             />

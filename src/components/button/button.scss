@@ -18,10 +18,17 @@
     margin: 0 0 0 4px;
   }
 
+  &[data-mode="knob"] &-prefix-icon,
   &[data-mode="switch"] &-prefix-icon {
     display: none;
   }
+  &[data-mode="knob"] &-suffix-icon,
   &[data-mode="switch"] &-suffix-icon {
     display: inherit;
+    transition-duration: 0.5s;
+
+    &[data-knob="true"] {
+      transform: rotate(180deg);
+    }
   }
 }

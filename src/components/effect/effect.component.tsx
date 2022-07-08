@@ -32,8 +32,13 @@ export default defineComponent({
       effects.value?.some((item: EffectRecord) => item.type === type)
 
     const onClick = (event: MouseEvent): void => {
-      push('ripple', event)
-      context.emit('click', event)
+      if (has('disabled') || has('loading')) {
+        event.preventDefault()
+        event.stopPropagation()
+      } else {
+        push('ripple', event)
+        context.emit('click', event)
+      }
     }
 
     const push = (type: EffectType, event: MouseEvent): void => {

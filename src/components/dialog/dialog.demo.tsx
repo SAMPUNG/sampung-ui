@@ -1,5 +1,7 @@
 import { defineComponent, ref } from 'vue'
+
 import createNamespace from '@/utils/namespace'
+
 import DemoButton from '@/components/button/button.component'
 import DemoDialog from '@/components/dialog/dialog.component'
 
@@ -11,23 +13,22 @@ export default defineComponent({
   setup() {
     const visible = ref<boolean>(false)
 
-    return {
-      visible,
-    }
-  },
-  render() {
-    return (
+    return () => (
       <div class={bem()}>
         <div class={bem('controls')}>
           <demo-button
             legend="Open Dialog"
             onClick={() => {
-              this.visible = true
+              visible.value = true
             }}
           />
         </div>
         <div class={bem('display')}>
-          <demo-dialog icon="fa" legend="Dialog Title" vModel={this.visible}>
+          <demo-dialog
+            icon="flare"
+            legend="Dialog Title"
+            vModel={visible.value}
+          >
             <div
               style={{
                 height: '400px',

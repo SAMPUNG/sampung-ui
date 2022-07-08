@@ -34,7 +34,7 @@ export default defineComponent({
     }
   },
   render() {
-    return (
+    return () => (
       <div class={style[bem()]}>
         <div class="playground-demo">
           <component

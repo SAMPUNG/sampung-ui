@@ -3,8 +3,8 @@
   overflow: visible;
   position: relative;
 
-  &-entry i {
-    transition-duration: 0.5s;
+  &-entry {
+    position: relative;
   }
   &-panel {
     background: var(--panel);
@@ -21,14 +21,11 @@
   }
 }
 
-[data-dropdown="dropdown"] i {
-  transform: rotate(180deg);
-}
 [data-panel="hidden"] {
   height: 0;
   visibility: hidden;
 }
-[data-panel="dropdown"] {
+[data-panel="visible"] {
   animation-name: fade-dropdown;
   animation-duration: 0.5s;
   box-shadow: 0 0 8px 4px var(--shadow);

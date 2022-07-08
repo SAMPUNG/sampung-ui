@@ -38,18 +38,11 @@ export default defineComponent({
   name: bem(),
   components: { DemoTabs },
   setup() {
-    const options = ref(defaultTabs)
     const selected: Ref<string> = ref(defaultTabs[1].name)
 
-    return {
-      options,
-      selected,
-    }
-  },
-  render() {
-    return (
+    return () => (
       <div class="demo">
-        <demo-tabs vModel={this.selected} options={this.options} />
+        <demo-tabs vModel={selected.value} options={defaultTabs} />
       </div>
     )
   },

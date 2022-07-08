@@ -3,8 +3,7 @@ import { defineComponent, ref, watch } from 'vue'
 import DialogButton from '@/components/button/button.component'
 import DialogIcon from '@/components/icon/icon.component'
 
-import { resolveUniqueId } from '@/utils/data'
-import createNamespace from '@/utils/namespace'
+import { createNamespace, resolveUniqueId } from '@/utils/'
 
 import dialogEmits from './dialog.emits'
 import dialogProps from './dialog.props'
@@ -15,10 +14,11 @@ const bem = createNamespace('dialog')
 export default defineComponent({
   name: bem(),
   components: { DialogButton, DialogIcon },
+  inheritAttrs: false,
   props: dialogProps,
   emits: dialogEmits,
   setup(props, context) {
-    const dialog = ref<HTMLDialogElement | null>(null)
+    const dialog = ref<HTMLDialogElement>()
     const id = ref<string>(resolveUniqueId())
 
     const toggle = (value?: boolean): void => {
@@ -43,46 +43,41 @@ export default defineComponent({
       toggle,
     })
 
-    return {
-      dialog,
-      id,
-      toggle,
-    }
-  },
-  render() {
-    return (
-      <div class={bem('mask')} data-visible={this.modelValue}>
+    return () => (
+      <div class={bem('mask')} data-visible={props.modelValue}>
         <dialog
           class={bem()}
-          data-visible={this.modelValue}
-          id={this.id}
-          ref="dialog"
+          data-visible={props.modelValue}
+          id={id.value}
+          ref={dialog}
+          {...context.attrs}
         >
           <header class={bem('header')}>
             <span class={bem('title')}>
-              <dialog-icon class={bem('icon')} name={this.icon} />
-              <span class={bem('legend')}>{this.legend}</span>
+              <dialog-icon class={bem('icon')} name={props.icon} />
+              <span class={bem('legend')}>{props.legend}</span>
             </span>
             <dialog-button
               appearance="text"
               class={bem('esc')}
               icon="close"
-              onClick={() => this.toggle(false)}
+              onClick={() => toggle(false)}
               palette="error"
             />
           </header>
           <article class={bem('body')}>
-            {typeof this.$slots.default === 'function' && this.$slots.default()}
+            {typeof context.slots.default === 'function' &&
+              context.slots.default()}
           </article>
           <footer class={bem('footer')}>
             <dialog-button
               legend="Cancel"
-              onClick={() => this.toggle(false)}
+              onClick={() => toggle(false)}
               palette="secondary"
             />
             <dialog-button
               legend="Close"
-              onClick={() => this.toggle(false)}
+              onClick={() => toggle(false)}
               palette="primary"
             />
           </footer>

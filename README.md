@@ -6,28 +6,6 @@
 - Bottom
 - Top
 
-# Button
-
-## Props
-
-- Appearance
-- Icon
-- Legend
-- Mode
-- Name
-- Palette
-- Type
-
-## Emits
-
-- Change
-- Click
-- Switch
-
-## Methods
-
-- Switch
-
 # Divider
 
 ## Props
@@ -187,8 +165,10 @@
 
 # Size
 
-- Input
-- Nav
+| Name  | Key         | Value |
+| ----- | ----------- | ----- |
+| Input | `--input` | 32px  |
+| Nav   | `--nav`   | 48px  |
 
 # Theme
 

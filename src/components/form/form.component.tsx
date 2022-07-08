@@ -1,86 +1,42 @@
 import { defineComponent, provide, ref } from 'vue'
-import type { Ref } from 'vue'
+
 import createNamespace from '@/utils/namespace'
+
+import formEmits from './form.emits'
+import formProps from './form.props'
 import { model } from './form.provide'
 import './form.scss'
 
 const bem = createNamespace('form')
 
-const formEmits = {
-  reset: (name: string) => true,
-  submit: (name: string) => true,
-}
-
-const formProps = {
-  action: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  autocomplete: {
-    default: 'on',
-    required: false,
-    type: String,
-  },
-  disabled: {
-    default: false,
-    required: false,
-    type: Boolean,
-  },
-  enctype: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  method: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  name: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  target: {
-    default: '',
-    required: false,
-    type: String,
-  },
-}
 export default defineComponent({
   name: bem(),
   props: formProps,
   emits: formEmits,
   setup(props, context) {
     const el = ref<HTMLInputElement | null>(null)
-    const valid: Ref<boolean> = ref(false)
+    // const valid: = ref<boolean>(false)
 
     provide(model, el.value)
 
-    const onReset = (): void => {
-      context.emit('reset', props.name)
-    }
-    const onSubmit = (): void => {
-      context.emit('submit', props.name)
-    }
+    // const onReset = (): void => {
+    //   context.emit('reset', props.name)
+    // }
+    // const onSubmit = (): void => {
+    //   context.emit('submit', props.name)
+    // }
 
-    return {
-      valid,
-    }
-  },
-  render() {
-    return (
+    return () => (
       <form
-        action={this.action}
-        autocomplete={this.autocomplete}
+        action={props.action}
+        autocomplete={props.autocomplete}
         class={bem()}
-        enctype={this.enctype}
-        method={this.method}
-        name={this.name}
-        target={this.target}
+        enctype={props.enctype}
+        method={props.method}
+        name={props.name}
+        target={props.target}
       >
-        {typeof this.$slots.default === 'function' && this.$slots.default()}
+        {typeof context.slots.default === 'function' && context.slots.default()}
       </form>
     )
   },

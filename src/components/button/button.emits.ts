@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
 
-import type { ButtonStatus } from './button.interface'
+import { ButtonMode } from './button.interface'
 
 export default {
-  change: (value: ButtonStatus, name: string) => true,
+  change: (value: boolean, mode: ButtonMode, name: string) => true,
   click: (name: string) => true,
-  'update:status': (value: ButtonStatus, name: string) => true,
 }

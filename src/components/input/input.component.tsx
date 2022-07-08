@@ -1,70 +1,18 @@
-import { defineComponent, inject } from 'vue'
-// import type { PropType } from 'vue'
+import { defineComponent, inject, onMounted } from 'vue'
+
+import { createNamespace, validateEmpty } from '@/utils/'
+
 import {
   type FieldProvide,
   fieldProvide,
 } from '@/components/field/field.interface'
-import { verifyEmpty, verifyRegular } from '@/utils/data'
-import createNamespace from '@/utils/namespace'
+
 import type { InputValue } from './input.interface'
+import inputEmits from './input.emits'
+import inputProps from './input.props'
 import './input.scss'
 
 const bem = createNamespace('input')
-
-const inputEmits = {
-  blur: (name: string) => true,
-  focus: (name: string) => true,
-  'update:modelValue': (value: InputValue, name: string) => true,
-}
-
-const inputProps = {
-  autocomplete: {
-    default: 'off',
-    required: false,
-    type: String,
-  },
-  inline: {
-    default: false,
-    required: false,
-    type: Boolean,
-  },
-  max: {
-    default: undefined,
-    required: false,
-    type: Number,
-  },
-  min: {
-    default: undefined,
-    required: false,
-    type: Number,
-  },
-  modelValue: {
-    default: undefined,
-    required: true,
-    // type: [String, Number, Boolean, undefined] as PropType<InputValue>,
-    validator: verifyRegular,
-  },
-  name: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  placeholder: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  step: {
-    default: undefined,
-    required: false,
-    type: Number,
-  },
-  type: {
-    default: 'text',
-    required: false,
-    type: String,
-  },
-}
 
 export default defineComponent({
   name: bem(),
@@ -88,7 +36,7 @@ export default defineComponent({
 
     const updateValue = (value: InputValue): void => {
       context.emit('update:modelValue', value, props.name)
-      const empty = verifyEmpty(value)
+      const empty = validateEmpty(value)
       field?.updateStatus('empty', empty)
     }
 
@@ -96,32 +44,25 @@ export default defineComponent({
       updateValue,
     })
 
-    return {
-      onBlur,
-      onFoucs,
-      onInput,
-      updateValue,
-    }
-  },
-  render() {
-    return (
+    onMounted(() => {
+      updateValue(props.modelValue)
+    })
+
+    return () => (
       <input
-        autocomplete={this.autocomplete}
+        autocomplete={props.autocomplete}
         class={bem()}
-        max={this.max}
-        min={this.min}
-        name={this.name}
-        placeholder={this.placeholder}
-        step={this.step}
-        type={this.type}
-        value={this.modelValue}
-        onBlur={() => this.onBlur()}
-        onFocus={() => this.onFoucs()}
-        onInput={this.onInput}
+        max={props.max}
+        min={props.min}
+        name={props.name}
+        placeholder={props.placeholder}
+        step={props.step}
+        type={props.type}
+        value={props.modelValue}
+        onBlur={() => onBlur()}
+        onFocus={() => onFoucs()}
+        onInput={onInput}
       />
     )
-  },
-  mounted() {
-    this.updateValue(this.modelValue)
   },
 })

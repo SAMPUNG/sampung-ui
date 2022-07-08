@@ -1,42 +1,35 @@
-import { defineComponent, ref, type Ref } from 'vue'
+import { defineComponent, onMounted, ref, type Ref } from 'vue'
+
 import createNamespace from '@/utils/namespace'
+
+import type { CalendarRecord } from './calendar.interface'
 import './calendar.scss'
 
 const bem = createNamespace('calendar')
 
-declare type CalendarRecord = {
-  date: number
-  month: number
-  tag: string
-  time: number
-  type: string
-  year: number
-}
-
 export default defineComponent({
   name: bem(),
-  setup(props) {
+  setup() {
     const date: Ref<number> = ref(0)
     const list: Ref<CalendarRecord[]> = ref([])
     const month: Ref<number> = ref(0)
-    const selected: Ref<string> = ref('')
     const time: Ref<string> = ref('')
     const today: Ref<number> = ref(0)
     const year: Ref<number> = ref(0)
 
-    const changeDate = (step = 0) => {
-      // Parse Date
-      const cursor = parseDate()
-      cursor.setDate(cursor.getDate() + step)
+    // const changeDate = (step = 0) => {
+    //   // Parse Date
+    //   const cursor = parseDate()
+    //   cursor.setDate(cursor.getDate() + step)
 
-      // Update Date
-      date.value = cursor.getDate()
-      month.value = cursor.getMonth() + 1
-      year.value = cursor.getFullYear()
+    //   // Update Date
+    //   date.value = cursor.getDate()
+    //   month.value = cursor.getMonth() + 1
+    //   year.value = cursor.getFullYear()
 
-      // Update Calendar
-      resolveCalendar()
-    }
+    //   // Update Calendar
+    //   resolveCalendar()
+    // }
 
     const changeMonth = (step = 0) => {
       // Parse Date
@@ -127,32 +120,21 @@ export default defineComponent({
       year.value = selected.year
     }
 
-    return {
-      changeDate,
-      changeMonth,
-      changeYear,
-      initCalendar,
-      list,
-      month,
-      resolveSelected,
-      selectDate,
-      year,
-    }
-  },
-  render() {
-    return (
+    onMounted(initCalendar)
+
+    return () => (
       <div class={[bem()]}>
         <div class="header">
-          <span onClick={() => this.changeYear(-1)}>«</span>
-          <span onClick={() => this.changeMonth(-1)}>‹</span>
+          <span onClick={() => changeYear(-1)}>«</span>
+          <span onClick={() => changeMonth(-1)}>‹</span>
           <i class="fks-icon-d-arrow-left" />
           <i class="fks-icon-arrow-left" />
           <div class="title">
-            <span class="month">{this.month}</span>
-            <span class="year">{this.year}</span>
+            <span class="month">{month}</span>
+            <span class="year">{year}</span>
           </div>
-          <span onClick={() => this.changeMonth(1)}>›</span>
-          <span onClick={() => this.changeYear(1)}>»</span>
+          <span onClick={() => changeMonth(1)}>›</span>
+          <span onClick={() => changeYear(1)}>»</span>
         </div>
         <div class="content">
           <ul class="day-list">
@@ -165,16 +147,16 @@ export default defineComponent({
             <li>Sun</li>
           </ul>
           <ul class="date-list">
-            {this.list?.map((item: CalendarRecord, index: number) => (
+            {list.value?.map((item: CalendarRecord, index: number) => (
               <li
                 key={index}
                 class={[
                   'date-cell',
                   item.type,
                   item.tag,
-                  this.resolveSelected(item),
+                  resolveSelected(item),
                 ]}
-                onClick={() => this.selectDate(item)}
+                onClick={() => selectDate(item)}
               >
                 <span class="tag">
                   <span>{item.date}</span>
@@ -185,8 +167,5 @@ export default defineComponent({
         </div>
       </div>
     )
-  },
-  mounted() {
-    this.initCalendar()
   },
 })

@@ -1,6 +1,8 @@
 import { defineComponent, ref } from 'vue'
+
 import createNamespace from '@/utils/namespace'
-import DemoDropdown from './dropdown.component'
+
+import DemoDropdown from '@/components/dropdown/dropdown.component'
 import DemoField from '@/components/field/field.component'
 import DemoInput from '@/components/input/input.component'
 import DemoForm from '@/components/form/form.component'
@@ -41,23 +43,15 @@ export default defineComponent({
   components: { DemoDropdown, DemoField, DemoForm, DemoInput },
   setup() {
     const maxHeight = ref<number>(325)
-    const options = ref(defaultOptions)
     const selected = ref<string>(defaultOptions[1].name)
 
-    return {
-      maxHeight,
-      options,
-      selected,
-    }
-  },
-  render() {
-    return (
+    return () => (
       <div class={bem()}>
         <div class={bem('controls')}>
           <demo-form autocomplete="off" name="demo">
             <demo-field legend="max-height" name="maxHeight">
               <demo-input
-                vModel={this.maxHeight}
+                vModel={maxHeight.value}
                 name="maxHeight"
                 placeholder="Please input max height of dropdown"
                 type="number"
@@ -68,9 +62,9 @@ export default defineComponent({
         <div class={bem('display')}>
           <demo-dropdown
             legend="Dropdown"
-            max-height={this.maxHeight}
-            vModel={this.selected}
-            options={this.options}
+            max-height={maxHeight.value}
+            vModel={selected.value}
+            options={defaultOptions}
           />
         </div>
       </div>

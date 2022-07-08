@@ -10,9 +10,4 @@ export declare type SelectOptionRecord = {
 
 export declare type SelectOption = SelectValue | SelectOptionRecord
 
-export declare type SelectProps = {
-  modelValue: SelectValue
-  options: SelectOption[]
-}
-
 export declare type SelectValue = string | number | boolean | undefined

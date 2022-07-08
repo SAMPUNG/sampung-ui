@@ -1,16 +1,18 @@
 import { defineComponent } from 'vue'
+
 import createNamespace from '@/utils/namespace'
+
 import '@/styles/demo.scss'
 
 const bem = createNamespace('marquee-demo')
 
 export default defineComponent({
   name: bem(),
-  render() {
-    return (
+  setup() {
+    return () => (
       <div class={bem()}>
         <div class="playground-demo">
-          <sam-marquee size={this.size} />
+          <sam-marquee size={25} />
         </div>
         <sam-form name="controls">
           <sam-fieldset legend="属性(attrs)">
@@ -29,7 +31,4 @@ export default defineComponent({
       </div>
     )
   },
-  data: () => ({
-    size: 25 as number,
-  }),
 })

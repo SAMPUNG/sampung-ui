@@ -3,6 +3,11 @@
     "browser": true,
     "node": true
   },
+  "globals": {
+    "NodeJS": "readonly",
+    "NodeListOf": "readonly",
+    "ResizeObserverOptions": "readonly"
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 12,

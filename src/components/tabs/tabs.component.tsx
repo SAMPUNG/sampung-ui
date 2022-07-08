@@ -1,11 +1,14 @@
-import { defineComponent, type PropType, ref, watch } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
+
+import type { ScrollStyle } from '@/types/component'
+import { createNamespace, resolveUniqueId } from '@/utils/'
+
 import type { Item, List } from '@/components/select/select.interface'
 import TabsSelect from '@/components/select/select.component'
-import type { ScrollStyle } from '@/types/component'
-import { resolveUniqueId, verifyRegular } from '@/utils/data'
-import createNamespace from '@/utils/namespace'
-import type { TabsOption, TabsProps, TabsValue } from './tabs.interface'
 
+import type { TabsValue } from './tabs.interface'
+import tabsEmits from './tabs.emits'
+import tabsProps from './tabs.props'
 import './tabs.scss'
 
 const bem = createNamespace('tabs')
@@ -13,26 +16,9 @@ const bem = createNamespace('tabs')
 export default defineComponent({
   name: bem(),
   components: { TabsSelect },
-  props: {
-    modelValue: {
-      default: '',
-      type: [String, Number, Boolean, undefined] as PropType<TabsValue>,
-      validator: verifyRegular,
-    },
-    options: {
-      default: () => [],
-      type: Array as PropType<TabsOption[]>,
-    },
-  },
-  emits: {
-    change(value: TabsValue) {
-      return value
-    },
-    'update:modelValue'(value: TabsValue) {
-      return value
-    },
-  },
-  setup(props: TabsProps, context) {
+  props: tabsProps,
+  emits: tabsEmits,
+  setup(props, context) {
     const dropdown = ref<boolean>(false)
     const id = ref<string>(resolveUniqueId())
     const indicator = ref<ScrollStyle>({
@@ -43,8 +29,8 @@ export default defineComponent({
       transform: 'translateX(0px)',
       width: '9999px',
     })
-    const select = ref<typeof TabsSelect | null>(null)
-    const viewport = ref<HTMLDivElement | null>(null)
+    const select = ref<typeof TabsSelect>()
+    const viewport = ref<HTMLDivElement>()
 
     const onChange = (value: TabsValue) => {
       const limit = viewport.value?.clientWidth || 0
@@ -107,43 +93,31 @@ export default defineComponent({
       selectTab,
     })
 
-    return {
-      id,
-      indicator,
-      menu,
-      onChange,
-      onDropdown,
-      onSelect,
-      selectTab,
-      updateViewport,
-      viewport,
-    }
-  },
-  render() {
-    return (
-      <div class={[bem()]} data-value={this.modelValue} id={this.id}>
-        <div class={bem('viewport')} ref="viewport">
-          <div class={bem('view')} style={this.menu}>
+    onMounted(() => {
+      selectTab(props.modelValue)
+      updateViewport()
+    })
+
+    return () => (
+      <div class={[bem()]} data-value={props.modelValue} id={id.value}>
+        <div class={bem('viewport')} ref={viewport}>
+          <div class={bem('view')} style={menu.value}>
             <tabs-select
               class={bem('select')}
-              modelValue={this.modelValue}
-              options={this.options}
-              onChange={this.onChange}
-              onSelect={this.onSelect}
-              ref="select"
+              modelValue={props.modelValue}
+              options={props.options}
+              onChange={onChange}
+              onSelect={onSelect}
+              ref={select}
               role="select"
             />
-            <div class={bem('indicator')} style={this.indicator} />
+            <div class={bem('indicator')} style={indicator.value} />
           </div>
         </div>
-        <div class={bem('controls')} onClick={this.onDropdown}>
+        <div class={bem('controls')} onClick={onDropdown}>
           <button class={bem('more')}>⋯</button>
         </div>
       </div>
     )
-  },
-  mounted() {
-    this.selectTab(this.modelValue)
-    this.updateViewport()
   },
 })

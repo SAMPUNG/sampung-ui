@@ -1,27 +1,14 @@
-import { defineComponent, ref, type Ref } from 'vue'
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
+
 import createNamespace from '@/utils/namespace'
-import type { Style } from '@/types/component'
+
+import { ClockHour, ClockHourTick } from './clock.interface'
 import './clock.scss'
-import {
-  ClockHour,
-  ClockHourExtra,
-  ClockHourTick,
-  ClockTick,
-} from './clock.interface'
 
 const bem = createNamespace('clock')
 
 const CLOCK_HOUR_TICKS: ClockHourTick[] = []
-// const CLOCK_TICKS: ClockTick[] = [
-//   'Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅴ', 'Ⅵ',
-//   'Ⅶ', 'Ⅷ', 'Ⅸ', 'Ⅹ', 'Ⅺ', 'Ⅻ'
-// ]
-// CLOCK_TICKS.forEach((tick: ClockTick, index: number) => {
-//   CLOCK_HOUR_TICKS.push({
-//     legend: tick,
-//     name: (index + 1) as ClockHour
-//   })
-// })
+
 for (let i = 1; i < 13; i++) {
   CLOCK_HOUR_TICKS.push({
     legend: i % 3 === 0 ? '‖' : '|',
@@ -42,9 +29,9 @@ export default defineComponent({
   props: clockProps,
   setup(props) {
     const moment: Date = new Date(props.modelValue)
-    const hour: Ref<number> = ref(moment.getHours())
-    const minute: Ref<number> = ref(moment.getMinutes())
-    const second: Ref<number> = ref(moment.getSeconds())
+    const hour = ref<number>(moment.getHours())
+    const minute = ref<number>(moment.getMinutes())
+    const second = ref<number>(moment.getSeconds())
     let timer: NodeJS.Timer | null = null
 
     const dispose = (): void => {
@@ -55,7 +42,7 @@ export default defineComponent({
       console.log(event)
     }
 
-    const resolveAngle = (value: number, base: 12 | 60): Style => {
+    const resolveAngle = (value: number, base: 12 | 60) => {
       // deg = value / base * 360
       const deg: number = (value / base) * 360
       return {
@@ -80,53 +67,35 @@ export default defineComponent({
       second.value = moment.getSeconds()
     }
 
-    return {
-      dispose,
-      hour,
-      minute,
-      onHover,
-      resolveAngle,
-      resolveLabel,
-      resolveClock,
-      second,
-    }
-  },
-  render() {
-    return (
+    onMounted(resolveClock)
+    onUnmounted(dispose)
+
+    return () => (
       <div class={bem()}>
         <div class={bem('field')}>
-          <span>{this.resolveLabel(this.hour)}</span>
+          <span>{resolveLabel(hour.value)}</span>
           <span>:</span>
-          <span>{this.resolveLabel(this.minute)}</span>
+          <span>{resolveLabel(minute.value)}</span>
           <span>:</span>
-          <span>{this.resolveLabel(this.second)}</span>
+          <span>{resolveLabel(second.value)}</span>
         </div>
-        <ul class={bem('dial')} onMouseenter={this.onHover}>
-          {CLOCK_HOUR_TICKS.map(({ legend, name }) => (
+        <ul class={bem('dial')} onMouseenter={onHover}>
+          {CLOCK_HOUR_TICKS.map(({ legend }) => (
             <li class={bem('tick')}>{legend}</li>
           ))}
         </ul>
         <ul class={bem('hands')}>
-          <li
-            class={bem('hour-hand')}
-            style={this.resolveAngle(this.hour, 12)}
-          />
+          <li class={bem('hour-hand')} style={resolveAngle(hour.value, 12)} />
           <li
             class={bem('minute-hand')}
-            style={this.resolveAngle(this.minute, 60)}
+            style={resolveAngle(minute.value, 60)}
           />
           <li
             class={bem('second-hand')}
-            style={this.resolveAngle(this.second, 60)}
+            style={resolveAngle(second.value, 60)}
           />
         </ul>
       </div>
     )
-  },
-  mounted() {
-    this.resolveClock()
-  },
-  destroyed() {
-    this.dispose()
   },
 })

@@ -1,7 +1,8 @@
 import { defineComponent, ref } from 'vue'
-import type { Ref } from 'vue'
+
 import createNamespace from '@/utils/namespace'
-import DemoChart from './chart.component'
+
+import DemoChart from '@/components/chart/chart.component'
 
 const bem = createNamespace('chart-demo')
 
@@ -25,18 +26,12 @@ export default defineComponent({
   name: bem(),
   components: { DemoChart },
   setup() {
-    const id: Ref<string> = ref('chart-demo')
+    const id = ref<string>('chart-demo')
     const options = ref(defaultOptions)
 
-    return {
-      id,
-      options,
-    }
-  },
-  render() {
-    return (
+    return () => (
       <div class={bem()}>
-        <demo-chart id={this.id} options={this.options} />
+        <demo-chart id={id.value} options={options.value} />
       </div>
     )
   },

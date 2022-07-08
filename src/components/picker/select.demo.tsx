@@ -6,8 +6,26 @@ const bem = createNamespace('select-demo')
 
 export default defineComponent({
   name: bem(),
+  data: () => ({
+    options: [
+      {
+        label: 'AA',
+        value: 'aa',
+      },
+      {
+        label: 'BB',
+        value: 'bb',
+      },
+      {
+        label: 'CC',
+        value: 'cc',
+      },
+    ],
+    placeholder: '请选择……',
+    value: undefined,
+  }),
   render() {
-    return (
+    return () => (
       <div class="demo">
         <div class="playground-demo">
           <sam-select
@@ -30,22 +48,4 @@ export default defineComponent({
       </div>
     )
   },
-  data: () => ({
-    options: [
-      {
-        label: 'AA',
-        value: 'aa',
-      },
-      {
-        label: 'BB',
-        value: 'bb',
-      },
-      {
-        label: 'CC',
-        value: 'cc',
-      },
-    ],
-    placeholder: '请选择……',
-    value: undefined,
-  }),
 })

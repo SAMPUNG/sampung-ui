@@ -1,31 +1,19 @@
 import { getInstanceByDom, init } from 'echarts'
-import type { EChartsCoreOption } from 'echarts/types/dist/echarts'
-import { defineComponent } from 'vue'
-import type { PropType } from 'vue'
+import { defineComponent, onUnmounted, onMounted } from 'vue'
+
 import createNamespace from '@/utils/namespace'
+
+import chartProps from './chart.props'
 import './chart.scss'
 
 const bem = createNamespace('chart')
-
-const ChartProps = {
-  id: {
-    default: '',
-    required: true,
-    type: String,
-  },
-  options: {
-    default: '',
-    required: true,
-    type: Object as PropType<EChartsCoreOption>,
-  },
-}
 
 // Resize Observer
 let observer: ResizeObserver | null = null
 
 export default defineComponent({
   name: bem(),
-  props: ChartProps,
+  props: chartProps,
   setup(props, context) {
     const renderChart = () => {
       const el = resolveElement()
@@ -58,20 +46,14 @@ export default defineComponent({
       renderChart,
     })
 
-    return {
-      renderChart,
-      resizeChart,
-      resolveObserver,
-    }
-  },
-  render() {
-    return <div class={bem()} id={this.id} />
-  },
-  mounted() {
-    this.renderChart()
-    this.resolveObserver()
-  },
-  destroyed() {
-    observer?.disconnect()
+    onMounted(() => {
+      renderChart()
+      resolveObserver()
+    })
+    onUnmounted(() => {
+      observer?.disconnect()
+    })
+
+    return () => <div class={bem()} id={props.id} />
   },
 })

@@ -1,5 +1,7 @@
 import { defineComponent, ref } from 'vue'
+
 import createNamespace from '@/utils/namespace'
+
 import DemoEffect from './effect.component'
 import type { EffectInstance } from './effect.interface'
 

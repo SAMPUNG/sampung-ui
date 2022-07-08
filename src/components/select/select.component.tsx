@@ -1,50 +1,26 @@
-import { defineComponent, ref, watch } from 'vue'
-import type { PropType } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
+
+import { createNamespace, resolveUniqueId, validateRegular } from '@/utils/'
+
 import SelectIcon from '@/components/icon/icon.component'
-import type { Direction } from '@/types/component'
-import { resolveUniqueId, verifyRegular } from '@/utils/data'
-import createNamespace from '@/utils/namespace'
+
 import type {
   SelectOption,
   SelectOptionRecord,
-  SelectProps,
   SelectValue,
 } from './select.interface'
-
+import selectEmits from './select.emits'
+import selectProps from './select.props'
 import './select.scss'
 
 const bem = createNamespace('select')
 
-const selectEmits = {
-  change: (value: SelectValue) => true,
-  select: (target: HTMLLIElement) => true,
-  'update:modelValue': (value: SelectValue) => true,
-}
-
-export const SelectCommonProps = {
-  direction: {
-    default: 'horizontal',
-    required: false,
-    type: String as PropType<Direction>,
-  },
-  modelValue: {
-    default: undefined,
-    required: true,
-    type: [String, Number, Boolean, undefined] as PropType<SelectValue>,
-    validator: verifyRegular,
-  },
-  options: {
-    default: () => [],
-    type: Array as PropType<SelectOption[]>,
-  },
-}
-
 export default defineComponent({
   name: bem(),
   components: { SelectIcon },
-  props: SelectCommonProps,
+  props: selectProps,
   emits: selectEmits,
-  setup(props: SelectProps, context) {
+  setup(props, context) {
     const id = ref<string>(resolveUniqueId())
     const list = ref<HTMLElement | null>(null)
 
@@ -82,7 +58,7 @@ export default defineComponent({
     }
 
     const selectOption = (name: SelectValue): void => {
-      if (verifyRegular(name)) {
+      if (validateRegular(name)) {
         const index: number = props.options.findIndex((item: SelectOption) => {
           return resolveName(item) === name
         })
@@ -101,47 +77,37 @@ export default defineComponent({
       selectOption,
     })
 
-    return {
-      id,
-      onSelect,
-      resolveIcon,
-      resolveLegend,
-      resolveName,
-      resolveSelected,
-      selectOption,
-    }
-  },
-  render() {
-    return (
+    onMounted(() => {
+      selectOption(props.modelValue)
+    })
+
+    return () => (
       <ul
         class={bem()}
-        data-direction={this.direction}
-        data-total={this.options.length}
-        data-value={this.modelValue}
-        id={this.id}
+        data-direction={props.direction}
+        data-total={props.options.length}
+        data-value={props.modelValue}
+        id={id.value}
       >
-        {this.options.map((item: SelectOption) => (
+        {props.options.map((item: SelectOption) => (
           <li
-            class={[bem('item'), this.resolveSelected(item)]}
-            data-selected={this.resolveSelected(item)}
-            data-option={this.resolveName(item)}
+            class={[bem('item'), resolveSelected(item)]}
+            data-selected={resolveSelected(item)}
+            data-option={resolveName(item)}
             onClick={(event: Event) =>
-              this.onSelect(item, event.target as HTMLLIElement)
+              onSelect(item, event.target as HTMLLIElement)
             }
           >
-            {this.resolveIcon(item) && (
+            {resolveIcon(item) && (
               <select-icon
                 class={bem('icon')}
                 name={(item as SelectOptionRecord).icon}
               />
             )}
-            <span>{this.resolveLegend(item)}</span>
+            <span>{resolveLegend(item)}</span>
           </li>
         ))}
       </ul>
     )
-  },
-  mounted() {
-    this.selectOption(this.modelValue)
   },
 })

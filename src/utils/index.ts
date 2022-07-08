@@ -1,5 +1,6 @@
-export * from './data'
+export * from './attributes'
 export * from './install'
 export * from './namespace'
 export * from './reactive'
 export * from './style'
+export * from './validate'

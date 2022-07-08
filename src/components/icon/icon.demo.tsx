@@ -1,15 +1,17 @@
 import { defineComponent } from 'vue'
+
 import createNamespace from '@/utils/namespace'
-import DemoIcon from './icon.component'
-import { manifest } from './icon.config'
+
+import DemoIcon from '@/components/icon/icon.component'
+import { manifest } from '@/components/icon/icon.config'
 
 const bem = createNamespace('icon-demo')
 
 export default defineComponent({
   name: bem(),
   components: { DemoIcon },
-  render() {
-    return (
+  setup() {
+    return () => (
       <div class={bem()}>
         <ul class={bem('list')}>
           {manifest['material-design'].map(({ name }) => (

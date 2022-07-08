@@ -1,5 +1,7 @@
 import { defineComponent, ref, type Ref } from 'vue'
+
 import createNamespace from '@/utils/namespace'
+
 import DemoCarousel from './carousel.component'
 
 const bem = createNamespace('carousel-demo')
@@ -11,14 +13,10 @@ export default defineComponent({
   components: { DemoCarousel },
   setup() {
     const options: Ref<string[]> = ref(demoOptions)
-    return {
-      options,
-    }
-  },
-  render() {
-    return (
+
+    return () => (
       <div class={bem()}>
-        <demo-carousel options={this.options} />
+        <demo-carousel options={options.value} />
       </div>
     )
   },
