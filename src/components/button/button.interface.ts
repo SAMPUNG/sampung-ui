@@ -14,6 +14,11 @@ export declare type ButtonExpose = {
   onClick: () => void
 }
 
+export declare type EffectInstance = ComponentPublicInstance<
+  ButtonProps,
+  ButtonExpose
+>
+
 export declare type ButtonMode =
   | 'diode'
   | 'disabled'
@@ -25,8 +30,3 @@ export declare type ButtonMode =
 export declare type ButtonProps = ExtractPropTypes<typeof buttonProps>
 
 export declare type ButtonType = 'button' | 'reset' | 'submit'
-
-export declare type EffectInstance = ComponentPublicInstance<
-  ButtonProps,
-  ButtonExpose
->

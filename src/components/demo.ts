@@ -1,5 +1,15 @@
 export default [
   {
+    path: 'accordion-demo',
+    name: 'Accordion',
+    component: () => import('@/components/accordion/accordion.demo'),
+  },
+  {
+    path: 'affix-demo',
+    name: 'Affix',
+    component: () => import('@/components/affix/affix.demo'),
+  },
+  {
     path: 'button-demo',
     name: 'Button',
     component: () => import('@/components/button/button.demo'),
@@ -48,6 +58,11 @@ export default [
     path: 'icon-demo',
     name: 'Icon',
     component: () => import('@/components/icon/icon.demo'),
+  },
+  {
+    path: 'menu-demo',
+    name: 'Menu',
+    component: () => import('@/components/menu/menu.demo'),
   },
   {
     path: 'tabs-demo',

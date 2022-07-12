@@ -7,7 +7,7 @@
     position: relative;
   }
   &-panel {
-    background: var(--panel);
+    background: var(--skeleton);
     overflow-x: hidden;
     overflow-y: auto;
     position: absolute;
@@ -21,11 +21,11 @@
   }
 }
 
-[data-panel="hidden"] {
+[data-panel='hidden'] {
   height: 0;
   visibility: hidden;
 }
-[data-panel="visible"] {
+[data-panel='visible'] {
   animation-name: fade-dropdown;
   animation-duration: 0.5s;
   box-shadow: 0 0 8px 4px var(--shadow);

@@ -1,7 +1,9 @@
 import type { App, Component, Plugin } from 'vue'
 
+import { block } from './namespace'
+
 const resolveName = (): string =>
-  'SamComponent' + Math.random().toString().slice(2, 6)
+  `${block}-component-${Math.random().toString().slice(2, 6)}`
 const resolveInstall = (component: Component, alias?: string): Plugin => ({
   install: (app: App): void => {
     const name: string = alias || component?.name || resolveName()

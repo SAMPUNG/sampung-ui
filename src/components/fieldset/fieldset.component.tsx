@@ -39,7 +39,7 @@ export default defineComponent({
         name={props.name}
       >
         <legend>{props.legend}</legend>
-        {typeof context.slots.default === 'function' && context.slots.default()}
+        {context.slots?.default?.()}
       </fieldset>
     )
   },

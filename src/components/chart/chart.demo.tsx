@@ -2,8 +2,6 @@ import { defineComponent, ref } from 'vue'
 
 import createNamespace from '@/utils/namespace'
 
-import DemoChart from '@/components/chart/chart.component'
-
 const bem = createNamespace('chart-demo')
 
 const defaultOptions = {
@@ -24,14 +22,13 @@ const defaultOptions = {
 
 export default defineComponent({
   name: bem(),
-  components: { DemoChart },
   setup() {
     const id = ref<string>('chart-demo')
     const options = ref(defaultOptions)
 
     return () => (
       <div class={bem()}>
-        <demo-chart id={id.value} options={options.value} />
+        <sam-chart id={id.value} options={options.value} />
       </div>
     )
   },

@@ -1,20 +1,8 @@
-export declare type AbsolutePosition = {
-  bottom?: StyleProperty
-  left?: StyleProperty
-  right?: StyleProperty
-  top?: StyleProperty
-  zIndex?: number
-}
-export declare type AbsolutePositionStyle = AbsolutePosition & {
+export declare type Absolute = Location & {
   position: 'absolute'
 }
 
-export declare type Appearance =
-  | 'dashed'
-  | 'fill'
-  | 'legacy'
-  | 'outline'
-  | 'text'
+export declare type Appearance = 'dashed' | 'fill' | 'legacy' | 'outline'
 
 export declare type Bem = {
   block: string
@@ -22,7 +10,17 @@ export declare type Bem = {
   modifier?: string
 }
 
+export declare type Container = 'parent' | 'body'
+
 export declare type Direction = 'horizontal' | 'vertical'
+
+export declare type Location = {
+  bottom?: Property
+  left?: Property
+  right?: Property
+  top?: Property
+  zIndex?: number
+}
 
 export declare type Palette =
   | 'error'
@@ -30,6 +28,10 @@ export declare type Palette =
   | 'secondary'
   | 'success'
   | 'warning'
+
+export declare type Position = {
+  position: 'absolute' | 'fixed' | 'relative' | 'static' | 'sticky'
+}
 
 export declare type Transform = {
   transform?: string
@@ -40,13 +42,17 @@ export declare type ScrollStyle = {
   width: string
 }
 
-export declare type Style = AbsolutePositionStyle & Size & Transform
-
-export declare type Size = {
-  height?: StyleProperty
-  width?: StyleProperty
+export declare type Sticky = Location & {
+  position: 'sticky'
 }
 
-export declare type StyleProperty = number | string | undefined
+export declare type Style = Location & Position & Size & Transform
+
+export declare type Size = {
+  height?: Property
+  width?: Property
+}
+
+export declare type Property = number | string | undefined
 
 export declare type Theme = 'dark' | 'light'

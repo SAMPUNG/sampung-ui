@@ -2,21 +2,17 @@ import { defineComponent, ref } from 'vue'
 
 import createNamespace from '@/utils/namespace'
 
-import DemoButton from '@/components/button/button.component'
-import DemoDialog from '@/components/dialog/dialog.component'
-
 const bem = createNamespace('dialog-demo')
 
 export default defineComponent({
   name: bem(),
-  components: { DemoButton, DemoDialog },
   setup() {
     const visible = ref<boolean>(false)
 
     return () => (
       <div class={bem()}>
         <div class={bem('controls')}>
-          <demo-button
+          <sam-button
             legend="Open Dialog"
             onClick={() => {
               visible.value = true
@@ -24,11 +20,7 @@ export default defineComponent({
           />
         </div>
         <div class={bem('display')}>
-          <demo-dialog
-            icon="flare"
-            legend="Dialog Title"
-            vModel={visible.value}
-          >
+          <sam-dialog icon="flare" legend="Dialog Title" vModel={visible.value}>
             <div
               style={{
                 height: '400px',
@@ -39,7 +31,7 @@ export default defineComponent({
             >
               hello, world
             </div>
-          </demo-dialog>
+          </sam-dialog>
         </div>
       </div>
     )

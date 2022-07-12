@@ -3,10 +3,8 @@ import { defineComponent, ref } from 'vue'
 import type { Appearance, Palette } from '@/types/component'
 import createNamespace from '@/utils/namespace'
 
-import DemoButton from '@/components/button/button.component'
 import type { ButtonMode } from '@/components/button/button.interface'
 import { manifest } from '@/components/icon/icon.config'
-import DemoSelect from '@/components/select/select.component'
 
 const bem = createNamespace('button-demo')
 
@@ -31,10 +29,6 @@ const options = {
     {
       legend: 'Outline',
       name: 'outline',
-    },
-    {
-      legend: 'Text',
-      name: 'text',
     },
   ],
   icon: icons,
@@ -90,7 +84,6 @@ const options = {
 
 export default defineComponent({
   name: bem(),
-  components: { DemoButton, DemoSelect },
   setup() {
     const appearance = ref<Appearance>('outline')
     const icon = ref<string>(icons[0].name)
@@ -99,7 +92,7 @@ export default defineComponent({
 
     return () => (
       <div class={bem()}>
-        <demo-button
+        <sam-button
           appearance={appearance.value}
           icon={icon.value}
           legend="Button"
@@ -107,10 +100,10 @@ export default defineComponent({
           palette={palette.value}
         />
         <hr class={bem('line')} />
-        <demo-select vModel={appearance.value} options={options.appearance} />
-        <demo-select vModel={palette.value} options={options.palette} />
-        <demo-select vModel={mode.value} options={options.mode} />
-        <demo-select vModel={icon.value} options={options.icon} />
+        <sam-select vModel={appearance.value} options={options.appearance} />
+        <sam-select vModel={palette.value} options={options.palette} />
+        <sam-select vModel={mode.value} options={options.mode} />
+        <sam-select vModel={icon.value} options={options.icon} />
       </div>
     )
   },

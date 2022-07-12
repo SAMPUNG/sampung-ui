@@ -34,19 +34,19 @@ $radius: calc(($size - $gap) / 2);
   &::before {
     @include absolute(0, 0);
     background: conic-gradient(
-      var(--panel) 15deg,
+      var(--skeleton) 15deg,
       var(--card) 15deg 45deg,
       var(--board) 45deg 75deg,
-      var(--panel) 75deg 105deg,
+      var(--skeleton) 75deg 105deg,
       var(--board) 105deg 135deg,
       var(--card) 135deg 165deg,
-      var(--panel) 165deg 195deg,
+      var(--skeleton) 165deg 195deg,
       var(--card) 195deg 225deg,
       var(--board) 225deg 255deg,
-      var(--panel) 255deg 285deg,
+      var(--skeleton) 255deg 285deg,
       var(--board) 285deg 315deg,
       var(--card) 315deg 345deg,
-      var(--panel) 345deg 360deg
+      var(--skeleton) 345deg 360deg
     );
     border-radius: 50%;
     content: ' ';
@@ -88,7 +88,7 @@ $radius: calc(($size - $gap) / 2);
   }
   &-minute-hand {
     @include hand(48.5%, 15%, 4);
-    background:var(--secondary);
+    background: var(--secondary);
   }
   &-second-hand {
     @include hand(49%, 10%, 5);

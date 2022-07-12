@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, ref, type Ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 
 import createNamespace from '@/utils/namespace'
 
@@ -10,12 +10,12 @@ const bem = createNamespace('calendar')
 export default defineComponent({
   name: bem(),
   setup() {
-    const date: Ref<number> = ref(0)
-    const list: Ref<CalendarRecord[]> = ref([])
-    const month: Ref<number> = ref(0)
-    const time: Ref<string> = ref('')
-    const today: Ref<number> = ref(0)
-    const year: Ref<number> = ref(0)
+    const date = ref<number>(0)
+    const list = ref<CalendarRecord[]>([])
+    const month = ref<number>(0)
+    const time = ref<string>('')
+    const today = ref<number>(0)
+    const year = ref<number>(0)
 
     // const changeDate = (step = 0) => {
     //   // Parse Date
@@ -120,18 +120,18 @@ export default defineComponent({
       year.value = selected.year
     }
 
-    onMounted(initCalendar)
+    onMounted(() => {
+      initCalendar()
+    })
 
     return () => (
       <div class={[bem()]}>
         <div class="header">
           <span onClick={() => changeYear(-1)}>«</span>
           <span onClick={() => changeMonth(-1)}>‹</span>
-          <i class="fks-icon-d-arrow-left" />
-          <i class="fks-icon-arrow-left" />
           <div class="title">
-            <span class="month">{month}</span>
-            <span class="year">{year}</span>
+            <span class="month">{month.value}</span>
+            <span class="year">{year.value}</span>
           </div>
           <span onClick={() => changeMonth(1)}>›</span>
           <span onClick={() => changeYear(1)}>»</span>
@@ -147,9 +147,8 @@ export default defineComponent({
             <li>Sun</li>
           </ul>
           <ul class="date-list">
-            {list.value?.map((item: CalendarRecord, index: number) => (
+            {list.value?.map((item: CalendarRecord) => (
               <li
-                key={index}
                 class={[
                   'date-cell',
                   item.type,

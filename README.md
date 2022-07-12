@@ -156,6 +156,7 @@
 - Legacy
 - Mask
 - Panel
+- Skeleton
 
 ## Responsive
 
@@ -165,8 +166,8 @@
 
 # Size
 
-| Name  | Key         | Value |
-| ----- | ----------- | ----- |
+| Name  | Key       | Value |
+| ----- | --------- | ----- |
 | Input | `--input` | 32px  |
 | Nav   | `--nav`   | 48px  |
 

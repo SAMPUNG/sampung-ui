@@ -1,4 +1,5 @@
 import type { PropType } from 'vue'
+
 import type { Appearance, Palette } from '@/types/component'
 
 export default {
@@ -7,10 +8,20 @@ export default {
     required: false,
     type: String as PropType<Appearance>,
   },
-  font: {
-    default: 'material-design',
+  icon: {
+    default: '',
     required: false,
     type: String,
+  },
+  legend: {
+    default: '',
+    required: false,
+    type: String,
+  },
+  modelValue: {
+    default: false,
+    required: true,
+    type: Boolean,
   },
   name: {
     default: '',
@@ -18,8 +29,13 @@ export default {
     type: String,
   },
   palette: {
-    default: 'default',
+    default: 'primary',
     required: false,
     type: String as PropType<Palette>,
+  },
+  withFooter: {
+    default: false,
+    required: false,
+    type: Boolean,
   },
 }

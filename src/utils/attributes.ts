@@ -1,8 +1,14 @@
 import type { Dataset, Props } from '@/types/data'
 
-export const resolveDataset = (props: Props): Dataset => {
+import { block } from './namespace'
+
+export const resolveDataset = (
+  props: Props,
+  target: string[] = []
+): Dataset => {
   const dataset: Dataset = {}
-  Object.entries(props).forEach(([key, value]) => {
+  const parseDataset = (key: string) => {
+    const value = props[key]
     switch (typeof value) {
       case 'boolean': {
         if (value) {
@@ -12,16 +18,24 @@ export const resolveDataset = (props: Props): Dataset => {
       }
       case 'number':
       case 'string': {
-        dataset[`data-${key}`] = value
+        if (value) {
+          dataset[`data-${key}`] = value
+        }
         break
       }
     }
-  })
+  }
+
+  if (target.length) {
+    target.forEach(parseDataset)
+  } else {
+    Object.keys(props).forEach(parseDataset)
+  }
   return dataset
 }
 
 export const resolveUniqueId = (): string => {
   const now = Date.now()
   const random = Math.ceil(Math.random() * 1000)
-  return `sam-${now}${random}`
+  return `${block}-${now}${random}`
 }

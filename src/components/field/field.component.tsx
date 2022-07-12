@@ -48,7 +48,7 @@ export default defineComponent({
     return () => (
       <fieldset class={[bem(status.value)]}>
         <legend class={bem('legend')}>{props.legend}</legend>
-        {typeof context.slots.default === 'function' && context.slots.default()}
+        {context.slots?.default?.()}
       </fieldset>
     )
   },

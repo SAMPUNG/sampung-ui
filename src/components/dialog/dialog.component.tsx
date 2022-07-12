@@ -36,6 +36,7 @@ export default defineComponent({
       }
     }
 
+    toggle(props.modelValue)
     watch(() => props.modelValue, toggle)
 
     context.expose({
@@ -53,22 +54,19 @@ export default defineComponent({
           {...context.attrs}
         >
           <header class={bem('header')}>
-            <span class={bem('title')}>
+            <div class={bem('title')}>
               <dialog-icon class={bem('icon')} name={props.icon} />
               <span class={bem('legend')}>{props.legend}</span>
-            </span>
-            <dialog-button
-              appearance="text"
-              class={bem('esc')}
-              icon="close"
-              onClick={() => toggle(false)}
-              palette="error"
-            />
+            </div>
+            <div class={bem('controls')}>
+              <dialog-icon
+                class={bem('esc')}
+                name="close"
+                onClick={() => toggle(false)}
+              />
+            </div>
           </header>
-          <article class={bem('body')}>
-            {typeof context.slots.default === 'function' &&
-              context.slots.default()}
-          </article>
+          <article class={bem('body')}>{context.slots?.default?.()}</article>
           <footer class={bem('footer')}>
             <dialog-button
               legend="Cancel"

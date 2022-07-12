@@ -1,7 +1,6 @@
 import { defineComponent, ref } from 'vue'
-import type { Ref } from 'vue'
+
 import createNamespace from '@/utils/namespace'
-import DemoTabs from './tabs.component'
 
 const bem = createNamespace('tabs-demo')
 
@@ -36,13 +35,12 @@ const defaultTabs = [
 
 export default defineComponent({
   name: bem(),
-  components: { DemoTabs },
   setup() {
-    const selected: Ref<string> = ref(defaultTabs[1].name)
+    const selected = ref<string>(defaultTabs[1].name)
 
     return () => (
       <div class="demo">
-        <demo-tabs vModel={selected.value} options={defaultTabs} />
+        <sam-tabs vModel={selected.value} options={defaultTabs} />
       </div>
     )
   },

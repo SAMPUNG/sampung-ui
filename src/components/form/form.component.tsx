@@ -36,7 +36,7 @@ export default defineComponent({
         name={props.name}
         target={props.target}
       >
-        {typeof context.slots.default === 'function' && context.slots.default()}
+        {context.slots?.default?.()}
       </form>
     )
   },

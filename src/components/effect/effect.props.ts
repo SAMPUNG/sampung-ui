@@ -1,11 +1,11 @@
-import { type PropType } from 'vue'
+import type { PropType } from 'vue'
 
-import type { EffectContainer } from './effect.interface'
+import type { Container } from '@/types/component'
 
 export default {
   container: {
     default: 'parent',
     required: false,
-    type: String as PropType<EffectContainer>,
+    type: String as PropType<Container>,
   },
 }

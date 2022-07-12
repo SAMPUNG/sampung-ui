@@ -1,3 +1,11 @@
 .sam-affix {
-  position: relative;
+  display: block;
+  transition-duration: 0.15s;
+
+  &-header {
+    border-color: var(--primary);
+    border-style: solid;
+    border-width: 1px;
+    padding: 8px;
+  }
 }

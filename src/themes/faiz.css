@@ -28,7 +28,7 @@
   --card: #1a1a1a;
   --board: #292929;
   --irrelevant: Lavender;
-  --panel: black;
+  --skeleton: black;
 }
 /* Mode: Light */
 :root[data-mode="light"] {
@@ -48,5 +48,5 @@
   --board: #292929;
   --card: #1a1a1a;
   --irrelevant: Lavender;
-  --panel: #dedede;
+  --skeleton: #dedede;
 }

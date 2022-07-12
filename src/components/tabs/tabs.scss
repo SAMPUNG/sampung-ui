@@ -1,6 +1,6 @@
 .sam-tabs {
   align-items: center;
-  background: var(--panel);
+  background: var(--skeleton);
   border-bottom: 1px solid #eee;
   display: flex;
   flex-direction: row;
@@ -20,7 +20,7 @@
   &-select {
     display: block;
     padding: 0;
-    transition-duration: .5s;
+    transition-duration: 0.5s;
   }
 
   &-indicator {

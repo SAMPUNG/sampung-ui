@@ -5,6 +5,8 @@ import type {
   SelectValue,
 } from '@/components/select/select.interface'
 
+export declare type DropdownPosition = 'above' | 'after' | 'before' | 'below'
+
 export declare type ControlPayload = Record<string, unknown>
 
 export declare type DropdownProps = {

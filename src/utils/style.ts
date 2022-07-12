@@ -1,11 +1,7 @@
-import type {
-  AbsolutePosition,
-  AbsolutePositionStyle,
-  StyleProperty,
-} from '@/types/component'
+import type { Absolute, Location, Property } from '@/types/component'
 
-export const absolute = (data?: AbsolutePosition): AbsolutePositionStyle => {
-  const result: AbsolutePositionStyle = {
+export const absolute = (data?: Location): Absolute => {
+  const result: Absolute = {
     position: 'absolute',
   }
 
@@ -24,5 +20,5 @@ export const absolute = (data?: AbsolutePosition): AbsolutePositionStyle => {
   return result
 }
 
-const resolvePosition = (value: StyleProperty): StyleProperty =>
+const resolvePosition = (value: Property): Property =>
   typeof value === 'number' ? `${value}px` : value

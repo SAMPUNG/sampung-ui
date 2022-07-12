@@ -1,6 +1,8 @@
 import type { Bem } from '@/types/component'
 
-const createNamespace = (element: string) => {
+export const block: string = 'sam'
+
+export const createNamespace = (element: string) => {
   const resolveBem = (element: string, modifier?: string): string => {
     const name = `${block}-${element}`
     updateHistory(element, modifier)
@@ -20,8 +22,6 @@ const createNamespace = (element: string) => {
       modifier,
     })
   }
-
-  const block: string = 'sam'
   const history: Bem[] = []
   const name: string = block + element
 
@@ -51,4 +51,3 @@ const createNamespace = (element: string) => {
 }
 
 export default createNamespace
-export { createNamespace }
