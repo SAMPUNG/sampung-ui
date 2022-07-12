@@ -54,6 +54,16 @@ export default defineComponent({
       }
     }
 
+    const renderFooter = () => {
+      if (context.slots.footer) {
+        return context.slots.footer()
+      }
+      return (
+        <footer class={bem('footer')} onClick={() => onSvelte()}>
+          <menu-icon class={bem('svelte')} name="keyboard-double-arrow-left" />
+        </footer>
+      )
+    }
     const renderHeader = () => {
       if (context.slots.header) {
         return context.slots.header()
@@ -65,16 +75,7 @@ export default defineComponent({
         path: props.homepage,
       }
       return (
-        <header class={bem('header')}>
-          {renderLink(homepage, '0th')}
-          <div class={bem('controls')}>
-            <menu-icon
-              class={bem('status')}
-              name="keyboard-double-arrow-left"
-              onClick={onSvelte}
-            />
-          </div>
-        </header>
+        <header class={bem('header')}>{renderLink(homepage, '0th')}</header>
       )
     }
     const renderMenu = () => {
@@ -94,7 +95,7 @@ export default defineComponent({
             modelValue={resolveExpanded(item.name)}
             onClick={() => onExpand(item.name)}
           >
-            {renderMenu2nd(item.children)}
+            {renderSubmenu(item.children)}
           </menu-accordion>
         ) : (
           renderLink(item, '1st')
@@ -116,7 +117,7 @@ export default defineComponent({
         <span class={bem('legend')}>{option.legend}</span>
       </a>
     )
-    const renderMenu2nd = (subitems: MenuOption[]) => {
+    const renderSubmenu = (subitems: MenuOption[]) => {
       return subitems.map((subitem: MenuOption) => renderLink(subitem, '2nd'))
     }
 
@@ -139,6 +140,7 @@ export default defineComponent({
       >
         {renderHeader()}
         {renderMenu()}
+        {renderFooter()}
       </div>
     )
   },

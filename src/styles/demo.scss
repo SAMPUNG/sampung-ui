@@ -1,6 +1,7 @@
 .sam-home {
   margin: 0 auto;
   max-width: 600px;
+  padding: 32px 0;
   text-align: center;
 
   &-title {
@@ -130,8 +131,17 @@
   position: relative;
 
   &-cube {
+    background: repeating-linear-gradient(
+      45deg,
+      black,
+      black 45px,
+      transparent 45px,
+      transparent 90px,
+      grey 90px,
+      grey 135px
+    );
     height: 300px;
-    margin: 32px auto;
+    margin: 0 auto;
     outline-color: var(--primary);
     outline-offset: -1px;
     outline-style: solid;
