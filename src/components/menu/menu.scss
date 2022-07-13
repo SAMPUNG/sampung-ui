@@ -28,6 +28,10 @@
   &[data-svelte='shrink'] &-link {
     border-left: none;
     padding: 0 8px;
+
+    &--0th {
+      padding: 0 4px;
+    }
   }
 
   &-header {
@@ -86,14 +90,19 @@
     }
     &--0th {
       flex-grow: 1;
-      margin: 0 8px 0 0;
+      font-size: 1.5em;
+      font-weight: 600;
+      height: var(--nav);
+      line-height: var(--nav);
     }
     &--1st {
+      font-size: 1em;
       height: var(--nav);
       line-height: var(--nav);
       text-align: left;
     }
     &--2nd {
+      font-size: 0.85em;
       text-align: center;
     }
   }
