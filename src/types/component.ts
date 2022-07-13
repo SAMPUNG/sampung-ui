@@ -4,6 +4,8 @@ export declare type Absolute = Location & {
 
 export declare type Appearance = 'dashed' | 'fill' | 'legacy' | 'outline'
 
+export declare type Atom = HTMLElement | null | undefined
+
 export declare type Bem = {
   block: string
   element?: string

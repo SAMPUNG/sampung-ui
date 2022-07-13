@@ -20,6 +20,7 @@ export default defineComponent({
   props: buttonProps,
   emits: buttonEmits,
   setup(props, context) {
+    const button = ref<HTMLButtonElement>()
     const effect = ref<typeof ButtonEffect>()
     const knob = ref<boolean>(false)
     const disabled = computed(
@@ -87,6 +88,7 @@ export default defineComponent({
 
     context.expose({
       click: onClick,
+      el: button,
       toggle: onToggle,
     })
 
@@ -100,6 +102,8 @@ export default defineComponent({
         disabled={disabled.value}
         type={props.type}
         onClick={onClick}
+        ref={button}
+        value={props.value}
       >
         <button-icon class={bem('prefix-icon')} name={props.icon} />
         <span class={bem('legend')}>{props.legend}</span>

@@ -1,0 +1,32 @@
+.sam-popup {
+  backdrop-filter: blur(2px);
+  background: var(--dialog);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 16px 8px var(--shadow);
+  color: var(--text);
+  overflow: auto;
+  padding: 0 8px;
+  position: absolute;
+  z-index: 1;
+
+  &[data-visible='true'] {
+    opacity: 1;
+    visibility: visible;
+  }
+  &[data-visible='false'] {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &-pack {
+    display: inline-block;
+    overflow: visible;
+    position: relative;
+  }
+  &-escape {
+    color: var(--text);
+    position: absolute;
+    right: var(--gap);
+    top: var(--gap);
+  }
+}

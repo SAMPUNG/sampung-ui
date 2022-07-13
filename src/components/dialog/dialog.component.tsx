@@ -21,8 +21,89 @@ export default defineComponent({
     const dialog = ref<HTMLDialogElement>()
     const id = ref<string>(resolveUniqueId())
 
-    const toggle = (value?: boolean): void => {
-      const visible = typeof value === 'boolean' ? value : !props.modelValue
+    const onCancel = (): void => {
+      toggleDialog(false)
+
+      if (dialog.value) {
+        dialog.value.returnValue = 'cancel'
+      }
+
+      context.emit('close', props.name)
+    }
+    const onSubmit = (): void => {
+      toggleDialog(false)
+
+      if (dialog.value) {
+        dialog.value.returnValue = 'submit'
+      }
+
+      context.emit('close', props.name)
+    }
+
+    const renderBody = () => {
+      return <article class={bem('body')}>{context.slots?.default?.()}</article>
+    }
+    const renderClose = () => {
+      if (!props.withClose) {
+        console.log(props.withClose)
+        return ''
+      }
+      return (
+        <dialog-icon
+          class={bem('esc')}
+          name="close"
+          onClick={() => toggleDialog(false)}
+        />
+      )
+    }
+    const renderFooter = () => {
+      if (!props.withFooter) {
+        return ''
+      }
+      if (context.slots.footer) {
+        return context.slots.footer()
+      }
+      return (
+        <footer class={bem('footer')}>
+          <dialog-button
+            legend="Cancel"
+            onClick={() => onCancel()}
+            palette="secondary"
+            value="cancel"
+          />
+          <dialog-button
+            legend="Submit"
+            onClick={() => onSubmit()}
+            palette="primary"
+            value="submit"
+          />
+        </footer>
+      )
+    }
+    const renderHeader = () => {
+      if (!props.withHeader) {
+        return renderClose()
+      }
+      if (context.slots.header) {
+        return context.slots.header()
+      }
+      return (
+        <header class={bem('header')}>
+          <div class={bem('title')}>
+            <dialog-icon class={bem('icon')} name={props.icon} />
+            <span class={bem('legend')}>{props.legend}</span>
+          </div>
+          <div class={bem('controls')}>{renderClose()}</div>
+        </header>
+      )
+    }
+
+    const toggleDialog = (value?: boolean): void => {
+      let visible = typeof value === 'boolean' ? value : !props.modelValue
+
+      if (!dialog.value) {
+        visible = false
+      }
 
       context.emit('change', visible)
       context.emit('update:modelValue', visible)
@@ -36,12 +117,12 @@ export default defineComponent({
       }
     }
 
-    toggle(props.modelValue)
-    watch(() => props.modelValue, toggle)
+    toggleDialog(props.modelValue)
+    watch(() => props.modelValue, toggleDialog)
 
     context.expose({
       el: dialog,
-      toggle,
+      toggle: toggleDialog,
     })
 
     return () => (
@@ -49,36 +130,16 @@ export default defineComponent({
         <dialog
           class={bem()}
           data-visible={props.modelValue}
+          data-with-close={props.withClose}
+          data-with-footer={props.withFooter}
+          data-with-header={props.withHeader}
           id={id.value}
           ref={dialog}
           {...context.attrs}
         >
-          <header class={bem('header')}>
-            <div class={bem('title')}>
-              <dialog-icon class={bem('icon')} name={props.icon} />
-              <span class={bem('legend')}>{props.legend}</span>
-            </div>
-            <div class={bem('controls')}>
-              <dialog-icon
-                class={bem('esc')}
-                name="close"
-                onClick={() => toggle(false)}
-              />
-            </div>
-          </header>
-          <article class={bem('body')}>{context.slots?.default?.()}</article>
-          <footer class={bem('footer')}>
-            <dialog-button
-              legend="Cancel"
-              onClick={() => toggle(false)}
-              palette="secondary"
-            />
-            <dialog-button
-              legend="Close"
-              onClick={() => toggle(false)}
-              palette="primary"
-            />
-          </footer>
+          {renderHeader()}
+          {renderBody()}
+          {renderFooter()}
         </dialog>
       </div>
     )

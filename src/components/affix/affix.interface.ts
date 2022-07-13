@@ -6,7 +6,7 @@ export declare type AffixExpose = {
   name: string
 }
 
-export declare type AffixHorizontal = 'both' | 'bottom' | 'top'
+export declare type AffixHorizontal = 'both' | 'left' | 'right'
 
 export declare type AffixInstance = ComponentPublicInstance<
   AffixProps,
@@ -15,4 +15,4 @@ export declare type AffixInstance = ComponentPublicInstance<
 
 export declare type AffixProps = ExtractPropTypes<typeof affixProps>
 
-export declare type AffixVertical = 'both' | 'left' | 'right'
+export declare type AffixVertical = 'both' | 'bottom' | 'top'

@@ -49,18 +49,18 @@ export default defineComponent({
         result.transform = `translateY(${offsetY.value}px)`
       }
 
-      if (props.horizontal === 'both') {
+      if (props.vertical === 'both') {
         result.bottom = `${props.offsetX}px`
         result.top = `${props.offsetX}px`
       } else {
-        result[props.horizontal] = `${props.offsetX}px`
+        result[props.vertical] = `${props.offsetX}px`
       }
 
-      if (props.vertical === 'both') {
+      if (props.horizontal === 'both') {
         result.left = `${props.offsetY}px`
         result.right = `${props.offsetY}px`
       } else {
-        result[props.vertical] = `${props.offsetY}px`
+        result[props.horizontal] = `${props.offsetY}px`
       }
 
       return result

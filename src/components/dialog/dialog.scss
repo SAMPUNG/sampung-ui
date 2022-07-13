@@ -26,6 +26,11 @@
     cursor: pointer;
     font-weight: 100;
   }
+  & > &-esc {
+    position: absolute;
+    right: var(--gap);
+    top: var(--gap);
+  }
 
   &-footer {
     align-items: center;
@@ -41,16 +46,17 @@
     background: var(--mask);
     bottom: 0;
     left: 0;
+    pointer-events: all;
     position: absolute;
     right: 0;
     top: 0;
 
-    &[data-visible="true"] {
+    &[data-visible='true'] {
       opacity: 1;
       transition-duration: 0.3s;
       visibility: visible;
     }
-    &[data-visible="false"] {
+    &[data-visible='false'] {
       opacity: 0;
       transition-duration: 0.5s;
       visibility: hidden;

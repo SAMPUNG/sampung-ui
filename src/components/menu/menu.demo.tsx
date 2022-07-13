@@ -40,6 +40,8 @@ export default defineComponent({
     return () => (
       <div class={bem()}>
         <sam-menu
+          accordion={false}
+          class={bem('menu')}
           icon="api"
           legend="Menu"
           options={options}

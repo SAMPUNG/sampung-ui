@@ -65,6 +65,11 @@ export default [
     component: () => import('@/components/menu/menu.demo'),
   },
   {
+    path: 'popup-demo',
+    name: 'Popup',
+    component: () => import('@/components/popup/popup.demo'),
+  },
+  {
     path: 'tabs-demo',
     name: 'Tabs',
     component: () => import('@/components/tabs/tabs.demo'),

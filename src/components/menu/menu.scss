@@ -1,5 +1,8 @@
 .sam-menu {
   background: var(--skeleton);
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
 
   &[data-svelte='grow'] {
@@ -22,6 +25,10 @@
   &[data-svelte='shrink'] &-svelte {
     transform: rotate(180deg);
   }
+  &[data-svelte='shrink'] &-link {
+    border-left: none;
+    padding: 0 8px;
+  }
 
   &-header {
     align-items: center;
@@ -36,12 +43,16 @@
   }
 
   &-footer {
+    background: var(--skeleton);
     align-items: center;
+    bottom: 0;
     cursor: pointer;
     display: flex;
     flex-direction: row;
     height: var(--nav);
     justify-content: center;
+    position: sticky;
+    width: 100%;
   }
   &-svelte {
     transition-duration: 0.5s;
@@ -56,19 +67,21 @@
   }
 
   &-link {
+    border-left: 4px solid transparent;
     display: block;
     color: var(--text);
     font-size: 1em;
     height: var(--input);
     line-height: var(--input);
     overflow: hidden;
-    padding: 0 8px;
+    padding: 0 8px 0 4px;
     text-decoration: none;
 
     &:hover {
       background: var(--secondary);
     }
     &[data-selected='true'] {
+      border-left-color: var(--active);
       background: var(--primary);
     }
     &--0th {

@@ -1,16 +1,17 @@
-import type { Appearance } from '@/types/component'
+/* eslint-disable no-unused-vars */
 
-export declare type DialogEmits = {
-  (event: 'change', value: boolean): void
-  (event: 'close', name: string): void
-  (event: 'open', name: string): void
-  (event: 'update:modelValue', value: boolean): void
+import type { ComponentPublicInstance, ExtractPropTypes } from 'vue'
+
+import dialogProps from './dialog.props'
+
+export declare type DialogExpose = {
+  el: HTMLDialogElement
+  toggle: (value?: boolean) => void
 }
 
-export declare type DialogProps = {
-  appearance?: Appearance
-  icon?: string
-  legend?: string
-  modelValue: boolean
-  name?: string
-}
+export declare type DialogInstance = ComponentPublicInstance<
+  DialogProps,
+  DialogExpose
+>
+
+export declare type DialogProps = ExtractPropTypes<typeof dialogProps>

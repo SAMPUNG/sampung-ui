@@ -1,6 +1,7 @@
 import { type PropType } from 'vue'
 
 import type { Appearance } from '@/types/component'
+import type { PopupContainer, PopupPosition } from './popup.interface'
 
 export default {
   appearance: {
@@ -8,13 +9,28 @@ export default {
     required: false,
     type: String as PropType<Appearance>,
   },
+  container: {
+    default: 'parent',
+    required: false,
+    type: String as PropType<PopupContainer>,
+  },
+  escape: {
+    default: true,
+    required: false,
+    type: Boolean,
+  },
+  inset: {
+    default: false,
+    required: false,
+    type: Boolean,
+  },
   icon: {
-    default: '',
+    default: 'flare',
     required: false,
     type: String,
   },
   legend: {
-    default: '',
+    default: 'Popup',
     required: false,
     type: String,
   },
@@ -24,23 +40,13 @@ export default {
     type: Boolean,
   },
   name: {
-    default: '',
+    default: 'popup',
     required: false,
     type: String,
   },
-  withClose: {
-    default: true,
+  position: {
+    default: 'center',
     required: false,
-    type: Boolean,
-  },
-  withHeader: {
-    default: true,
-    required: false,
-    type: Boolean,
-  },
-  withFooter: {
-    default: true,
-    required: false,
-    type: Boolean,
+    type: String as PropType<PopupPosition>,
   },
 }

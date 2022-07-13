@@ -20,7 +20,14 @@ export default defineComponent({
           />
         </div>
         <div class={bem('display')}>
-          <sam-dialog icon="flare" legend="Dialog Title" vModel={visible.value}>
+          <sam-dialog
+            icon="flare"
+            legend="Dialog Title"
+            vModel={visible.value}
+            with-close={true}
+            with-footer={true}
+            with-header={true}
+          >
             <div
               style={{
                 height: '400px',

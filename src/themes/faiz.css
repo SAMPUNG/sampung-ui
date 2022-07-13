@@ -7,6 +7,7 @@
   --success: forestgreen;
   --warning: tomato;
   /* Size */
+  --gap: 8px;
   --input: 32px;
   --nav: 48px;
 }

@@ -48,7 +48,7 @@ export default defineComponent({
             palette="primary"
           />
         </sam-affix>
-        <sam-affix container="body" offset-x={0} offset-y={0}>
+        <sam-affix container="body" offset-x={0} offset-y={0} vertical="both">
           <sam-menu
             class={bem('menu')}
             icon="api"

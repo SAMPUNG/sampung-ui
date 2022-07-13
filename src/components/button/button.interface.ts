@@ -11,10 +11,12 @@ export declare type ButtonEffect =
   | 'ripple'
 
 export declare type ButtonExpose = {
-  onClick: () => void
+  click: () => void
+  el: HTMLButtonElement
+  toggle: () => void
 }
 
-export declare type EffectInstance = ComponentPublicInstance<
+export declare type ButtonInstance = ComponentPublicInstance<
   ButtonProps,
   ButtonExpose
 >
