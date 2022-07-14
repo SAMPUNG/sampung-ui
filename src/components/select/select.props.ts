@@ -15,8 +15,8 @@ export default {
     type: String,
   },
   modelValue: {
-    default: undefined,
-    required: true,
+    default: '',
+    required: false,
     type: [String, Number, Boolean, undefined] as PropType<SelectValue>,
   },
   multiple: {
@@ -31,7 +31,7 @@ export default {
   },
   options: {
     default: () => [],
-    required: true,
+    required: false,
     type: Array as PropType<SelectOption[]>,
   },
   placeholder: {

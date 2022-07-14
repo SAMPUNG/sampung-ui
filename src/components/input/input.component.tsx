@@ -1,4 +1,4 @@
-import { defineComponent, inject, onMounted } from 'vue'
+import { defineComponent, inject, onMounted, watch } from 'vue'
 
 import { createNamespace, validateEmpty } from '@/utils/'
 
@@ -40,12 +40,14 @@ export default defineComponent({
       field?.updateStatus('empty', empty)
     }
 
-    context.expose({
-      updateValue,
-    })
+    watch(() => props.modelValue, updateValue)
 
     onMounted(() => {
       updateValue(props.modelValue)
+    })
+
+    context.expose({
+      updateValue,
     })
 
     return () => (

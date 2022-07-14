@@ -37,7 +37,7 @@ const defaultOptions = [
 export default defineComponent({
   name: bem(),
   setup() {
-    const selected = ref<SelectValue>(defaultOptions[0].name)
+    const selected = ref<SelectValue>('')
 
     return () => (
       <div class={bem()}>

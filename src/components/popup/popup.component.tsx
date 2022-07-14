@@ -148,8 +148,6 @@ export default defineComponent({
 
       const bounds = popupBounds.find(({ name }) => name === props.position)
 
-      console.log(bounds?.inset)
-
       if (bounds) {
         position.value.bottom = resolvePosition(bounds, 'bottom')
         position.value.left = resolvePosition(bounds, 'left')

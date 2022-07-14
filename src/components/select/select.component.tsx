@@ -47,36 +47,40 @@ export default defineComponent({
           id={id.value}
           legend={props.legend}
           name={props.name}
+          onBlur={onBlur}
         >
           <select-input
+            autocomplete="new-password"
             modelValue={props.modelValue}
             name="name-demo"
-            onBlur={onBlur}
-            onChange={onChange}
             onFocus={onFocus}
             placeholder="Please input something……"
           />
           <select-icon
             class={bem('status')}
-            data-status={visible.value ? 'dropdown' : 'rollup'}
+            data-status={popover.value ? 'dropdown' : 'rollup'}
             name="expand-more"
-            onClick={() => onFocus()}
+            onClick={() => onToggle()}
           />
         </select-field>
       ),
     }
-    const visible = ref<boolean>(false)
+    const popover = ref<boolean>(false)
 
     const onBlur = (): void => {
-      visible.value = false
+      popover.value = false
     }
     const onChange = (value: OptionName) => {
-      visible.value = false
       context.emit('change', value)
       context.emit('update:modelValue', value)
+      onBlur()
     }
     const onFocus = (): void => {
-      visible.value = true
+      popover.value = true
+    }
+    const onToggle = (value?: boolean): void => {
+      const visible = typeof value === 'boolean' ? value : !popover.value
+      popover.value = visible
     }
 
     return () => (
@@ -84,7 +88,7 @@ export default defineComponent({
         container={'#' + id.value}
         escape={false}
         inset={true}
-        modelValue={visible.value}
+        modelValue={popover.value}
         position="bottom-left"
         v-slots={slots}
       />
