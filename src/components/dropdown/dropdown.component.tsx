@@ -3,7 +3,7 @@ import { defineComponent, ref } from 'vue'
 import { createNamespace, resolveUniqueId } from '@/utils/'
 
 import DropdownButton from '@/components/button/button.component'
-import DropdownSelect from '@/components/select/select.component'
+import DropdownOptions from '@/components/options/options.component'
 
 import type { DropdownValue } from './dropdown.interface'
 import dropdownEmits from './dropdown.emits'
@@ -14,7 +14,7 @@ const bem = createNamespace('dropdown')
 
 export default defineComponent({
   name: bem(),
-  components: { DropdownButton, DropdownSelect },
+  components: { DropdownButton, DropdownOptions },
   props: dropdownProps,
   emits: dropdownEmits,
   setup(props, context) {
@@ -55,12 +55,12 @@ export default defineComponent({
             'min-width': props.minColumnWidth + 'px',
           }}
         >
-          <dropdown-select
+          <dropdown-options
             class={bem('select')}
             direction="vertical"
-            modelValue={props.modelValue}
+            modelValue={[props.modelValue]}
             options={props.options}
-            onChange={onChange}
+            onChange={(value: DropdownValue[]) => onChange(value[0])}
             ref="select"
             role="select"
           />

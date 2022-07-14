@@ -65,9 +65,19 @@ export default [
     component: () => import('@/components/menu/menu.demo'),
   },
   {
+    path: 'options-demo',
+    name: 'Options',
+    component: () => import('@/components/options/options.demo'),
+  },
+  {
     path: 'popup-demo',
     name: 'Popup',
     component: () => import('@/components/popup/popup.demo'),
+  },
+  {
+    path: 'select-demo',
+    name: 'Select',
+    component: () => import('@/components/select/select.demo'),
   },
   {
     path: 'tabs-demo',

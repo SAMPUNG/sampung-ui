@@ -16,6 +16,22 @@ export declare type Container = 'parent' | 'body'
 
 export declare type Direction = 'horizontal' | 'vertical'
 
+export declare type Flex = {
+  alignItems?: 'baseline' | 'center' | 'flex-end' | 'flex-start' | 'stretch'
+  display: 'flex'
+  flexDirection?: 'column' | 'column-reverse' | 'row' | 'row-reverse'
+  flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse'
+  justifyContent?:
+    | 'baseline'
+    | 'center'
+    | 'flex-end'
+    | 'flex-start'
+    | 'space-around'
+    | 'space-between'
+    | 'space-evenly'
+    | 'stretch'
+}
+
 export declare type Location = {
   bottom?: Property
   left?: Property

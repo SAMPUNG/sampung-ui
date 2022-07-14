@@ -14,10 +14,10 @@ export default defineComponent({
   props: formProps,
   emits: formEmits,
   setup(props, context) {
-    const el = ref<HTMLInputElement | null>(null)
+    const form = ref<HTMLFormElement>()
     // const valid: = ref<boolean>(false)
 
-    provide(model, el.value)
+    provide(model, form.value)
 
     // const onReset = (): void => {
     //   context.emit('reset', props.name)
@@ -34,6 +34,7 @@ export default defineComponent({
         enctype={props.enctype}
         method={props.method}
         name={props.name}
+        ref={form}
         target={props.target}
       >
         {context.slots?.default?.()}

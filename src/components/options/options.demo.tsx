@@ -1,8 +1,31 @@
 import { defineComponent, ref } from 'vue'
 
 import createNamespace from '@/utils/namespace'
+import type { OptionsPicked } from '@/components/options/options.interface'
+import type { Direction } from '@/types/component'
 
-const bem = createNamespace('dropdown-demo')
+const bem = createNamespace('options-demo')
+
+const directionOptions = [
+  {
+    legend: 'Horizontal',
+    name: 'horizontal',
+  },
+  {
+    legend: 'Vertical',
+    name: 'vertical',
+  },
+]
+const multipleOptions = [
+  {
+    legend: 'False',
+    name: false,
+  },
+  {
+    legend: 'True',
+    name: true,
+  },
+]
 
 const defaultOptions = [
   { legend: 'Option A', name: 'a' },
@@ -36,31 +59,24 @@ const defaultOptions = [
 export default defineComponent({
   name: bem(),
   setup() {
-    const maxHeight = ref<number>(325)
-    const selected = ref<string>(defaultOptions[1].name)
+    const direction = ref<Direction>('horizontal')
+    const multiple = ref<boolean>(false)
+    const selected = ref<OptionsPicked>([defaultOptions[0].name])
 
     return () => (
       <div class={bem()}>
-        <div class={bem('controls')}>
-          <sam-form autocomplete="off" name="demo">
-            <sam-field legend="max-height" name="maxHeight">
-              <sam-input
-                v-model={maxHeight.value}
-                name="maxHeight"
-                placeholder="Please input max height of dropdown"
-                type="number"
-              />
-            </sam-field>
-          </sam-form>
-        </div>
-        <div class={bem('display')}>
-          <sam-dropdown
-            v-model={selected.value}
-            legend="Dropdown"
-            max-height={maxHeight.value}
-            options={defaultOptions}
-          />
-        </div>
+        <span>Selected: {selected.value.join(',')}</span>
+        <hr class={bem('line')} />
+        <sam-select v-model={multiple.value} options={multipleOptions} />
+        <hr class={bem('line')} />
+        <sam-select v-model={direction.value} options={directionOptions} />
+        <hr class={bem('line')} />
+        <sam-options
+          v-model={selected.value}
+          direction={direction.value}
+          multiple={multiple.value}
+          options={defaultOptions}
+        />
       </div>
     )
   },

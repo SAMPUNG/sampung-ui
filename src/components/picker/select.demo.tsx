@@ -29,7 +29,7 @@ export default defineComponent({
       <div class="demo">
         <div class="playground-demo">
           <sam-select
-            vModel={this.value}
+            v-model={this.value}
             options={this.options}
             placeholder={this.placeholder}
           />

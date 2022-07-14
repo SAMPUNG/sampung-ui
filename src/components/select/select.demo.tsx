@@ -1,8 +1,9 @@
 import { defineComponent, ref } from 'vue'
 
 import createNamespace from '@/utils/namespace'
+import type { SelectValue } from '@/components/select/select.interface'
 
-const bem = createNamespace('dropdown-demo')
+const bem = createNamespace('select-demo')
 
 const defaultOptions = [
   { legend: 'Option A', name: 'a' },
@@ -36,31 +37,17 @@ const defaultOptions = [
 export default defineComponent({
   name: bem(),
   setup() {
-    const maxHeight = ref<number>(325)
-    const selected = ref<string>(defaultOptions[1].name)
+    const selected = ref<SelectValue>(defaultOptions[0].name)
 
     return () => (
       <div class={bem()}>
-        <div class={bem('controls')}>
-          <sam-form autocomplete="off" name="demo">
-            <sam-field legend="max-height" name="maxHeight">
-              <sam-input
-                v-model={maxHeight.value}
-                name="maxHeight"
-                placeholder="Please input max height of dropdown"
-                type="number"
-              />
-            </sam-field>
-          </sam-form>
-        </div>
-        <div class={bem('display')}>
-          <sam-dropdown
-            v-model={selected.value}
-            legend="Dropdown"
-            max-height={maxHeight.value}
-            options={defaultOptions}
-          />
-        </div>
+        <sam-select
+          v-model={selected.value}
+          legend="Select"
+          name="select"
+          options={defaultOptions}
+          placeholder="Please select one option"
+        />
       </div>
     )
   },

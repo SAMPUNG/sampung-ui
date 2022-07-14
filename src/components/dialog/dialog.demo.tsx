@@ -21,9 +21,9 @@ export default defineComponent({
         </div>
         <div class={bem('display')}>
           <sam-dialog
+            v-model={visible.value}
             icon="flare"
             legend="Dialog Title"
-            vModel={visible.value}
             with-close={true}
             with-footer={true}
             with-header={true}

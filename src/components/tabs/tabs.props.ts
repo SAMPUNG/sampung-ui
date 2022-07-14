@@ -10,6 +10,11 @@ export default {
     type: [String, Number, Boolean, undefined] as PropType<TabsValue>,
     validator: validateRegular,
   },
+  height: {
+    default: 48,
+    required: false,
+    type: Number,
+  },
   options: {
     default: () => [],
     type: Array as PropType<TabsOption[]>,

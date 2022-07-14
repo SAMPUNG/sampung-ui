@@ -4,7 +4,7 @@ import type { ScrollStyle } from '@/types/component'
 import { createNamespace, resolveUniqueId } from '@/utils/'
 
 import type { Item, List } from '@/components/select/select.interface'
-import TabsSelect from '@/components/select/select.component'
+import TabsOptions from '@/components/options/options.component'
 
 import type { TabsValue } from './tabs.interface'
 import tabsEmits from './tabs.emits'
@@ -15,7 +15,7 @@ const bem = createNamespace('tabs')
 
 export default defineComponent({
   name: bem(),
-  components: { TabsSelect },
+  components: { TabsOptions },
   props: tabsProps,
   emits: tabsEmits,
   setup(props, context) {
@@ -29,24 +29,11 @@ export default defineComponent({
       transform: 'translateX(0px)',
       width: '9999px',
     })
-    const select = ref<typeof TabsSelect>()
+    const options = ref<typeof TabsOptions>()
     const viewport = ref<HTMLDivElement>()
 
-    const onChange = (value: TabsValue) => {
-      const limit = viewport.value?.clientWidth || 0
-      const target: Item = resolveOption(value)
-
-      if (target) {
-        const offset = target.offsetLeft - limit / 2
-        const max = Number(menu.value.width.replace(/px/, '')) - limit * 0.95
-        if (offset > max) {
-          menu.value.transform = `translateX(${-max}px)`
-        } else if (offset > 0) {
-          menu.value.transform = `translateX(${-offset}px)`
-        } else {
-          menu.value.transform = 'translateX(0px)'
-        }
-      }
+    const onChange = (values: TabsValue[]) => {
+      const value = values[0]
 
       context.emit('change', value)
       context.emit('update:modelValue', value)
@@ -56,21 +43,41 @@ export default defineComponent({
       dropdown.value = true
     }
 
-    const onSelect = (target: HTMLLIElement): void => {
-      // offset.value.transform = `translateX(${target.offsetLeft}px)`;
-      // offset.value.width = `${target.clientWidth}px`;
-      console.log('tabs on select :>:> ')
-      console.dir(target)
+    const onPick = (target: HTMLLIElement): null => {
+      if (!target) {
+        return null
+      }
+      const limit = viewport.value?.clientWidth || 0
+      const offset = target.offsetLeft - limit / 2
+      const max = Number(menu.value.width.replace(/px/, '')) - limit * 0.95
+
+      if (offset > max) {
+        menu.value.transform = `translateX(${-max}px)`
+      } else if (offset > 0) {
+        menu.value.transform = `translateX(${-offset}px)`
+      } else {
+        menu.value.transform = 'translateX(0px)'
+      }
+
+      return null
+    }
+
+    const renderControls = () => {
+      return (
+        <div class={bem('controls')} onClick={onDropdown}>
+          <button class={bem('more')}>⋯</button>
+        </div>
+      )
     }
 
     const resolveOption = (name?: TabsValue): Item => {
-      const ul: List = document.querySelector(`#${id.value} ul[role="select"]`)
-      const selector = name ? `li[data-option="${name}"]` : 'li:last-child'
+      const ul: List = document.querySelector(`#${id.value} ul[role="options"]`)
+      const selector = name ? `li[data-name="${name}"]` : 'li:last-child'
       return ul?.querySelector(selector)
     }
 
     const selectTab = (name: TabsValue): void => {
-      select.value?.selectOption(name)
+      options.value?.pick(name)
 
       const target: Item = resolveOption(name)
       if (target) {
@@ -102,21 +109,22 @@ export default defineComponent({
       <div class={[bem()]} data-value={props.modelValue} id={id.value}>
         <div class={bem('viewport')} ref={viewport}>
           <div class={bem('view')} style={menu.value}>
-            <tabs-select
-              class={bem('select')}
-              modelValue={props.modelValue}
-              options={props.options}
+            <tabs-options
+              class={bem('options')}
+              flex={false}
+              height={props.height}
+              modelValue={[props.modelValue]}
+              multiple={false}
               onChange={onChange}
-              onSelect={onSelect}
-              ref={select}
-              role="select"
+              onPick={onPick}
+              options={props.options}
+              ref={options}
+              role="options"
             />
             <div class={bem('indicator')} style={indicator.value} />
           </div>
         </div>
-        <div class={bem('controls')} onClick={onDropdown}>
-          <button class={bem('more')}>⋯</button>
-        </div>
+        {renderControls()}
       </div>
     )
   },

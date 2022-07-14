@@ -14,7 +14,7 @@ export default defineComponent({
         <sam-form autocomplete="off" name="demo">
           <sam-field legend="Legend" name="name">
             <sam-input
-              vModel={value.value}
+              v-model={value.value}
               name="name-demo"
               placeholder="Please input something……"
             />

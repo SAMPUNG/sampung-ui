@@ -40,7 +40,7 @@ export default defineComponent({
 
     return () => (
       <div class="demo">
-        <sam-tabs vModel={selected.value} options={defaultTabs} />
+        <sam-tabs v-model={selected.value} options={defaultTabs} />
       </div>
     )
   },

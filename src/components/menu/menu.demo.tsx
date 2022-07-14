@@ -40,12 +40,12 @@ export default defineComponent({
     return () => (
       <div class={bem()}>
         <sam-menu
+          v-model={selected.value}
           accordion={false}
           class={bem('menu')}
           icon="api"
           legend="Menu"
           options={options}
-          vModel={selected.value}
           width={300}
         />
       </div>

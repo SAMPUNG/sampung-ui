@@ -1,0 +1,45 @@
+.sam-options {
+  position: relative;
+
+  &-item {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    font-family: Microsoft YaHei;
+
+    &:hover {
+      color: var(--secondary);
+    }
+    &:not(:last-child) {
+      margin: 0 16px 0 0;
+    }
+    & > span {
+      pointer-events: none;
+    }
+  }
+  &-icon {
+    margin: 0 4px 0 0;
+  }
+
+  li[data-picked] {
+    color: var(--primary);
+    cursor: text;
+  }
+
+  &[data-direction='vertical'] {
+    li {
+      padding: 0 8px;
+      width: 100%;
+      margin: 0;
+      text-align: left;
+
+      &[data-picked] {
+        background: linear-gradient(
+          to right,
+          var(--primary) 4px,
+          var(--mask) 4px
+        );
+      }
+    }
+  }
+}

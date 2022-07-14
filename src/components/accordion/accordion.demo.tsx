@@ -11,9 +11,9 @@ export default defineComponent({
     return () => (
       <div class={bem()}>
         <sam-accordion
+          v-model={expaned.value}
           icon="api"
           legend="Accordion"
-          vModel={expaned.value}
           with-footer
         >
           <div

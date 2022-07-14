@@ -50,11 +50,11 @@ export default defineComponent({
         </sam-affix>
         <sam-affix container="body" offset-x={0} offset-y={0} vertical="both">
           <sam-menu
+            v-model={selected.value}
             class={bem('menu')}
             icon="api"
             legend="Menu"
             options={menu}
-            vModel={selected.value}
             width={200}
           />
         </sam-affix>

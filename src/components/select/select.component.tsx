@@ -1,14 +1,14 @@
-import { defineComponent, onMounted, ref, watch } from 'vue'
+import { defineComponent, ref } from 'vue'
 
-import { createNamespace, resolveUniqueId, validateRegular } from '@/utils/'
+import { createNamespace, resolveUniqueId } from '@/utils/'
 
+import SelectField from '@/components/field/field.component'
 import SelectIcon from '@/components/icon/icon.component'
+import SelectInput from '@/components/input/input.component'
+import SelectOptions from '@/components/options/options.component'
+import type { OptionName } from '@/components/options/options.interface'
+import SelectPopup from '@/components/popup/popup.component'
 
-import type {
-  SelectOption,
-  SelectOptionRecord,
-  SelectValue,
-} from './select.interface'
 import selectEmits from './select.emits'
 import selectProps from './select.props'
 import './select.scss'
@@ -17,97 +17,77 @@ const bem = createNamespace('select')
 
 export default defineComponent({
   name: bem(),
-  components: { SelectIcon },
+  components: {
+    SelectField,
+    SelectIcon,
+    SelectInput,
+    SelectOptions,
+    SelectPopup,
+  },
   props: selectProps,
   emits: selectEmits,
   setup(props, context) {
     const id = ref<string>(resolveUniqueId())
-    const list = ref<HTMLElement | null>(null)
-
-    const onSelect = (option: SelectOption, target: HTMLLIElement): void => {
-      const name: SelectValue = resolveName(option)
-
-      context.emit('change', name)
-      context.emit('select', target)
-      context.emit('update:modelValue', name)
+    const options = ref<typeof SelectOptions>()
+    const slots = {
+      default: () => (
+        <select-options
+          class={bem('options')}
+          direction="vertical"
+          modelValue={[props.modelValue]}
+          options={props.options}
+          onChange={(value: OptionName[]) => onChange(value[0])}
+          ref={options}
+          role="options"
+        />
+      ),
+      entry: () => (
+        <select-field
+          class={bem()}
+          id={id.value}
+          legend={props.legend}
+          name={props.name}
+        >
+          <select-input
+            modelValue={props.modelValue}
+            name="name-demo"
+            onBlur={onBlur}
+            onChange={onChange}
+            onFocus={onFocus}
+            placeholder="Please input something……"
+          />
+          <select-icon
+            class={bem('status')}
+            data-status={visible.value ? 'dropdown' : 'rollup'}
+            name="expand-more"
+            onClick={() => onFocus()}
+          />
+        </select-field>
+      ),
     }
+    const visible = ref<boolean>(false)
 
-    const resolveIcon = (item: SelectOption): string | undefined => {
-      if (typeof item === 'object') {
-        return (item as SelectOptionRecord).icon
-      }
-      return undefined
+    const onBlur = (): void => {
+      visible.value = false
     }
-
-    const resolveLegend = (item: SelectOption): SelectValue => {
-      if (typeof item === 'object') {
-        return (item as SelectOptionRecord).legend
-      }
-      return item as SelectValue
+    const onChange = (value: OptionName) => {
+      visible.value = false
+      context.emit('change', value)
+      context.emit('update:modelValue', value)
     }
-
-    const resolveName = (item: SelectOption): SelectValue => {
-      if (typeof item === 'object') {
-        return (item as SelectOptionRecord).name
-      }
-      return item as SelectValue
+    const onFocus = (): void => {
+      visible.value = true
     }
-
-    const resolveSelected = (item: SelectOption): SelectValue => {
-      return resolveName(item) === props.modelValue ? 'selected' : ''
-    }
-
-    const selectOption = (name: SelectValue): void => {
-      if (validateRegular(name)) {
-        const index: number = props.options.findIndex((item: SelectOption) => {
-          return resolveName(item) === name
-        })
-        if (index !== -1) {
-          const target: Element | undefined = list.value?.children[index]
-          if (target !== undefined) {
-            onSelect(props.options[index], target as HTMLLIElement)
-          }
-        }
-      }
-    }
-
-    watch(() => props.modelValue, selectOption)
-
-    context.expose({
-      selectOption,
-    })
-
-    onMounted(() => {
-      selectOption(props.modelValue)
-    })
 
     return () => (
-      <ul
-        class={bem()}
-        data-direction={props.direction}
-        data-total={props.options.length}
-        data-value={props.modelValue}
-        id={id.value}
-      >
-        {props.options.map((item: SelectOption) => (
-          <li
-            class={[bem('item'), resolveSelected(item)]}
-            data-selected={resolveSelected(item)}
-            data-option={resolveName(item)}
-            onClick={(event: Event) =>
-              onSelect(item, event.target as HTMLLIElement)
-            }
-          >
-            {resolveIcon(item) && (
-              <select-icon
-                class={bem('icon')}
-                name={(item as SelectOptionRecord).icon}
-              />
-            )}
-            <span>{resolveLegend(item)}</span>
-          </li>
-        ))}
-      </ul>
+      <select-popup
+        container={'#' + id.value}
+        escape={false}
+        inset={true}
+        modelValue={visible.value}
+        position="bottom-left"
+        v-slots={slots}
+      />
     )
   },
 })

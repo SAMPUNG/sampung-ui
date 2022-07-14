@@ -33,7 +33,7 @@ export default defineComponent({
 
     return () => (
       <component
-        vModel={props.modelValue}
+        v-model={props.modelValue}
         is={props.target}
         options={props.options}
         placeholder={props.placeholder}
