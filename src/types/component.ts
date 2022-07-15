@@ -12,6 +12,11 @@ export declare type Bem = {
   modifier?: string
 }
 
+export declare type Block = {
+  display: 'block' | 'inline-block'
+  width?: string
+}
+
 export declare type Container = 'parent' | 'body'
 
 export declare type Direction = 'horizontal' | 'vertical'

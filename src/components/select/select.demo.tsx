@@ -41,13 +41,7 @@ export default defineComponent({
 
     return () => (
       <div class={bem()}>
-        <sam-select
-          v-model={selected.value}
-          legend="Select"
-          name="select"
-          options={defaultOptions}
-          placeholder="Please select one option"
-        />
+        <sam-select v-model={selected.value} options={defaultOptions} />
       </div>
     )
   },

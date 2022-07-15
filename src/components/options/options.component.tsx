@@ -25,9 +25,10 @@ export default defineComponent({
     const direction = computed(() => resolveStyle())
     const id = ref<string>(resolveUniqueId())
 
-    const onPick = (event: MouseEvent): OptionsPicked => {
+    const onPick = (event: MouseEvent, option: OptionRecord): OptionsPicked => {
       const target = event.target as HTMLLIElement
-      const name = target?.dataset?.name
+      // const name = target?.dataset?.name
+      const name = option.name
 
       if (!props.multiple) {
         const value = [name]
@@ -85,7 +86,6 @@ export default defineComponent({
           disabled: option?.disabled,
           icon: option?.icon,
           legend: option?.legend,
-          name: option.name,
           picked: props.modelValue.includes(option.name),
         })
         const height = {
@@ -93,7 +93,13 @@ export default defineComponent({
           lineHeight: `${props.height}px`,
         }
         return (
-          <li class={bem('item')} {...dataset} onClick={onPick} style={height}>
+          <li
+            class={bem('item')}
+            {...dataset}
+            data-name={option.name}
+            onClick={(event: MouseEvent) => onPick(event, option)}
+            style={height}
+          >
             {renderIcon(option)}
             {renderLegend(option)}
           </li>

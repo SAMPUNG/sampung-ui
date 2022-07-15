@@ -4,7 +4,7 @@ import PopupButton from '@/components/button/button.component'
 import type { ButtonInstance } from '@/components/button/button.interface'
 import PopupIcon from '@/components/icon/icon.component'
 
-import { createNamespace, resolveUniqueId } from '@/utils/'
+import { createNamespace, resolveUniqueId, useBlock } from '@/utils/'
 import type { Atom, Style } from '@/types/component'
 
 import popupBounds from './popup.bounds'
@@ -23,6 +23,7 @@ export default defineComponent({
   setup(props, context) {
     const entry = ref<ButtonInstance>()
     const id = ref<string>(resolveUniqueId())
+    const block = useBlock(props)
     const offsetXE = ref<number>(0)
     const offsetXO = ref<number>(0)
     const offsetYE = ref<number>(0)
@@ -119,7 +120,7 @@ export default defineComponent({
       }
     }
 
-    const updateContainer = () => {
+    const updateContainer = (): void => {
       let container: Atom = pack.value?.querySelector(props.container)
       if (!container) {
         if (entry.value?.el) {
@@ -133,7 +134,7 @@ export default defineComponent({
       originX.value = container.offsetLeft + offsetXE.value
       originY.value = container.offsetTop + offsetYE.value
     }
-    const updateOverlay = () => {
+    const updateOverlay = (): void => {
       if (overlay.value) {
         const target = overlay.value as HTMLDivElement
         offsetXO.value = target.clientWidth / 2
@@ -154,6 +155,10 @@ export default defineComponent({
         position.value.right = resolvePosition(bounds, 'right')
         position.value.top = resolvePosition(bounds, 'top')
       }
+
+      if (!props.inline) {
+        position.value.width = '100%'
+      }
     }
 
     onMounted(() => {
@@ -172,7 +177,7 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={bem('pack')} ref={pack}>
+      <div class={bem('pack')} ref={pack} style={block.value}>
         {renderEntry()}
         <div
           class={bem()}

@@ -1,6 +1,6 @@
 import { computed, defineComponent, ref, watch } from 'vue'
 
-import { createNamespace } from '@/utils/'
+import { createNamespace, useBlock } from '@/utils/'
 
 import ButtonEffect from '@/components/effect/effect.component'
 import ButtonIcon from '@/components/icon/icon.component'
@@ -21,6 +21,7 @@ export default defineComponent({
   emits: buttonEmits,
   setup(props, context) {
     const button = ref<HTMLButtonElement>()
+    const block = useBlock(props)
     const effect = ref<typeof ButtonEffect>()
     const knob = ref<boolean>(false)
     const disabled = computed(
@@ -103,6 +104,7 @@ export default defineComponent({
         type={props.type}
         onClick={onClick}
         ref={button}
+        style={block.value}
         value={props.value}
       >
         <button-icon class={bem('prefix-icon')} name={props.icon} />

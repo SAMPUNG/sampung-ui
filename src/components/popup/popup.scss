@@ -1,9 +1,10 @@
 .sam-popup {
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(5px);
   background: var(--dialog);
   border: 1px solid var(--border);
   box-shadow: 0 0 16px 8px var(--shadow);
   color: var(--text);
+  max-height: 50vh;
   overflow: auto;
   padding: 0;
   position: absolute;
@@ -19,7 +20,6 @@
   }
 
   &-pack {
-    display: inline-block;
     overflow: visible;
     position: relative;
   }

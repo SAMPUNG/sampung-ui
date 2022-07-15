@@ -19,6 +19,11 @@ export default {
     required: false,
     type: Boolean,
   },
+  inline: {
+    default: true,
+    required: false,
+    type: Boolean,
+  },
   inset: {
     default: false,
     required: false,

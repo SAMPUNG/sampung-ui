@@ -65,18 +65,26 @@ export default defineComponent({
 
     return () => (
       <div class={bem()}>
-        <span>Selected: {selected.value.join(',')}</span>
-        <hr class={bem('line')} />
-        <sam-select v-model={multiple.value} options={multipleOptions} />
-        <hr class={bem('line')} />
-        <sam-select v-model={direction.value} options={directionOptions} />
-        <hr class={bem('line')} />
+        <sam-select
+          v-model={multiple.value}
+          legend="Multiple"
+          name="multiple"
+          options={multipleOptions}
+        />
+        <sam-select
+          v-model={direction.value}
+          legend="Direction"
+          name="direction"
+          options={directionOptions}
+        />
         <sam-options
           v-model={selected.value}
           direction={direction.value}
           multiple={multiple.value}
           options={defaultOptions}
         />
+        <hr class={bem('line')} />
+        <span>Selected: {selected.value.join(',')}</span>
       </div>
     )
   },

@@ -30,6 +30,8 @@ export default defineComponent({
         <div class="playground-demo">
           <sam-select
             v-model={this.value}
+            legend="Placeholder"
+            name="placeholder"
             options={this.options}
             placeholder={this.placeholder}
           />

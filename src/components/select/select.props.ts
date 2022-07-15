@@ -10,7 +10,7 @@ export default {
     type: String as PropType<Appearance>,
   },
   legend: {
-    default: '',
+    default: 'Select',
     required: false,
     type: String,
   },
@@ -25,7 +25,7 @@ export default {
     type: Boolean,
   },
   name: {
-    default: '',
+    default: 'select',
     required: false,
     type: String,
   },
@@ -35,7 +35,7 @@ export default {
     type: Array as PropType<SelectOption[]>,
   },
   placeholder: {
-    default: '',
+    default: 'Please select one of options',
     required: false,
     type: String,
   },

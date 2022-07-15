@@ -71,6 +71,7 @@ export default defineComponent({
       popover.value = false
     }
     const onChange = (value: OptionName) => {
+      console.log('select on change :>:> ', value)
       context.emit('change', value)
       context.emit('update:modelValue', value)
       onBlur()
@@ -87,6 +88,7 @@ export default defineComponent({
       <select-popup
         container={'#' + id.value}
         escape={false}
+        inline={false}
         inset={true}
         modelValue={popover.value}
         position="bottom-left"

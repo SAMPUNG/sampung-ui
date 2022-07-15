@@ -15,6 +15,11 @@ export default {
     required: false,
     type: String,
   },
+  inline: {
+    default: true,
+    required: false,
+    type: Boolean,
+  },
   legend: {
     default: undefined,
     required: false,

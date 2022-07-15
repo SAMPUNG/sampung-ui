@@ -5,23 +5,23 @@ import popupBounds from '@/components/popup/popup.bounds'
 import type { PopupPosition } from '@/components/popup/popup.interface'
 
 const bem = createNamespace('popup-demo')
-const options = {
-  inset: [
-    {
-      legend: 'False',
-      name: false,
-    },
-    {
-      legend: 'True',
-      name: true,
-    },
-  ],
-  position: popupBounds.map(({ name }) => ({ legend: name, name })),
-}
+
+const booleanOptions = [
+  {
+    legend: 'False',
+    name: false,
+  },
+  {
+    legend: 'True',
+    name: true,
+  },
+]
+const positionOptions = popupBounds.map(({ name }) => ({ legend: name, name }))
 
 export default defineComponent({
   name: bem(),
   setup() {
+    const inline = ref<boolean>(true)
     const inset = ref<boolean>(false)
     const position = ref<PopupPosition>('center')
     const slots = {
@@ -53,14 +53,29 @@ export default defineComponent({
     return () => (
       <div class={bem()}>
         <div class={bem('display')}>
-          <sam-select v-model={inset.value} options={options.inset} />
-          <hr class={bem('line')} />
-          <sam-select v-model={position.value} options={options.position} />
-          <hr class={bem('line')} />
+          <sam-select
+            v-model={inline.value}
+            legend="Inline"
+            name="inline"
+            options={booleanOptions}
+          />
+          <sam-select
+            v-model={inset.value}
+            legend="Inset"
+            name="inset"
+            options={booleanOptions}
+          />
+          <sam-select
+            v-model={position.value}
+            legend="Position"
+            name="position"
+            options={positionOptions}
+          />
           <div style="height: 300px" />
           <sam-popup
             v-model={visible.value}
             container="#popup-entry"
+            inline={inline.value}
             inset={inset.value}
             position={position.value}
             v-slots={slots}

@@ -100,10 +100,30 @@ export default defineComponent({
           palette={palette.value}
         />
         <hr class={bem('line')} />
-        <sam-select v-model={appearance.value} options={options.appearance} />
-        <sam-select v-model={palette.value} options={options.palette} />
-        <sam-select v-model={mode.value} options={options.mode} />
-        <sam-select v-model={icon.value} options={options.icon} />
+        <sam-select
+          v-model={appearance.value}
+          legend="Appearance"
+          name="appearance"
+          options={options.appearance}
+        />
+        <sam-select
+          v-model={palette.value}
+          legend="Palette"
+          name="palette"
+          options={options.palette}
+        />
+        <sam-select
+          v-model={mode.value}
+          legend="Mode"
+          name="mode"
+          options={options.mode}
+        />
+        <sam-select
+          v-model={icon.value}
+          legend="Icon"
+          name="icon"
+          options={options.icon}
+        />
       </div>
     )
   },

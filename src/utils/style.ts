@@ -1,4 +1,7 @@
-import type { Absolute, Location, Property } from '@/types/component'
+import { computed, ComputedRef } from 'vue'
+
+import type { Absolute, Block, Location, Property } from '@/types/component'
+import { Props } from '@/types/data'
 
 export const absolute = (data?: Location): Absolute => {
   const result: Absolute = {
@@ -22,3 +25,10 @@ export const absolute = (data?: Location): Absolute => {
 
 const resolvePosition = (value: Property): Property =>
   typeof value === 'number' ? `${value}px` : value
+
+export const useBlock = (props: Props): ComputedRef<Block> => {
+  return computed<Block>(() => ({
+    display: props.inline ? 'inline-block' : 'block',
+    width: props.inline ? undefined : '100%',
+  }))
+}
