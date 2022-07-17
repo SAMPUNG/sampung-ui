@@ -5,7 +5,7 @@ import type { InjectionKey } from 'vue'
 declare type FieldProvideRecord = {
   onBlur: () => void
   onFocus: () => void
-  updateStatus: (key: string, value: boolean) => void
+  updateStatus: (key: 'empty' | 'focus', value: boolean) => void
 }
 
 export declare type FieldProvide = FieldProvideRecord | undefined

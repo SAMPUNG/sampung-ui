@@ -23,11 +23,11 @@ export default defineComponent({
 
     const onBlur = (): void => {
       context.emit('blur', props.name)
-      field?.updateStatus('focus', false)
+      field?.onBlur()
     }
     const onFoucs = (): void => {
       context.emit('focus', props.name)
-      field?.updateStatus('focus', true)
+      field?.onFocus()
     }
     const onInput = (event: Event): void => {
       const target = event.target as HTMLInputElement

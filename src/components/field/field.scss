@@ -9,18 +9,18 @@
   transition-duration: .5s;
   width: 100%;
 
-  &--empty {
+  &[data-empty] {
     border-color: transparent transparent var(--border) transparent;
   }
-  &--empty &-legend {
+  &[data-empty] &-legend {
     transform: translateY(135%);
     transition-duration: .5s;
   }
 
-  &--focus {
+  &[data-focus] {
     border-color: var(--border);
   }
-  &--focus &-legend {
+  &[data-focus] &-legend {
     transform: translateY(0);
   }
 

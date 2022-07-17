@@ -1,7 +1,7 @@
 // import { defineComponent, inject, provide, ref } from 'vue'
-import { defineComponent, provide, ref } from 'vue'
+import { defineComponent, provide, reactive, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import {createNamespace,resolveDataset} from '@/utils/'
 
 // import { model } from '@/components/form/form.provide'
 
@@ -17,6 +17,10 @@ export default defineComponent({
   props: fieldProps,
   emits: fieldEmits,
   setup(props, context) {
+    const dataset = reactive({
+      focus: false,
+      empty: true,
+    })
     // const el = inject(model)
     // const required = ref<boolean>(false)
     const status = ref<string[]>([])
@@ -24,19 +28,20 @@ export default defineComponent({
 
     const onBlur = (): void => {
       context.emit('blur', props.name)
-      updateStatus('foucs', false)
+      updateStatus('focus', false)
     }
     const onFocus = (): void => {
       context.emit('foucs', props.name)
-      updateStatus('foucs', true)
+      updateStatus('focus', true)
     }
-    const updateStatus = (key: string, value: boolean): void => {
+    const updateStatus = (key: 'empty' | 'focus', value: boolean): void => {
       const index = status.value.indexOf(key)
       if (value && index === -1) {
         status.value.push(key)
       } else if (index !== -1) {
         status.value.splice(index, 1)
       }
+      dataset[key] = index === -1
     }
 
     provide(fieldProvide, {
@@ -46,7 +51,7 @@ export default defineComponent({
     })
 
     return () => (
-      <fieldset class={[bem(status.value)]}>
+      <fieldset class={[bem()]} {...resolveDataset(dataset)}>
         <legend class={bem('legend')}>{props.legend}</legend>
         {context.slots?.default?.()}
       </fieldset>

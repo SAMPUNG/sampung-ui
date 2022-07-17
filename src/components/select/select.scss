@@ -2,6 +2,10 @@
   position: relative;
   width: 100%;
 
+  &[data-rollup] &-status {
+    transform: rotate(180deg);
+  }
+
   &-popup {
     width: 100%;
   }
@@ -14,5 +18,6 @@
     bottom: 8px;
     position: absolute;
     right: 8px;
+    transition-duration: 0.5s;
   }
 }

@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue'
 
-import { createNamespace, resolveUniqueId } from '@/utils/'
+import { createNamespace, resolveDataset, resolveUniqueId } from '@/utils/'
 
 import SelectField from '@/components/field/field.component'
 import SelectIcon from '@/components/icon/icon.component'
@@ -44,6 +44,7 @@ export default defineComponent({
       entry: () => (
         <select-field
           class={bem()}
+          {...resolveDataset({ rollup: popover.value })}
           id={id.value}
           legend={props.legend}
           name={props.name}
@@ -68,6 +69,7 @@ export default defineComponent({
     const popover = ref<boolean>(false)
 
     const onBlur = (): void => {
+      console.log('select on blur')
       popover.value = false
     }
     const onChange = (value: OptionName) => {
