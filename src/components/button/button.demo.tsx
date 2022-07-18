@@ -1,16 +1,18 @@
 import { defineComponent, ref } from 'vue'
 
-import type { Appearance, Palette } from '@/types/component'
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
+import type { Appearance, Palette } from '@/types'
 
 import type { ButtonMode } from '@/components/button/button.interface'
 import { manifest } from '@/components/icon/icon.config'
 
 const bem = createNamespace('button-demo')
 
-const icons = manifest['material-design']
-  .slice(300, 304)
-  .map(({ name }) => ({ icon: name, legend: name, name }))
+const icons = manifest['material-design'].slice(300, 304).map(({ name }) => ({
+  icon: name,
+  legend: name,
+  name,
+}))
 
 const options = {
   appearance: [

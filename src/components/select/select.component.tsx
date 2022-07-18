@@ -1,8 +1,10 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent, inject, ref } from 'vue'
 
-import { createNamespace, resolveDataset, resolveUniqueId } from '@/utils/'
+import { createNamespace, resolveDataset, resolveUniqueId } from '@/utils'
 
 import SelectField from '@/components/field/field.component'
+import fieldProvide from '@/components/field/field.provide'
+import type { FieldProvide } from '@/components/field/field.interface'
 import SelectIcon from '@/components/icon/icon.component'
 import SelectInput from '@/components/input/input.component'
 import SelectOptions from '@/components/options/options.component'
@@ -27,8 +29,11 @@ export default defineComponent({
   props: selectProps,
   emits: selectEmits,
   setup(props, context) {
+    const field: FieldProvide = inject(fieldProvide)
     const id = ref<string>(resolveUniqueId())
     const options = ref<typeof SelectOptions>()
+    const popover = ref<boolean>(false)
+
     const slots = {
       default: () => (
         <select-options
@@ -49,13 +54,20 @@ export default defineComponent({
           legend={props.legend}
           name={props.name}
           onBlur={onBlur}
+          onClear={onClear}
         >
           <select-input
             autocomplete="new-password"
             modelValue={props.modelValue}
+            readonly
             name="name-demo"
             onFocus={onFocus}
             placeholder="Please input something……"
+          />
+          <select-icon
+            class={bem('clear')}
+            name="clear"
+            onClick={() => onClear()}
           />
           <select-icon
             class={bem('status')}
@@ -66,17 +78,21 @@ export default defineComponent({
         </select-field>
       ),
     }
-    const popover = ref<boolean>(false)
 
     const onBlur = (): void => {
-      console.log('select on blur')
-      popover.value = false
+      setTimeout(() => {
+        popover.value = false
+      }, 150)
     }
     const onChange = (value: OptionName) => {
-      console.log('select on change :>:> ', value)
-      context.emit('change', value)
+      context.emit('change', value, props.name)
       context.emit('update:modelValue', value)
-      onBlur()
+      field?.validate(value)
+    }
+    const onClear = (): void => {
+      context.emit('update:modelValue', undefined)
+      context.emit('clear', props.name)
+      popover.value = false
     }
     const onFocus = (): void => {
       popover.value = true

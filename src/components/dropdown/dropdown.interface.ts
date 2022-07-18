@@ -1,20 +1,18 @@
 /* eslint-disable no-unused-vars */
 
 import type {
-  SelectOptionRecord,
+  SelectOption,
   SelectValue,
 } from '@/components/select/select.interface'
 
 export declare type DropdownPosition = 'above' | 'after' | 'before' | 'below'
-
-export declare type ControlPayload = Record<string, unknown>
 
 export declare type DropdownProps = {
   modelValue: DropdownValue
   options: DropdownOption[]
 }
 
-export declare type DropdownOptionRecord = SelectOptionRecord
+export declare type DropdownOptionRecord = SelectOption
 
 export declare type DropdownOption = DropdownValue[] | DropdownOptionRecord[]
 

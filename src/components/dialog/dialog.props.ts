@@ -1,6 +1,6 @@
 import { type PropType } from 'vue'
 
-import type { Appearance } from '@/types/component'
+import type { Appearance } from '@/types'
 
 export default {
   appearance: {

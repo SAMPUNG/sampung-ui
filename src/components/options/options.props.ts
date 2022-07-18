@@ -1,6 +1,6 @@
 import type { PropType } from 'vue'
 
-import type { Direction } from '@/types/component'
+import type { Direction } from '@/types'
 
 import type { OptionRecord, OptionsPicked } from './options.interface'
 

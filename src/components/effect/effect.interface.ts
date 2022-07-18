@@ -2,7 +2,7 @@
 
 import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'
 
-import type { Style } from '@/types/component'
+import type { Style } from '@/types'
 
 import effectProps from './effect.props'
 

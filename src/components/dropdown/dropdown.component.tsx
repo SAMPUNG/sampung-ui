@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue'
 
-import { createNamespace, resolveUniqueId } from '@/utils/'
+import { createNamespace, resolveUniqueId } from '@/utils'
 
 import DropdownButton from '@/components/button/button.component'
 import DropdownOptions from '@/components/options/options.component'

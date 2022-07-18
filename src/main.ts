@@ -1,9 +1,6 @@
-import { createApp } from 'vue'
-import app from './app.vue'
+import app from './app'
 import * as plugins from './components/'
 import router from './router'
 import { resolveInstallAll } from './utils/install'
 
-import './styles/reset.scss'
-
-createApp(app).use(router).use(resolveInstallAll(plugins)).mount('#app')
+app.use(router).use(resolveInstallAll(plugins)).mount('#app')

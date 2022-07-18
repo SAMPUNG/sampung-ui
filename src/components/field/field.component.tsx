@@ -1,13 +1,15 @@
 // import { defineComponent, inject, provide, ref } from 'vue'
-import { defineComponent, provide, reactive, ref } from 'vue'
+import { defineComponent, provide, reactive } from 'vue'
 
-import {createNamespace,resolveDataset} from '@/utils/'
+import { createNamespace, resolveDataset, validateEmpty } from '@/utils'
 
 // import { model } from '@/components/form/form.provide'
+import type { InputValue } from '@/components/input/input.interface'
 
 import fieldEmits from './field.emits'
 import fieldProps from './field.props'
-import { fieldProvide } from './field.interface'
+import fieldProvide from './field.provide'
+import type { FieldStatus } from './field.interface'
 import './field.scss'
 
 const bem = createNamespace('field')
@@ -17,41 +19,51 @@ export default defineComponent({
   props: fieldProps,
   emits: fieldEmits,
   setup(props, context) {
-    const dataset = reactive({
+    const status = reactive<FieldStatus>({
       focus: false,
-      empty: true,
+      empty: false,
+      valid: true,
+      waiting: false,
     })
     // const el = inject(model)
     // const required = ref<boolean>(false)
-    const status = ref<string[]>([])
     // const valid = ref<boolean>(true)
 
     const onBlur = (): void => {
       context.emit('blur', props.name)
-      updateStatus('focus', false)
+      setStatus('focus', false)
+    }
+    const onClear = (): void => {
+      context.emit('clear', props.name)
+      setStatus('empty', true)
     }
     const onFocus = (): void => {
       context.emit('foucs', props.name)
-      updateStatus('focus', true)
+      setStatus('focus', true)
     }
-    const updateStatus = (key: 'empty' | 'focus', value: boolean): void => {
-      const index = status.value.indexOf(key)
-      if (value && index === -1) {
-        status.value.push(key)
-      } else if (index !== -1) {
-        status.value.splice(index, 1)
-      }
-      dataset[key] = index === -1
+    const onValidate = (value: InputValue): void => {
+      const empty = validateEmpty(value)
+      setStatus('empty', empty)
+      setStatus('valid', !empty)
+      onBlur()
+    }
+
+    const setStatus = (key: keyof FieldStatus, value: boolean): void => {
+      status[key] = value
     }
 
     provide(fieldProvide, {
-      onBlur,
-      onFocus,
-      updateStatus,
+      blur: onBlur,
+      clear: onClear,
+      focus: onFocus,
+      validate: onValidate,
     })
 
     return () => (
-      <fieldset class={[bem()]} {...resolveDataset(dataset)}>
+      <fieldset
+        class={[bem()]}
+        {...resolveDataset(status)}
+      >
         <legend class={bem('legend')}>{props.legend}</legend>
         {context.slots?.default?.()}
       </fieldset>

@@ -1,7 +1,7 @@
 import { defineComponent, ref } from 'vue'
 
-import type { Style } from '@/types/component'
-import { absolute, createNamespace, debounce, resolveUniqueId } from '@/utils/'
+import type { Style } from '@/types'
+import { absolute, createNamespace, debounce, resolveUniqueId } from '@/utils'
 
 import type { EffectRecord, EffectType } from './effect.interface'
 import effectProps from './effect.props'
@@ -99,7 +99,11 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={bem()} data-container={props.container} onClick={onClick}>
+      <div
+        class={bem()}
+        data-container={props.container}
+        onClick={onClick}
+      >
         <ul class={bem('list')}>
           {effects.value.map((item: EffectRecord) => (
             <li

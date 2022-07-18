@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 const bem = createNamespace('clock-demo')
 

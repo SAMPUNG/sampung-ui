@@ -3,10 +3,17 @@ import demo from '@/components/demo'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    name: 'Home',
+    children: [
+      {
+        component: () => import('@/views/greeting'),
+        name: 'Greeting',
+        path: '',
+      },
+      ...demo,
+    ],
     component: () => import('@/views/home'),
-    children: demo,
+    name: 'Home',
+    path: '/',
   },
 ]
 

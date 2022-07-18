@@ -1,4 +1,4 @@
-import { validateRegular } from '@/utils/'
+import { validateRegular } from '@/utils'
 
 export default {
   autocomplete: {
@@ -36,6 +36,11 @@ export default {
     default: '',
     required: false,
     type: String,
+  },
+  readonly: {
+    default: false,
+    required: false,
+    type: Boolean,
   },
   step: {
     default: undefined,

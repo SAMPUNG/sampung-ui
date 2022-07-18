@@ -1,6 +1,6 @@
 import type { PropType } from 'vue'
 
-import type { Container } from '@/types/component'
+import type { Container } from '@/types'
 
 export default {
   container: {

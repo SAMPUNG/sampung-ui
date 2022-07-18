@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 const bem = createNamespace('dialog-demo')
 
@@ -13,7 +13,7 @@ export default defineComponent({
       <div class={bem()}>
         <div class={bem('controls')}>
           <sam-button
-            legend="Open Dialog"
+            legend="열다 대화"
             onClick={() => {
               visible.value = true
             }}
@@ -23,7 +23,7 @@ export default defineComponent({
           <sam-dialog
             v-model={visible.value}
             icon="flare"
-            legend="Dialog Title"
+            legend="대화 타이틀"
             with-close={true}
             with-footer={true}
             with-header={true}
@@ -36,7 +36,7 @@ export default defineComponent({
                 width: '600px',
               }}
             >
-              hello, world
+              <span>전 세계 여러분 안녕하세요</span>
             </div>
           </sam-dialog>
         </div>

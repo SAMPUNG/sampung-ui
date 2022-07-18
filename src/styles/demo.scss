@@ -64,6 +64,15 @@
   }
 }
 
+.sam-greeting {
+  color: var(--primary);
+  line-height: 400px;
+
+  &-text::before {
+    content: attr(attr(--lang));
+  }
+}
+
 .sam-demo {
   align-items: center;
   display: flex;

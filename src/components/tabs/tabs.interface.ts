@@ -1,21 +1,9 @@
 import type {
-  SelectOptionRecord,
+  SelectOption,
   SelectValue,
 } from '@/components/select/select.interface'
 
-export declare type ControlPayload = Record<string, unknown>
-
-export declare type TabsEmits = {
-  (event: 'control', payload: ControlPayload): void
-  (event: 'update:modelValue', value: string): void
-}
-
-export declare type TabsProps = {
-  modelValue: TabsValue
-  options: TabsOption[]
-}
-
-export declare type TabsOptionRecord = SelectOptionRecord
+export declare type TabsOptionRecord = SelectOption
 
 export declare type TabsOption = TabsValue[] | TabsOptionRecord[]
 

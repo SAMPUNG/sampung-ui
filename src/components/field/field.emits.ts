@@ -6,6 +6,7 @@ export default {
   enable: (name: string) => true,
   blur: (name: string) => true,
   change: (value: InputValue, name: string) => true,
+  clear: (name: string) => true,
   disable: (name: string) => true,
   error: (message: string, value: InputValue, name: string) => true,
   format: (value: InputValue, name: string) => true,

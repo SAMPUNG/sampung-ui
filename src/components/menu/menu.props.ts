@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
 
-import type { Appearance, Palette } from '@/types/component'
-import { validateRegular } from '@/utils/'
+import type { Appearance, Palette } from '@/types'
+import { validateRegular } from '@/utils'
 
 import type { MenuOption, MenuValue } from './menu.interface'
 

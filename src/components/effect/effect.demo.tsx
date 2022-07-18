@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import type { EffectInstance } from './effect.interface'
 
@@ -25,7 +25,10 @@ export default defineComponent({
     return () => (
       <div class={bem()}>
         <div class={bem('cube')}>
-          <sam-effect ref={effect} onClick={onClick} />
+          <sam-effect
+            ref={effect}
+            onClick={onClick}
+          />
         </div>
       </div>
     )

@@ -1,6 +1,8 @@
-import type { Flex } from '@/types/component'
+import type { Flex } from '@/types'
 
 export declare type OptionElement = HTMLLIElement | null
+
+export declare type OptionList = HTMLUListElement | null
 
 export declare type OptionName = string | number | boolean | undefined
 

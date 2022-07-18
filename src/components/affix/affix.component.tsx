@@ -1,7 +1,7 @@
 import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
-import type { Style } from '@/types/component'
+import { createNamespace } from '@/utils'
+import type { Style } from '@/types'
 
 import AffixIcon from '@/components/icon/icon.component'
 
@@ -32,7 +32,10 @@ export default defineComponent({
       if (props.icon && props.legend) {
         return (
           <div class={bem('header')}>
-            <affix-icon class={bem('icon')} name={props.icon} />
+            <affix-icon
+              class={bem('icon')}
+              name={props.icon}
+            />
             <span class={bem('legend')}>{props.legend}</span>
           </div>
         )

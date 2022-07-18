@@ -1,7 +1,7 @@
 import { type PropType } from 'vue'
 
-import type { Appearance } from '@/types/component'
-import { validateRegular } from '@/utils/'
+import type { Appearance } from '@/types'
+import { validateRegular } from '@/utils'
 
 import type { DropdownOption, DropdownValue } from './dropdown.interface'
 

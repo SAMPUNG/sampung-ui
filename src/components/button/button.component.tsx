@@ -1,6 +1,6 @@
 import { computed, defineComponent, ref, watch } from 'vue'
 
-import { createNamespace, useBlock } from '@/utils/'
+import { createNamespace, useBlock } from '@/utils'
 
 import ButtonEffect from '@/components/effect/effect.component'
 import ButtonIcon from '@/components/icon/icon.component'
@@ -107,7 +107,10 @@ export default defineComponent({
         style={block.value}
         value={props.value}
       >
-        <button-icon class={bem('prefix-icon')} name={props.icon} />
+        <button-icon
+          class={bem('prefix-icon')}
+          name={props.icon}
+        />
         <span class={bem('legend')}>{props.legend}</span>
         <button-icon
           class={bem('suffix-icon')}

@@ -1,6 +1,7 @@
 import type { PropType } from 'vue'
 
-import type { Appearance, Container, Palette } from '@/types/component'
+import type { Appearance, Container, Palette } from '@/types'
+
 import type { AffixHorizontal, AffixVertical } from './affix.interface'
 
 export default {

@@ -1,31 +1,14 @@
-import type { PropType } from 'vue'
+export declare type Appearance = 'dashed' | 'fill' | 'legacy' | 'outline'
 
-import type { Appearance, Palette } from '@/types/component'
+export declare type Container = 'parent' | 'body'
 
-export default {
-  appearance: {
-    default: 'outline',
-    required: false,
-    type: String as PropType<Appearance>,
-  },
-  icon: {
-    default: undefined,
-    required: false,
-    type: String,
-  },
-  legend: {
-    default: undefined,
-    required: false,
-    type: String,
-  },
-  name: {
-    default: undefined,
-    required: false,
-    type: String,
-  },
-  palette: {
-    default: 'primary',
-    required: false,
-    type: String as PropType<Palette>,
-  },
-}
+export declare type Direction = 'horizontal' | 'vertical'
+
+export declare type Palette =
+  | 'error'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+
+export declare type Theme = 'dark' | 'light'

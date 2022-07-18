@@ -1,4 +1,8 @@
 .sam-select {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   position: relative;
   width: 100%;
 
@@ -14,10 +18,11 @@
     width: 100%;
   }
 
+  &-clear {
+    cursor: pointer;
+  }
   &-status {
-    bottom: 8px;
-    position: absolute;
-    right: 8px;
+    cursor: pointer;
     transition-duration: 0.5s;
   }
 }

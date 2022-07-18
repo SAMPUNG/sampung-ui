@@ -1,6 +1,6 @@
 import { defineComponent, watch } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import AccordionButton from '@/components/button/button.component'
 import AccordionIcon from '@/components/icon/icon.component'
@@ -13,7 +13,10 @@ const bem = createNamespace('accordion')
 
 export default defineComponent({
   name: bem(),
-  components: { AccordionButton, AccordionIcon },
+  components: {
+    AccordionButton,
+    AccordionIcon,
+  },
   props: accordionProps,
   emits: accordionEmits,
   setup(props, context) {
@@ -39,7 +42,12 @@ export default defineComponent({
       if (context.slots.controls) {
         return context.slots.controls()
       }
-      return <accordion-icon class={bem('status')} name="expand-more" />
+      return (
+        <accordion-icon
+          class={bem('status')}
+          name="expand-more"
+        />
+      )
     }
     const renderFooter = () => {
       if (!props.withFooter) {
@@ -49,7 +57,10 @@ export default defineComponent({
         return context.slots.footer()
       }
       return (
-        <footer class={bem('footer')} data-visible={props.modelValue}>
+        <footer
+          class={bem('footer')}
+          data-visible={props.modelValue}
+        >
           <accordion-button
             legend="Cancel"
             onClick={() => toggle(false)}
@@ -68,9 +79,15 @@ export default defineComponent({
         return context.slots.header()
       }
       return (
-        <header class={bem('header')} onClick={onClick}>
+        <header
+          class={bem('header')}
+          onClick={onClick}
+        >
           <div class={bem('title')}>
-            <accordion-icon class={bem('icon')} name={props.icon} />
+            <accordion-icon
+              class={bem('icon')}
+              name={props.icon}
+            />
             <span class={bem('legend')}>{props.legend}</span>
           </div>
           <div class={bem('controls')}>{renderControls()}</div>
@@ -91,7 +108,10 @@ export default defineComponent({
         data-status={props.modelValue ? 'expanded' : 'collapsed'}
       >
         {renderHeader()}
-        <article class={bem('body')} data-visible={props.modelValue}>
+        <article
+          class={bem('body')}
+          data-visible={props.modelValue}
+        >
           {context.slots?.default?.()}
         </article>
         {renderFooter()}

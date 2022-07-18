@@ -1,6 +1,6 @@
 import { type PropType } from 'vue'
 
-import { validateRegular } from '@/utils/'
+import { validateRegular } from '@/utils'
 
 import type { TabsOption, TabsValue } from './tabs.interface'
 

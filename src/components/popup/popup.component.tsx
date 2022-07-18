@@ -4,8 +4,8 @@ import PopupButton from '@/components/button/button.component'
 import type { ButtonInstance } from '@/components/button/button.interface'
 import PopupIcon from '@/components/icon/icon.component'
 
-import { createNamespace, resolveUniqueId, useBlock } from '@/utils/'
-import type { Atom, Style } from '@/types/component'
+import { createNamespace, resolveUniqueId, useBlock } from '@/utils'
+import type { Atom, Style } from '@/types'
 
 import popupBounds from './popup.bounds'
 import popupEmits from './popup.emits'
@@ -17,7 +17,10 @@ const bem = createNamespace('popup')
 
 export default defineComponent({
   name: bem(),
-  components: { PopupButton, PopupIcon },
+  components: {
+    PopupButton,
+    PopupIcon,
+  },
   props: popupProps,
   emits: popupEmits,
   setup(props, context) {
@@ -177,7 +180,11 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={bem('pack')} ref={pack} style={block.value}>
+      <div
+        class={bem('pack')}
+        ref={pack}
+        style={block.value}
+      >
         {renderEntry()}
         <div
           class={bem()}

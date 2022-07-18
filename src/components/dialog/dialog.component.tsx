@@ -3,7 +3,7 @@ import { defineComponent, ref, watch } from 'vue'
 import DialogButton from '@/components/button/button.component'
 import DialogIcon from '@/components/icon/icon.component'
 
-import { createNamespace, resolveUniqueId } from '@/utils/'
+import { createNamespace, resolveUniqueId } from '@/utils'
 
 import dialogEmits from './dialog.emits'
 import dialogProps from './dialog.props'
@@ -13,7 +13,10 @@ const bem = createNamespace('dialog')
 
 export default defineComponent({
   name: bem(),
-  components: { DialogButton, DialogIcon },
+  components: {
+    DialogButton,
+    DialogIcon,
+  },
   inheritAttrs: false,
   props: dialogProps,
   emits: dialogEmits,
@@ -45,7 +48,6 @@ export default defineComponent({
     }
     const renderClose = () => {
       if (!props.withClose) {
-        console.log(props.withClose)
         return ''
       }
       return (
@@ -66,13 +68,13 @@ export default defineComponent({
       return (
         <footer class={bem('footer')}>
           <dialog-button
-            legend="Cancel"
+            legend="취소"
             onClick={() => onCancel()}
             palette="secondary"
             value="cancel"
           />
           <dialog-button
-            legend="Submit"
+            legend="송이"
             onClick={() => onSubmit()}
             palette="primary"
             value="submit"
@@ -90,7 +92,10 @@ export default defineComponent({
       return (
         <header class={bem('header')}>
           <div class={bem('title')}>
-            <dialog-icon class={bem('icon')} name={props.icon} />
+            <dialog-icon
+              class={bem('icon')}
+              name={props.icon}
+            />
             <span class={bem('legend')}>{props.legend}</span>
           </div>
           <div class={bem('controls')}>{renderClose()}</div>
@@ -126,7 +131,10 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={bem('mask')} data-visible={props.modelValue}>
+      <div
+        class={bem('mask')}
+        data-visible={props.modelValue}
+      >
         <dialog
           class={bem()}
           data-visible={props.modelValue}

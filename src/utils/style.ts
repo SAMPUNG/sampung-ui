@@ -1,7 +1,6 @@
 import { computed, ComputedRef } from 'vue'
 
-import type { Absolute, Block, Location, Property } from '@/types/component'
-import { Props } from '@/types/data'
+import type { Absolute, Block, Location, Property, Props } from '@/types/'
 
 export const absolute = (data?: Location): Absolute => {
   const result: Absolute = {

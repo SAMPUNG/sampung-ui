@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 import popupBounds from '@/components/popup/popup.bounds'
 import type { PopupPosition } from '@/components/popup/popup.interface'
 
@@ -16,7 +16,10 @@ const booleanOptions = [
     name: true,
   },
 ]
-const positionOptions = popupBounds.map(({ name }) => ({ legend: name, name }))
+const positionOptions = popupBounds.map(({ name }) => ({
+  legend: name,
+  name,
+}))
 
 export default defineComponent({
   name: bem(),

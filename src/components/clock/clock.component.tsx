@@ -1,6 +1,6 @@
 import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import { ClockHour, ClockHourTick } from './clock.interface'
 import './clock.scss'
@@ -39,7 +39,7 @@ export default defineComponent({
     }
 
     const onHover = (event: MouseEvent): void => {
-      console.log(event)
+      console.warn(event)
     }
 
     const resolveAngle = (value: number, base: 12 | 60) => {
@@ -79,13 +79,19 @@ export default defineComponent({
           <span>:</span>
           <span>{resolveLabel(second.value)}</span>
         </div>
-        <ul class={bem('dial')} onMouseenter={onHover}>
+        <ul
+          class={bem('dial')}
+          onMouseenter={onHover}
+        >
           {CLOCK_HOUR_TICKS.map(({ legend }) => (
             <li class={bem('tick')}>{legend}</li>
           ))}
         </ul>
         <ul class={bem('hands')}>
-          <li class={bem('hour-hand')} style={resolveAngle(hour.value, 12)} />
+          <li
+            class={bem('hour-hand')}
+            style={resolveAngle(hour.value, 12)}
+          />
           <li
             class={bem('minute-hand')}
             style={resolveAngle(minute.value, 60)}

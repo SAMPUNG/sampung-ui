@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import { manifest } from '@/components/icon/icon.config'
 

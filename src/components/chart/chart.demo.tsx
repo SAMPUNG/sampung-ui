@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 const bem = createNamespace('chart-demo')
 
@@ -28,7 +28,10 @@ export default defineComponent({
 
     return () => (
       <div class={bem()}>
-        <sam-chart id={id.value} options={options.value} />
+        <sam-chart
+          id={id.value}
+          options={options.value}
+        />
       </div>
     )
   },

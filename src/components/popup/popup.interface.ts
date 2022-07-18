@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import type { ComponentPublicInstance, ExtractPropTypes } from 'vue'
 
-import type { Container } from '@/types/component'
+import type { Container } from '@/types'
 
 import popupProps from './popup.props'
 

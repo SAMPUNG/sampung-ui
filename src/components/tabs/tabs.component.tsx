@@ -1,14 +1,17 @@
 import { defineComponent, onMounted, ref, watch } from 'vue'
 
-import type { ScrollStyle } from '@/types/component'
-import { createNamespace, resolveUniqueId } from '@/utils/'
+import type { ScrollStyle } from '@/types'
+import { createNamespace, resolveUniqueId } from '@/utils'
 
-import type { Item, List } from '@/components/select/select.interface'
 import TabsOptions from '@/components/options/options.component'
+import type {
+  OptionElement,
+  OptionList,
+} from '@/components/options/options.interface'
 
-import type { TabsValue } from './tabs.interface'
 import tabsEmits from './tabs.emits'
 import tabsProps from './tabs.props'
+import type { TabsValue } from './tabs.interface'
 import './tabs.scss'
 
 const bem = createNamespace('tabs')
@@ -64,22 +67,29 @@ export default defineComponent({
 
     const renderControls = () => {
       return (
-        <div class={bem('controls')} onClick={onDropdown}>
+        <div
+          class={bem('controls')}
+          onClick={onDropdown}
+        >
           <button class={bem('more')}>⋯</button>
         </div>
       )
     }
 
-    const resolveOption = (name?: TabsValue): Item => {
-      const ul: List = document.querySelector(`#${id.value} ul[role="options"]`)
-      const selector = name ? `li[data-name="${name}"]` : 'li:last-child'
-      return ul?.querySelector(selector)
+    const resolveOption = (name?: TabsValue): OptionElement => {
+      const ul: OptionList = document.querySelector(
+        `#${id.value} ul[role="options"]`
+      )
+      const selector: string = name
+        ? `li[data-name="${name}"]`
+        : 'li:last-child'
+      return ul ? ul.querySelector(selector) : null
     }
 
     const selectTab = (name: TabsValue): void => {
       options.value?.pick(name)
 
-      const target: Item = resolveOption(name)
+      const target: OptionElement = resolveOption(name)
       if (target) {
         indicator.value.transform = `translateX(${target.offsetLeft}px)`
         indicator.value.width = `${target.clientWidth * 0.618}px`
@@ -87,7 +97,7 @@ export default defineComponent({
     }
 
     const updateViewport = (): void => {
-      const end: Item = resolveOption()
+      const end: OptionElement = resolveOption()
       if (end) {
         const width = end.offsetWidth + end.offsetLeft + 1
         menu.value.width = `${width}px`
@@ -106,9 +116,19 @@ export default defineComponent({
     })
 
     return () => (
-      <div class={[bem()]} data-value={props.modelValue} id={id.value}>
-        <div class={bem('viewport')} ref={viewport}>
-          <div class={bem('view')} style={menu.value}>
+      <div
+        class={[bem()]}
+        data-value={props.modelValue}
+        id={id.value}
+      >
+        <div
+          class={bem('viewport')}
+          ref={viewport}
+        >
+          <div
+            class={bem('view')}
+            style={menu.value}
+          >
             <tabs-options
               class={bem('options')}
               flex={false}
@@ -121,7 +141,10 @@ export default defineComponent({
               ref={options}
               role="options"
             />
-            <div class={bem('indicator')} style={indicator.value} />
+            <div
+              class={bem('indicator')}
+              style={indicator.value}
+            />
           </div>
         </div>
         {renderControls()}

@@ -19,4 +19,4 @@ const resolveInstallAll = (plugins: Record<string, Plugin>): Plugin => ({
 })
 
 export default resolveInstall
-export { resolveInstallAll }
+export { resolveInstall, resolveInstallAll }

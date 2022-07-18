@@ -3,7 +3,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 import MenuAccordion from '@/components/accordion/accordion.component'
 import MenuIcon from '@/components/icon/icon.component'
-import { createNamespace, resolveDataset } from '@/utils/'
+import { createNamespace, resolveDataset } from '@/utils'
 
 import menuEmits from './menu.emits'
 import menuProps from './menu.props'
@@ -14,7 +14,10 @@ const bem = createNamespace('menu')
 
 export default defineComponent({
   name: bem(),
-  components: { MenuAccordion, MenuIcon },
+  components: {
+    MenuAccordion,
+    MenuIcon,
+  },
   props: menuProps,
   emits: menuEmits,
   setup(props, context) {
@@ -59,8 +62,14 @@ export default defineComponent({
         return context.slots.footer()
       }
       return (
-        <footer class={bem('footer')} onClick={() => onSvelte()}>
-          <menu-icon class={bem('svelte')} name="keyboard-double-arrow-left" />
+        <footer
+          class={bem('footer')}
+          onClick={() => onSvelte()}
+        >
+          <menu-icon
+            class={bem('svelte')}
+            name="keyboard-double-arrow-left"
+          />
         </footer>
       )
     }
@@ -113,7 +122,10 @@ export default defineComponent({
         onClick={(event: MouseEvent) => onLink(event, option)}
         target={option.target}
       >
-        <menu-icon class={bem('icon')} name={option.icon} />
+        <menu-icon
+          class={bem('icon')}
+          name={option.icon}
+        />
         <span class={bem('legend')}>{option.legend}</span>
       </a>
     )

@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 const bem = createNamespace('form-demo')
 
@@ -11,8 +11,14 @@ export default defineComponent({
 
     return () => (
       <div class={bem()}>
-        <sam-form autocomplete="off" name="demo">
-          <sam-field legend="Legend" name="name">
+        <sam-form
+          autocomplete="off"
+          name="demo"
+        >
+          <sam-field
+            legend="Legend"
+            name="name"
+          >
             <sam-input
               v-model={value.value}
               name="name-demo"

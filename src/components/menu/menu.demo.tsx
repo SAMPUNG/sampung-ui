@@ -1,6 +1,6 @@
 import { defineComponent, reactive, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import DEMO_MENU from '@/components/demo'
 
@@ -9,17 +9,17 @@ const bem = createNamespace('menu-demo')
 const menu = DEMO_MENU.map(({ name, path }) => ({
   children: [
     {
-      legend: `Home from ${name} 1`,
+      legend: `홈페이지 from ${name} 1`,
       name: `home from ${name} 1`,
       path: '/',
     },
     {
-      legend: `Home from ${name} 2`,
+      legend: `홈페이지 from ${name} 2`,
       name: `home from ${name} 2`,
       path: '/',
     },
     {
-      legend: `Home from ${name} 3`,
+      legend: `홈페이지 from ${name} 3`,
       name: `home from ${name} 3`,
       path: '/',
     },
@@ -44,7 +44,7 @@ export default defineComponent({
           accordion={false}
           class={bem('menu')}
           icon="api"
-          legend="Menu"
+          legend="메뉴"
           options={options}
           width={300}
         />

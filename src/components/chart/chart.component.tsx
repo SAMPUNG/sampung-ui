@@ -1,7 +1,7 @@
 import { getInstanceByDom, init } from 'echarts'
 import { defineComponent, onUnmounted, onMounted } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import chartProps from './chart.props'
 import './chart.scss'
@@ -54,6 +54,11 @@ export default defineComponent({
       observer?.disconnect()
     })
 
-    return () => <div class={bem()} id={props.id} />
+    return () => (
+      <div
+        class={bem()}
+        id={props.id}
+      />
+    )
   },
 })

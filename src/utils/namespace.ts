@@ -1,4 +1,4 @@
-import type { Bem } from '@/types/component'
+import type { Bem } from '@/types/'
 
 export const block: string = 'sam'
 
@@ -25,10 +25,6 @@ export const createNamespace = (element: string) => {
   const history: Bem[] = []
   const name: string = block + element
 
-  function bem(): string
-  function bem(offspring: string): string
-  function bem(modifiers: string[]): string
-  function bem(offspring: string, modifiers: string[]): string
   function bem(a?: string | string[], b?: string[]): string {
     const offspring = typeof a === 'string' ? a : undefined
     const modifiers = Array.isArray(a) ? a : b

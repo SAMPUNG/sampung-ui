@@ -1,6 +1,6 @@
 import { defineComponent, provide, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import formEmits from './form.emits'
 import formProps from './form.props'

@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 const bem = createNamespace('affix-demo')
 
@@ -9,7 +9,10 @@ export default defineComponent({
   setup() {
     return () => (
       <div class={bem()}>
-        <sam-affix horizontal="right" legend="Affix">
+        <sam-affix
+          horizontal="right"
+          legend="Affix"
+        >
           <div>Slot Default</div>
         </sam-affix>
         <div class={bem('content')} />

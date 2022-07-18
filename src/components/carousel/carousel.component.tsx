@@ -1,6 +1,6 @@
 import { computed, defineComponent, onMounted, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import carouselProps from './carousel.props'
 import './carousel.scss'
@@ -26,7 +26,6 @@ export default defineComponent({
 
     const itemStyle = computed(() => {
       const itemWidth = (100 / props.options.length).toFixed(2)
-      console.log('ss')
       return {
         width: `${itemWidth}%`,
       }
@@ -46,10 +45,20 @@ export default defineComponent({
     return () => (
       <div class={bem()}>
         <div class="carousel-view">
-          <ul class="carousel-list" style={listStyle.value}>
+          <ul
+            class="carousel-list"
+            style={listStyle.value}
+          >
             {props.options?.map((url: string, index: number) => (
-              <li key={index} class="carousel-item" style={itemStyle.value}>
-                <img class="image" src={url} />
+              <li
+                key={index}
+                class="carousel-item"
+                style={itemStyle.value}
+              >
+                <img
+                  class="image"
+                  src={url}
+                />
               </li>
             ))}
           </ul>

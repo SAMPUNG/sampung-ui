@@ -1,6 +1,6 @@
 import { defineComponent, onMounted, ref } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import type { CalendarRecord } from './calendar.interface'
 import './calendar.scss'

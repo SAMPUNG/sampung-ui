@@ -1,6 +1,6 @@
 import { defineComponent, ref, watch } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import iconEmits from './icon.emits'
 import resolveSymbol from './icon.config'

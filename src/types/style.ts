@@ -2,24 +2,10 @@ export declare type Absolute = Location & {
   position: 'absolute'
 }
 
-export declare type Appearance = 'dashed' | 'fill' | 'legacy' | 'outline'
-
-export declare type Atom = HTMLElement | null | undefined
-
-export declare type Bem = {
-  block: string
-  element?: string
-  modifier?: string
-}
-
 export declare type Block = {
   display: 'block' | 'inline-block'
   width?: string
 }
-
-export declare type Container = 'parent' | 'body'
-
-export declare type Direction = 'horizontal' | 'vertical'
 
 export declare type Flex = {
   alignItems?: 'baseline' | 'center' | 'flex-end' | 'flex-start' | 'stretch'
@@ -44,13 +30,6 @@ export declare type Location = {
   top?: Property
   zIndex?: number
 }
-
-export declare type Palette =
-  | 'error'
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'warning'
 
 export declare type Position = {
   position: 'absolute' | 'fixed' | 'relative' | 'static' | 'sticky'
@@ -77,5 +56,3 @@ export declare type Size = {
 }
 
 export declare type Property = number | string | undefined
-
-export declare type Theme = 'dark' | 'light'

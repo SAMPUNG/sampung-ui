@@ -1,11 +1,9 @@
 import { defineComponent, inject, onMounted, watch } from 'vue'
 
-import { createNamespace, validateEmpty } from '@/utils/'
+import { createNamespace } from '@/utils'
 
-import {
-  type FieldProvide,
-  fieldProvide,
-} from '@/components/field/field.interface'
+import fieldProvide from '@/components/field/field.provide'
+import type { FieldProvide } from '@/components/field/field.interface'
 
 import type { InputValue } from './input.interface'
 import inputEmits from './input.emits'
@@ -23,11 +21,11 @@ export default defineComponent({
 
     const onBlur = (): void => {
       context.emit('blur', props.name)
-      field?.onBlur()
+      field?.blur()
     }
     const onFoucs = (): void => {
       context.emit('focus', props.name)
-      field?.onFocus()
+      field?.focus()
     }
     const onInput = (event: Event): void => {
       const target = event.target as HTMLInputElement
@@ -35,9 +33,8 @@ export default defineComponent({
     }
 
     const updateValue = (value: InputValue): void => {
-      context.emit('update:modelValue', value, props.name)
-      const empty = validateEmpty(value)
-      field?.updateStatus('empty', empty)
+      context.emit('update:modelValue', value)
+      field?.validate(value)
     }
 
     watch(() => props.modelValue, updateValue)
@@ -58,6 +55,7 @@ export default defineComponent({
         min={props.min}
         name={props.name}
         placeholder={props.placeholder}
+        readonly={props.readonly}
         step={props.step}
         type={props.type}
         value={props.modelValue}

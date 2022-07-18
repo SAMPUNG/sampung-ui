@@ -1,7 +1,7 @@
 import { defineComponent, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import DEMO_MENU from '@/components/demo'
 import type { MenuValue } from '@/components/menu/menu.interface'
@@ -48,7 +48,12 @@ export default defineComponent({
             palette="primary"
           />
         </sam-affix>
-        <sam-affix container="body" offset-x={0} offset-y={0} vertical="both">
+        <sam-affix
+          container="body"
+          offset-x={0}
+          offset-y={0}
+          vertical="both"
+        >
           <sam-menu
             v-model={selected.value}
             class={bem('menu')}

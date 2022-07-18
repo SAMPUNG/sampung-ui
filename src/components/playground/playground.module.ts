@@ -1,4 +1,4 @@
-import resolveInstall from '@/utils/install'
+import { resolveInstall } from '@/utils'
 
 import component from './palyground.component'
 

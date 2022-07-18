@@ -1,6 +1,6 @@
 import type { PropType } from 'vue'
 
-import type { Appearance, Palette } from '@/types/component'
+import type { Appearance, Palette } from '@/types'
 
 import type { ButtonMode, ButtonType } from './button.interface'
 

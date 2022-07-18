@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import type { Appearance, Palette } from '@/types/component'
+import type { Appearance, Palette } from '@/types'
 
 export default {
   appearance: {

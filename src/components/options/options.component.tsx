@@ -1,6 +1,6 @@
 import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 
-import { createNamespace, resolveDataset, resolveUniqueId } from '@/utils/'
+import { createNamespace, resolveDataset, resolveUniqueId } from '@/utils'
 
 import OptionIcon from '@/components/icon/icon.component'
 
@@ -71,7 +71,12 @@ export default defineComponent({
       if (!option?.icon) {
         return ''
       }
-      return <option-icon class={bem('icon')} name={option.icon} />
+      return (
+        <option-icon
+          class={bem('icon')}
+          name={option.icon}
+        />
+      )
     }
     const renderLegend = (option: OptionRecord) => {
       return <span class={bem('legend')}>{option?.legend || option.name}</span>
@@ -154,7 +159,12 @@ export default defineComponent({
         value: props.modelValue.join(','),
       })
       return (
-        <ul class={bem()} {...dataset} id={id.value} style={direction.value}>
+        <ul
+          class={bem()}
+          {...dataset}
+          id={id.value}
+          style={direction.value}
+        >
           {renderOptions()}
         </ul>
       )

@@ -1,6 +1,6 @@
 import { computed, defineComponent } from 'vue'
 
-import createNamespace from '@/utils/namespace'
+import { createNamespace } from '@/utils'
 
 import './marquee.scss'
 
@@ -21,6 +21,11 @@ export default defineComponent({
       width: `${props.size * 2}px`,
     }))
 
-    return () => <span class={bem()} style={style.value}></span>
+    return () => (
+      <span
+        class={bem()}
+        style={style.value}
+      ></span>
+    )
   },
 })

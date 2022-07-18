@@ -1,13 +1,30 @@
 /* eslint-disable no-unused-vars */
 
-import type { InjectionKey } from 'vue'
+import type { ComponentPublicInstance, ExtractPropTypes } from 'vue'
 
-declare type FieldProvideRecord = {
-  onBlur: () => void
-  onFocus: () => void
-  updateStatus: (key: 'empty' | 'focus', value: boolean) => void
+import type { InputValue } from '@/components/input/input.interface'
+
+import fieldProps from './field.props'
+
+export declare type FieldExpose = {
+  blur: () => void
+  clear: () => void
+  focus: () => void
+  validate: (value: InputValue) => void
 }
 
-export declare type FieldProvide = FieldProvideRecord | undefined
+export declare type FieldInstance = ComponentPublicInstance<
+  FieldProps,
+  FieldExpose
+>
 
-export const fieldProvide = Symbol() as InjectionKey<FieldProvide>
+export declare type FieldProps = ExtractPropTypes<typeof fieldProps>
+
+export declare type FieldProvide = FieldExpose | undefined
+
+export declare type FieldStatus = {
+  focus: boolean
+  empty: boolean
+  valid: boolean
+  waiting: boolean
+}
