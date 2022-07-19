@@ -1,15 +1,14 @@
 import type { PropType } from 'vue'
 
-import type { Appearance, Container, Palette } from '@/types'
+import type { Container } from '@/types'
+
+import { includesBaseProps } from "@/utils"
 
 import type { AffixHorizontal, AffixVertical } from './affix.interface'
 
 export default {
-  appearance: {
-    default: 'outline',
-    required: false,
-    type: String as PropType<Appearance>,
-  },
+  ...includesBaseProps(),
+
   container: {
     default: 'parent',
     required: false,
@@ -20,21 +19,6 @@ export default {
     required: false,
     type: String as PropType<AffixHorizontal>,
   },
-  icon: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  legend: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  name: {
-    default: '',
-    required: false,
-    type: String,
-  },
   offsetX: {
     default: 16,
     required: false,
@@ -44,11 +28,6 @@ export default {
     default: 16,
     required: false,
     type: Number,
-  },
-  palette: {
-    default: 'primary',
-    required: false,
-    type: String as PropType<Palette>,
   },
   vertical: {
     default: 'top',

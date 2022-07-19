@@ -1,19 +1,16 @@
 import type { PropType } from 'vue'
 
-import type { Appearance } from '@/types'
+import { includesBaseProps } from '@/utils'
+
 import type { SelectOption, SelectValue } from './select.interface'
 
 export default {
-  appearance: {
-    default: 'legacy',
-    required: false,
-    type: String as PropType<Appearance>,
-  },
-  legend: {
-    default: 'Select',
-    required: false,
-    type: String,
-  },
+  ...includesBaseProps({
+    appearance: 'legacy',
+    legend: 'Select',
+    name: 'select'
+  }),
+
   modelValue: {
     default: '',
     required: false,
@@ -23,11 +20,6 @@ export default {
     default: false,
     required: false,
     type: Boolean,
-  },
-  name: {
-    default: 'select',
-    required: false,
-    type: String,
   },
   options: {
     default: () => [],

@@ -1,31 +1,39 @@
 import type { PropType } from 'vue'
 
-import type { Appearance, Palette } from '@/types/'
+import type { Appearance, Legend, Palette } from '@/types/'
 
-export default {
+export declare type BasePropsDefaults = {
+  appearance?: Appearance
+  icon?: string
+  legend?: Legend
+  name?: string
+  palette?: Palette
+}
+
+export const includesBaseProps = (defaults?: BasePropsDefaults) => ({
   appearance: {
-    default: 'outline',
+    default: defaults?.appearance || 'outline',
     required: false,
     type: String as PropType<Appearance>,
   },
   icon: {
-    default: undefined,
+    default: defaults?.icon,
     required: false,
     type: String,
   },
   legend: {
-    default: undefined,
+    default: defaults?.legend,
     required: false,
-    type: String,
+    type: [String, Object] as PropType<Legend>,
   },
   name: {
-    default: undefined,
+    default: defaults?.name,
     required: false,
     type: String,
   },
   palette: {
-    default: 'primary',
+    default: defaults?.palette || 'primary',
     required: false,
     type: String as PropType<Palette>,
   },
-}
+})

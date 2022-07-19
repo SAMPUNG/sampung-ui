@@ -1,7 +1,6 @@
 import { type PropType } from 'vue'
 
-import type { Appearance } from '@/types'
-import { validateRegular } from '@/utils'
+import { includesBaseProps, validateRegular } from '@/utils'
 
 import type { DropdownOption, DropdownValue } from './dropdown.interface'
 
@@ -16,21 +15,10 @@ import type { DropdownOption, DropdownValue } from './dropdown.interface'
 // - Trigger
 
 export default {
-  appearance: {
-    default: 'outline',
-    required: false,
-    type: String as PropType<Appearance>,
-  },
-  icon: {
-    default: 'expand-more',
-    required: false,
-    type: String,
-  },
-  legend: {
-    default: '',
-    required: false,
-    type: String,
-  },
+  ...includesBaseProps({
+    icon: 'expand-more',
+  }),
+
   maxColumnWidth: {
     default: 225,
     required: false,
@@ -50,11 +38,6 @@ export default {
     default: 125,
     required: false,
     type: Number,
-  },
-  name: {
-    default: '',
-    required: false,
-    type: String,
   },
   options: {
     default: () => [],

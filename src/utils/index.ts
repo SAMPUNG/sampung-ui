@@ -1,6 +1,7 @@
 export * from './attributes'
 export * from './install'
 export * from './namespace'
+export * from './props'
 export * from './reactive'
 export * from './style'
 export * from './validate'

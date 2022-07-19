@@ -1,6 +1,8 @@
 import { defineComponent, ref } from 'vue'
 
-import { createNamespace } from '@/utils'
+import { HELLO_WORLD } from '@/i18n'
+
+import { createNamespace, resolveI18n } from '@/utils'
 
 const bem = createNamespace('dialog-demo')
 
@@ -36,7 +38,7 @@ export default defineComponent({
                 width: '600px',
               }}
             >
-              <span>전 세계 여러분 안녕하세요</span>
+              <span {...resolveI18n(HELLO_WORLD)}/>
             </div>
           </sam-dialog>
         </div>

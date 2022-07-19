@@ -1,14 +1,16 @@
 import { type PropType } from 'vue'
 
-import type { Appearance } from '@/types'
+import { includesBaseProps } from '@/utils'
+
 import type { PopupContainer, PopupPosition } from './popup.interface'
 
 export default {
-  appearance: {
-    default: 'outline',
-    required: false,
-    type: String as PropType<Appearance>,
-  },
+  ...includesBaseProps({
+    icon: 'flare',
+    legend: 'Popup',
+    name: 'popup'
+  }),
+
   container: {
     default: 'parent',
     required: false,
@@ -29,25 +31,10 @@ export default {
     required: false,
     type: Boolean,
   },
-  icon: {
-    default: 'flare',
-    required: false,
-    type: String,
-  },
-  legend: {
-    default: 'Popup',
-    required: false,
-    type: String,
-  },
   modelValue: {
     default: false,
     required: true,
     type: Boolean,
-  },
-  name: {
-    default: 'popup',
-    required: false,
-    type: String,
   },
   position: {
     default: 'center',

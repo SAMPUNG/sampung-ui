@@ -1,32 +1,12 @@
-import { type PropType } from 'vue'
-
-import type { Appearance } from '@/types'
+import { includesBaseProps } from '@/utils'
 
 export default {
-  appearance: {
-    default: 'outline',
-    required: false,
-    type: String as PropType<Appearance>,
-  },
-  icon: {
-    default: '',
-    required: false,
-    type: String,
-  },
-  legend: {
-    default: '',
-    required: false,
-    type: String,
-  },
+  ...includesBaseProps(),
+
   modelValue: {
     default: false,
     required: true,
     type: Boolean,
-  },
-  name: {
-    default: '',
-    required: false,
-    type: String,
   },
   withClose: {
     default: true,

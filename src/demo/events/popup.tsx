@@ -1,6 +1,9 @@
 import { defineComponent, ref } from 'vue'
 
-import { createNamespace } from '@/utils'
+import { HELLO_WORLD } from '@/i18n'
+
+import { createNamespace, resolveI18n } from '@/utils'
+
 import popupBounds from '@/components/popup/popup.bounds'
 import type { PopupPosition } from '@/components/popup/popup.interface'
 
@@ -37,7 +40,7 @@ export default defineComponent({
             width: '300px',
           }}
         >
-          hello, world
+          <span {...resolveI18n(HELLO_WORLD)}/>
         </div>
       ),
       entry: () => (

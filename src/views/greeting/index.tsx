@@ -44,7 +44,7 @@ export default defineComponent({
         <span
           class={bem()}
           {...resolveI18n(HELLO_WORLD)}
-        ></span>
+        />
       </div>
     )
   },

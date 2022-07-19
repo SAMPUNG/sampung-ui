@@ -1,6 +1,8 @@
 import { defineComponent } from 'vue'
 
-import { createNamespace } from '@/utils'
+import { HELLO_WORLD } from '@/i18n'
+
+import { createNamespace, resolveI18n } from '@/utils'
 
 import style from './mosaic.module.scss'
 
@@ -9,6 +11,8 @@ const bem = createNamespace('mosaic')
 export default defineComponent({
   name: bem(),
   setup() {
-    return () => <div class={style[bem()]}>hello, world</div>
+    return () => <div class={style[bem()]}>
+      <span {...resolveI18n(HELLO_WORLD)}/>
+    </div>
   },
 })

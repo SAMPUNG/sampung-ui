@@ -1,44 +1,21 @@
 import type { PropType } from 'vue'
 
-import type { Appearance, Palette } from '@/types'
+import { includesBaseProps } from '@/utils'
 
 import type { ButtonMode, ButtonType } from './button.interface'
 
 export default {
-  appearance: {
-    default: 'outline',
-    required: false,
-    type: String as PropType<Appearance>,
-  },
-  icon: {
-    default: undefined,
-    required: false,
-    type: String,
-  },
+  ...includesBaseProps(),
+
   inline: {
     default: true,
     required: false,
     type: Boolean,
   },
-  legend: {
-    default: undefined,
-    required: false,
-    type: String,
-  },
   mode: {
     default: 'normal',
     required: false,
     type: String as PropType<ButtonMode>,
-  },
-  name: {
-    default: undefined,
-    required: false,
-    type: String,
-  },
-  palette: {
-    default: 'primary',
-    required: false,
-    type: String as PropType<Palette>,
   },
   type: {
     default: 'button',

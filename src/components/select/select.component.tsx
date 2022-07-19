@@ -1,4 +1,4 @@
-import { defineComponent, inject, ref } from 'vue'
+import { computed, defineComponent, inject, ref } from 'vue'
 
 import { createNamespace, resolveDataset, resolveUniqueId } from '@/utils'
 
@@ -29,6 +29,7 @@ export default defineComponent({
   props: selectProps,
   emits: selectEmits,
   setup(props, context) {
+    const display = computed(() => resolveDisplay())
     const field: FieldProvide = inject(fieldProvide)
     const id = ref<string>(resolveUniqueId())
     const options = ref<typeof SelectOptions>()
@@ -58,11 +59,16 @@ export default defineComponent({
         >
           <select-input
             autocomplete="new-password"
-            modelValue={props.modelValue}
+            modelValue={display.value}
             readonly
-            name="name-demo"
             onFocus={onFocus}
             placeholder="Please input something……"
+          />
+          <select-input
+            modelValue={props.modelValue}
+            readonly
+            name={props.name}
+            type="hidden"
           />
           <select-icon
             class={bem('clear')}
@@ -81,7 +87,7 @@ export default defineComponent({
 
     const onBlur = (): void => {
       setTimeout(() => {
-        popover.value = false
+        onToggle(false)
       }, 150)
     }
     const onChange = (value: OptionName) => {
@@ -92,15 +98,20 @@ export default defineComponent({
     const onClear = (): void => {
       context.emit('update:modelValue', undefined)
       context.emit('clear', props.name)
-      popover.value = false
+      onToggle(false)
     }
     const onFocus = (): void => {
-      popover.value = true
+      onToggle(true)
     }
     const onToggle = (value?: boolean): void => {
       const visible = typeof value === 'boolean' ? value : !popover.value
       popover.value = visible
     }
+
+    const resolveDisplay = (): string => props.options
+      .filter(({ name }) => name === props.modelValue)
+      .map(({ legend }) => legend)
+      .join(',')
 
     return () => (
       <select-popup

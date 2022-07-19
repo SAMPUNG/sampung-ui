@@ -1,6 +1,8 @@
 import { defineComponent, ref } from 'vue'
 
-import { createNamespace } from '@/utils'
+import { HELLO_WORLD } from '@/i18n'
+
+import { createNamespace, resolveI18n } from '@/utils'
 
 const bem = createNamespace('accordion-demo')
 
@@ -25,7 +27,7 @@ export default defineComponent({
               width: '600px',
             }}
           >
-            hello, world
+            <span {...resolveI18n(HELLO_WORLD)}/>
           </div>
         </sam-accordion>
       </div>
