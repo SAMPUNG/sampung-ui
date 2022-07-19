@@ -1,6 +1,6 @@
 import { resolveInstall } from '@/utils'
 
-import component from './palyground.component'
+import component from './playground.component'
 
 export const Playground = resolveInstall(component)
 export default Playground

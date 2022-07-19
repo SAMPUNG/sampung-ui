@@ -1,0 +1,17 @@
+:lang(en) {
+  [data-i18n-en]::before {
+    content: attr(data-i18n-en);
+  }
+}
+
+:lang(kr) {
+  [data-i18n-kr]::before {
+    content: attr(data-i18n-kr);
+  }
+}
+
+:lang(zh) {
+  [data-i18n-zh]::before {
+    content: attr(data-i18n-zh);
+  }
+}

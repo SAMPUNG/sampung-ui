@@ -1,0 +1,128 @@
+.sam-demo {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  padding: 20px;
+  width: 1200px;
+
+  &-playground {
+    width: 50%;
+  }
+  &-controls {
+    width: 50%;
+  }
+}
+
+.sam-affix-demo {
+  background: var(--skeleton);
+  border-color: var(--primary);
+  border-style: solid;
+  border-width: 1px;
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+
+  &-content {
+    height: 2400px;
+    width: 100%;
+  }
+}
+
+.sam-button-demo {
+  position: relative;
+
+  &-table {
+    border-collapse: collapse;
+    border-color: var(--primary);
+    border-style: solid;
+    border-width: 1px;
+    width: 100%;
+
+    th,
+    td {
+      border-color: var(--primary);
+      border-style: solid;
+      border-width: 1px;
+      height: var(--input);
+      min-width: 60px;
+    }
+  }
+  &-line {
+    margin: 24px 0;
+  }
+}
+
+.sam-dropdown-demo {
+  position: relative;
+
+  &-display {
+    margin: 64px 0 0 0;
+  }
+}
+
+.sam-effect-demo {
+  position: relative;
+
+  &-cube {
+    background: repeating-linear-gradient(
+      45deg,
+      black,
+      black 45px,
+      transparent 45px,
+      transparent 90px,
+      grey 90px,
+      grey 135px
+    );
+    height: 300px;
+    margin: 0 auto;
+    outline-color: var(--primary);
+    outline-offset: -1px;
+    outline-style: solid;
+    outline-width: 1px;
+    position: relative;
+    width: 300px;
+  }
+}
+
+.sam-icon-demo {
+  background: var(--skeleton);
+
+  &-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style-type: disc;
+  }
+  &-item {
+    align-items: center;
+    display: flex;
+    height: 2.5em;
+    text-align: left;
+    min-width: 50%;
+  }
+  &-icon {
+    color: var(--primary);
+    font-size: 1.5em;
+    text-align: center;
+    width: 2.5em;
+  }
+  &-text {
+    color: var(--text);
+  }
+}
+
+.sam-menu-demo {
+  height: calc(100vh - 64px);
+
+  &-menu {
+    height: 100%;
+  }
+}
+
+.sam-options-demo {
+  text-align: left;
+}

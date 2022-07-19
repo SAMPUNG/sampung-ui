@@ -2,7 +2,7 @@ import { defineComponent, ref } from 'vue'
 
 import { createNamespace } from '@/utils'
 
-import type { EffectInstance } from './effect.interface'
+import type { EffectInstance } from '@/components/effect/effect.interface'
 
 const bem = createNamespace('effect-demo')
 

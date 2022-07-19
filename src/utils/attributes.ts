@@ -1,4 +1,4 @@
-import type { Dataset, Props } from '@/types/'
+import type { Dataset, I18n, Props } from '@/types/'
 
 import { block } from './namespace'
 
@@ -6,7 +6,7 @@ export const resolveDataset = (
   props: Props,
   target: string[] = []
 ): Dataset => {
-  const dataset: Dataset = { i18n: true }
+  const dataset: Dataset = {}
   const parseDataset = (key: string) => {
     const value = props[key]
     switch (typeof value) {
@@ -34,8 +34,15 @@ export const resolveDataset = (
   return dataset
 }
 
-export const resolveI18n = (props: Props): Dataset =>
-  resolveDataset(Object.assign({ i18n: true }, props))
+export const resolveI18n = (i18n: I18n): Dataset => {
+  const dataset: Dataset = {}
+
+  Object.entries(i18n).forEach(([key, value]) => {
+    dataset[`data-i18n-${key}`] = value
+  })
+
+  return dataset
+}
 
 export const resolveUniqueId = (): string => {
   const now = Date.now()

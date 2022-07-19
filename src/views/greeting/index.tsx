@@ -3,7 +3,9 @@ import { defineComponent, ref } from 'vue'
 import { createNamespace, resolveI18n } from '@/utils'
 import type { Language } from '@/types'
 
-import lang from './lang'
+import { HELLO_WORLD } from '@/i18n'
+
+import './style.scss'
 
 const bem = createNamespace('greeting')
 
@@ -35,12 +37,13 @@ export default defineComponent({
       <div class={bem('pack')}>
         <sam-select
           v-model={selected.value}
+          legend="Language"
           options={defaultOptions}
           onChange={onChange}
         />
         <span
           class={bem()}
-          {...resolveI18n(lang.greeting)}
+          {...resolveI18n(HELLO_WORLD)}
         ></span>
       </div>
     )

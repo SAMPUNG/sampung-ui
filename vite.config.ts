@@ -14,7 +14,7 @@ export default defineConfig(() => ({
     },
     preprocessorOptions: {
       scss: {
-        '$block': 'sam',
+        $block: 'sam',
       },
     },
   },

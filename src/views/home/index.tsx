@@ -3,10 +3,10 @@ import { useRoute } from 'vue-router'
 
 import { createNamespace } from '@/utils'
 
-import DEMO_MENU from '@/components/demo'
+import DEMO_MENU from '@/demo/routes'
 import type { MenuValue } from '@/components/menu/menu.interface'
 
-import '@/styles/demo.scss'
+import './style.scss'
 
 const bem = createNamespace('home')
 

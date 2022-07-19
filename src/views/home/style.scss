@@ -1,0 +1,65 @@
+.sam-home {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 32px 0;
+  text-align: center;
+
+  &-title {
+    color: var(--text);
+    font-size: 32px;
+    line-height: 3;
+    text-decoration: none;
+
+    :hover {
+      color: var(--primary);
+    }
+  }
+  &-nav {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 16px;
+
+    li {
+      line-height: 2;
+      width: 200px;
+
+      :hover {
+        background: var(--primary);
+        color: var(--highlight);
+      }
+    }
+    a {
+      color: var(--text);
+      display: block;
+      font-weight: bold;
+      text-decoration: none;
+
+      &.router-link-exact-active {
+        color: var(--primary);
+      }
+      &:hover {
+        color: var(--text);
+      }
+    }
+    .label {
+      display: inline-block;
+      text-align: right;
+      width: 50%;
+
+      &::after {
+        content: ':';
+        margin: 0 8px 0 0;
+      }
+    }
+    .value {
+      display: inline-block;
+      text-align: left;
+      width: 50%;
+    }
+  }
+  &-menu {
+    height: 100%;
+  }
+}

@@ -2,7 +2,7 @@ import { defineComponent, reactive, ref } from 'vue'
 
 import { createNamespace } from '@/utils'
 
-import DEMO_MENU from '@/components/demo'
+import DEMO_MENU from '@/demo/routes'
 
 const bem = createNamespace('menu-demo')
 
