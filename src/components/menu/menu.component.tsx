@@ -1,7 +1,7 @@
 import { computed, defineComponent, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import MenuAccordion from '@/components/accordion/accordion.component'
+import MenuTelescope from '@/components/telescope/telescope.component'
 import MenuIcon from '@/components/icon/icon.component'
 import { createNamespace, resolveDataset } from '@/utils'
 
@@ -15,7 +15,7 @@ const bem = createNamespace('menu')
 export default defineComponent({
   name: bem(),
   components: {
-    MenuAccordion,
+    MenuTelescope,
     MenuIcon,
   },
   props: menuProps,
@@ -93,7 +93,7 @@ export default defineComponent({
       }
       return props.options.map((item: MenuOption) =>
         item.children ? (
-          <menu-accordion
+          <menu-telescope
             class={bem('submenu')}
             data-name={item.name}
             data-level={1}
@@ -105,7 +105,7 @@ export default defineComponent({
             onClick={() => onExpand(item.name)}
           >
             {renderSubmenu(item.children)}
-          </menu-accordion>
+          </menu-telescope>
         ) : (
           renderLink(item, '1st')
         )

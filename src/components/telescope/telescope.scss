@@ -1,0 +1,80 @@
+.sam-telescope {
+  backdrop-filter: blur(2px);
+  background: var(--skeleton);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0 8px;
+  position: relative;
+
+  &[data-status='expanded'] &-status {
+    transform: rotate(180deg);
+  }
+  &[data-status='expanded'] &-header {
+    border-bottom: 1px solid var(--border);
+  }
+
+  &-header {
+    background: inherit;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    height: var(--nav);
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+  }
+  &-title {
+    height: var(--nav);
+    line-height: var(--nav);
+    overflow: hidden;
+    text-align: left;
+  }
+  &-icon {
+    margin: 0 4px 2px 0;
+  }
+  &-status {
+    color: var(--border);
+    cursor: pointer;
+    font-weight: 100;
+    transition-duration: 0.3s;
+  }
+
+  &-body {
+    background: inherit;
+    &[data-visible='true'] {
+      height: auto;
+      opacity: 1;
+      padding: 8px 0;
+      transition-delay: 0s;
+      transition-duration: 0.3s;
+      visibility: visible;
+    }
+    &[data-visible='false'] {
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition-delay: 0s;
+      transition-duration: 0.15s;
+      visibility: hidden;
+    }
+  }
+
+  &-footer {
+    align-items: center;
+    background: inherit;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    height: var(--nav);
+    justify-content: flex-end;
+    position: sticky;
+
+    &[data-visible='true'] {
+      border-top: 1px solid var(--border);
+    }
+    &[data-visible='false'] {
+      display: none;
+    }
+  }
+}

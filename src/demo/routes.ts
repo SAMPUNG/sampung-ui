@@ -1,6 +1,6 @@
 export default [
   {
-    component: () => import('./events/accordion'),
+    component: () => import('./designs/accordion'),
     name: 'Accordion',
     path: 'accordion-demo',
   },
@@ -20,12 +20,12 @@ export default [
     path: 'calendar-demo',
   },
   {
-    component: () => import('./tools/carousel'),
+    component: () => import('./designs/carousel'),
     name: 'Carousel',
     path: 'carousel-demo',
   },
   {
-    component: () => import('./tools/chart'),
+    component: () => import('./designs/chart'),
     name: 'Chart',
     path: 'chart-demo',
   },
@@ -50,7 +50,7 @@ export default [
     path: 'effect-demo',
   },
   {
-    component: () => import('./data/form'),
+    component: () => import('./schemas/form'),
     name: 'Form',
     path: 'form-demo',
   },
@@ -75,7 +75,7 @@ export default [
     path: 'popup-demo',
   },
   {
-    component: () => import('./data/select'),
+    component: () => import('./schemas/select'),
     name: 'Select',
     path: 'select-demo',
   },
@@ -83,5 +83,10 @@ export default [
     component: () => import('./router/tabs'),
     name: 'Tabs',
     path: 'tabs-demo',
+  },
+  {
+    component: () => import('./events/telescope'),
+    name: 'Telescope',
+    path: 'telescope-demo',
   },
 ]
