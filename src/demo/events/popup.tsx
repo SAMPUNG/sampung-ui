@@ -1,28 +1,11 @@
 import { defineComponent, ref } from 'vue'
 
+import type { PopupPosition } from '@/components/popup/popup.interface'
+import { BOOLEAN, POPUP_POSITION } from '@/configs'
 import { HELLO_WORLD } from '@/i18n'
-
 import { createNamespace, resolveI18n } from '@/utils'
 
-import popupBounds from '@/components/popup/popup.bounds'
-import type { PopupPosition } from '@/components/popup/popup.interface'
-
 const bem = createNamespace('popup-demo')
-
-const booleanOptions = [
-  {
-    legend: 'False',
-    name: false,
-  },
-  {
-    legend: 'True',
-    name: true,
-  },
-]
-const positionOptions = popupBounds.map(({ name }) => ({
-  legend: name,
-  name,
-}))
 
 export default defineComponent({
   name: bem(),
@@ -63,19 +46,19 @@ export default defineComponent({
             v-model={inline.value}
             legend="Inline"
             name="inline"
-            options={booleanOptions}
+            options={BOOLEAN}
           />
           <sam-select
             v-model={inset.value}
             legend="Inset"
             name="inset"
-            options={booleanOptions}
+            options={BOOLEAN}
           />
           <sam-select
             v-model={position.value}
             legend="Position"
             name="position"
-            options={positionOptions}
+            options={POPUP_POSITION}
           />
           <div style="height: 300px" />
           <sam-popup

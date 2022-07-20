@@ -59,6 +59,13 @@ export default defineComponent({
       validate: onValidate,
     })
 
+    context.expose({
+      blur: onBlur,
+      clear: onClear,
+      focus: onFocus,
+      validate: onValidate,
+    })
+
     return () => (
       <fieldset
         class={[bem()]}

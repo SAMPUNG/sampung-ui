@@ -5,7 +5,8 @@ import type { ComponentPublicInstance, ExtractPropTypes } from 'vue'
 import accordionProps from './accordion.props'
 
 export declare type AccordionExpose = {
-  toggle: (value?: boolean) => void
+  blur: () => void
+  focus: (name: string) => void
 }
 
 export declare type AccordionInstance = ComponentPublicInstance<

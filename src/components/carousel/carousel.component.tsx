@@ -49,7 +49,7 @@ export default defineComponent({
             class="carousel-list"
             style={listStyle.value}
           >
-            {props.options?.map((url: string, index: number) => (
+            {props.options?.map((item, index: number) => (
               <li
                 key={index}
                 class="carousel-item"
@@ -57,7 +57,7 @@ export default defineComponent({
               >
                 <img
                   class="image"
-                  src={url}
+                  src={item.poster}
                 />
               </li>
             ))}
@@ -76,7 +76,7 @@ export default defineComponent({
           <i class="fks-icon-arrow-right" />
         </div>
         <ul class="indicator">
-          {props.options?.map((url: string, index: number) => (
+          {props.options?.map((item, index) => (
             <li
               key={index}
               class={['indicator-item', resolveDisplay(index)]}

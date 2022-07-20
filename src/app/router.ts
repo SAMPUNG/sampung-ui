@@ -6,13 +6,13 @@ const routes: Array<RouteRecordRaw> = [
   {
     children: [
       {
-        component: () => import('@/views/greeting'),
+        component: () => import('@/pages/greeting'),
         name: 'Greeting',
         path: '',
       },
       ...demo,
     ],
-    component: () => import('@/views/home'),
+    component: () => import('@/pages/home'),
     name: 'Home',
     path: '/',
   },

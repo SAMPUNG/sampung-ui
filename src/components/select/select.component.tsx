@@ -1,10 +1,9 @@
-import { computed, defineComponent, inject, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 
 import { createNamespace, resolveDataset, resolveUniqueId } from '@/utils'
 
 import SelectField from '@/components/field/field.component'
-import fieldProvide from '@/components/field/field.provide'
-import type { FieldProvide } from '@/components/field/field.interface'
+import type { FieldInstance } from '../field/field.interface'
 import SelectIcon from '@/components/icon/icon.component'
 import SelectInput from '@/components/input/input.component'
 import SelectOptions from '@/components/options/options.component'
@@ -30,7 +29,7 @@ export default defineComponent({
   emits: selectEmits,
   setup(props, context) {
     const display = computed(() => resolveDisplay())
-    const field: FieldProvide = inject(fieldProvide)
+    const field = ref<FieldInstance>()
     const id = ref<string>(resolveUniqueId())
     const options = ref<typeof SelectOptions>()
     const popover = ref<boolean>(false)
@@ -56,6 +55,7 @@ export default defineComponent({
           name={props.name}
           onBlur={onBlur}
           onClear={onClear}
+          ref={field}
         >
           <select-input
             autocomplete="new-password"
@@ -93,7 +93,7 @@ export default defineComponent({
     const onChange = (value: OptionName) => {
       context.emit('change', value, props.name)
       context.emit('update:modelValue', value)
-      field?.validate(value)
+      field.value?.validate(value)
     }
     const onClear = (): void => {
       context.emit('update:modelValue', undefined)

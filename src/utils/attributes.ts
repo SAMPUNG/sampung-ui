@@ -34,6 +34,21 @@ export const resolveDataset = (
   return dataset
 }
 
+export const resolveDichotomy = (value: string | string[]): Dataset => {
+  const dataset: Dataset = {}
+
+  if (typeof value === 'string') {
+    dataset[`data-${value}`] = ''
+    return dataset
+  }
+
+  value.forEach((item) => {
+    dataset[`data-${item}`] = ''
+  })
+
+  return dataset
+}
+
 export const resolveI18n = (i18n: I18n): Dataset => {
   const dataset: Dataset = {}
 

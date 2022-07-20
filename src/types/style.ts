@@ -23,6 +23,12 @@ export declare type Flex = {
     | 'stretch'
 }
 
+export declare type ImageBackground = {
+  backgroundImage?: string
+  backgroundSize?: string
+  backgroundPosition?: string
+}
+
 export declare type Location = {
   bottom?: Property
   left?: Property
