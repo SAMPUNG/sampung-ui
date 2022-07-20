@@ -2,7 +2,7 @@ import type { PropType } from 'vue'
 
 import type { Container } from '@/types'
 
-import { includesBaseProps } from "@/utils"
+import { includesBaseProps } from '@/utils'
 
 import type { AffixHorizontal, AffixVertical } from './affix.interface'
 

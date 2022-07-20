@@ -108,10 +108,11 @@ export default defineComponent({
       popover.value = visible
     }
 
-    const resolveDisplay = (): string => props.options
-      .filter(({ name }) => name === props.modelValue)
-      .map(({ legend }) => legend)
-      .join(',')
+    const resolveDisplay = (): string =>
+      props.options
+        .filter(({ name }) => name === props.modelValue)
+        .map(({ legend }) => legend)
+        .join(',')
 
     return () => (
       <select-popup

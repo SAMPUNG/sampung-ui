@@ -1,4 +1,4 @@
-import type { I18n } from "./base"
+import type { I18n } from './base'
 
 export declare type Appearance = 'dashed' | 'fill' | 'legacy' | 'outline'
 

@@ -8,7 +8,7 @@ export default {
   ...includesBaseProps({
     appearance: 'legacy',
     legend: 'Select',
-    name: 'select'
+    name: 'select',
   }),
 
   modelValue: {

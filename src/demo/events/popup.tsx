@@ -40,7 +40,7 @@ export default defineComponent({
             width: '300px',
           }}
         >
-          <span {...resolveI18n(HELLO_WORLD)}/>
+          <span {...resolveI18n(HELLO_WORLD)} />
         </div>
       ),
       entry: () => (

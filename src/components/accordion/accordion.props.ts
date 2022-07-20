@@ -1,4 +1,4 @@
-import { includesBaseProps } from "@/utils"
+import { includesBaseProps } from '@/utils'
 
 export default {
   ...includesBaseProps(),

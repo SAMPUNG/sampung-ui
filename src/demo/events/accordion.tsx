@@ -27,7 +27,7 @@ export default defineComponent({
               width: '600px',
             }}
           >
-            <span {...resolveI18n(HELLO_WORLD)}/>
+            <span {...resolveI18n(HELLO_WORLD)} />
           </div>
         </sam-accordion>
       </div>

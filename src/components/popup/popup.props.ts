@@ -8,7 +8,7 @@ export default {
   ...includesBaseProps({
     icon: 'flare',
     legend: 'Popup',
-    name: 'popup'
+    name: 'popup',
   }),
 
   container: {

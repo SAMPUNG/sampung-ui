@@ -11,8 +11,10 @@ const bem = createNamespace('mosaic')
 export default defineComponent({
   name: bem(),
   setup() {
-    return () => <div class={style[bem()]}>
-      <span {...resolveI18n(HELLO_WORLD)}/>
-    </div>
+    return () => (
+      <div class={style[bem()]}>
+        <span {...resolveI18n(HELLO_WORLD)} />
+      </div>
+    )
   },
 })
