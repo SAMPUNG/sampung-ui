@@ -1,0 +1,48 @@
+.sam-switch {
+  background-color: rgba(255, 255, 255, 70%);
+  border-radius: 0.5em;
+  cursor: pointer;
+  display: inline-block;
+  height: 1em;
+  margin: 0 0.6em;
+  overflow: visible;
+  position: relative;
+  width: 2em;
+
+  &[data-checked] {
+    background-color: var(--secondary);
+  }
+  &[data-checked] &-control {
+    background-color: var(--primary);
+    left: 1.4em;
+  }
+  &[data-disabled] {
+    background-color: rgba(255, 255, 255, 30%);
+    cursor: not-allowed;
+  }
+  &[data-disabled] &-control {
+    background-color: var(--text);
+  }
+
+  &-control {
+    background-color: var(--text);
+    border-radius: 0.6em;
+    height: 1.2em;
+    left: -0.6em;
+    position: absolute;
+    top: -0.1em;
+    transition-duration: 0.5s;
+    width: 1.2em;
+  }
+
+  &-label {
+    margin: 0 8px 0 0;
+  }
+
+  &-pack {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}

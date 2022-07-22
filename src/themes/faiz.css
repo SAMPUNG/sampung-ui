@@ -1,0 +1,31 @@
+:root {
+  --primary: #009688;
+  --primary-darker: #B2DFDB;
+  --primary-lighter: #00796B;
+  --secondary: #F44336;
+  --secondary-darker: #D32F2F;
+  --secondary-lighter: #FFCDD2;
+}
+
+/* Mode: Dark */
+:root[data-mode='dark'] {
+  --status-bar: #000000;
+  --app-bar: #212121;
+  --content: #303030;
+  --dialog: #424242;
+  --primary-text: #FFFFFF;
+  --secondary-text: #B3B3B3;
+  --disabled-text: #7F7F7F;
+  --divider-text: #1F1F1F;
+}
+/* Mode: Light */
+:root[data-mode='light'] {
+  --status-bar: #E0E0E0;
+  --app-bar: #F5F5F5;
+  --content: #FAFAFA;
+  --dialog: #FFFFFF;
+  --primary-text: #212121;
+  --secondary-text: #767676;
+  --disabled-text: #9f9f9f;
+  --divider-text: #e1e1e1;
+}

@@ -1,0 +1,25 @@
+.sam-radio {
+  color: rgba(255, 255, 255, 70%);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 24px;
+
+  &[data-checked] {
+    color: var(--primary);
+  }
+  &[data-disabled] {
+    color: rgba(255, 255, 255, 30%);
+    cursor: not-allowed;
+  }
+
+  &-label {
+    margin: 0 8px 0 0;
+  }
+
+  &-pack {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}

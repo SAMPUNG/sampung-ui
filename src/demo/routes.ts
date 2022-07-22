@@ -30,6 +30,11 @@ export default [
     path: 'chart-demo',
   },
   {
+    component: () => import('./schemas/checkbox'),
+    name: 'Checkbox',
+    path: 'checkbox-demo',
+  },
+  {
     component: () => import('./tools/clock'),
     name: 'Clock',
     path: 'clock-demo',
@@ -75,9 +80,19 @@ export default [
     path: 'popup-demo',
   },
   {
+    component: () => import('./schemas/radio'),
+    name: 'Radio',
+    path: 'radio-demo',
+  },
+  {
     component: () => import('./schemas/select'),
     name: 'Select',
     path: 'select-demo',
+  },
+  {
+    component: () => import('./schemas/switch'),
+    name: 'Switch',
+    path: 'switch-demo',
   },
   {
     component: () => import('./router/tabs'),

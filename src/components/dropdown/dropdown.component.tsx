@@ -14,7 +14,10 @@ const bem = createNamespace('dropdown')
 
 export default defineComponent({
   name: bem(),
-  components: { DropdownButton, DropdownOptions },
+  components: {
+    DropdownButton,
+    DropdownOptions,
+  },
   props: dropdownProps,
   emits: dropdownEmits,
   setup(props, context) {
