@@ -4,6 +4,7 @@ import { createNamespace, useBlock } from '@/utils'
 
 import ButtonEffect from '@/components/effect/effect.component'
 import ButtonIcon from '@/components/icon/icon.component'
+import ButtonLegend from '@/components/legend/legend.component'
 
 import buttonEmits from './button.emits'
 import buttonProps from './button.props'
@@ -16,6 +17,7 @@ export default defineComponent({
   components: {
     ButtonEffect,
     ButtonIcon,
+    ButtonLegend,
   },
   props: buttonProps,
   emits: buttonEmits,
@@ -111,7 +113,10 @@ export default defineComponent({
           class={bem('prefix-icon')}
           name={props.icon}
         />
-        <span class={bem('legend')}>{props.legend}</span>
+        <button-legend
+          class={bem('legend')}
+          legend={props.legend}
+        />
         <button-icon
           class={bem('suffix-icon')}
           data-knob={knob.value}

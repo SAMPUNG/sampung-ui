@@ -1,4 +1,4 @@
-import { RichText } from '@/types'
+import { LangOption, RichText } from '@/types'
 
 export const ALPHABET = [
   {
@@ -211,6 +211,21 @@ export const ALPHABET_TABS = [
   {
     legend: 'Tab Z',
     name: 'z',
+  },
+]
+
+export const LANGUAGE: LangOption[] = [
+  {
+    legend: 'Chinese',
+    name: 'zh',
+  },
+  {
+    legend: 'English',
+    name: 'en',
+  },
+  {
+    legend: 'Korean',
+    name: 'kr',
   },
 ]
 

@@ -3,6 +3,7 @@ import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import { createNamespace, resolveDataset, resolveUniqueId } from '@/utils'
 
 import OptionIcon from '@/components/icon/icon.component'
+import OptionLegend from '@/components/legend/legend.component'
 
 import selectEmits from './options.emits'
 import selectProps from './options.props'
@@ -18,7 +19,10 @@ const bem = createNamespace('options')
 
 export default defineComponent({
   name: bem(),
-  components: { OptionIcon },
+  components: {
+    OptionIcon,
+    OptionLegend,
+  },
   props: selectProps,
   emits: selectEmits,
   setup(props, context) {
@@ -79,7 +83,12 @@ export default defineComponent({
       )
     }
     const renderLegend = (option: OptionRecord) => {
-      return <span class={bem('legend')}>{option?.legend || option.name}</span>
+      return (
+        <option-legend
+          class={bem('legend')}
+          legend={option?.legend || option.name}
+        />
+      )
     }
     const renderOptions = () => {
       if (!props.options.length) {

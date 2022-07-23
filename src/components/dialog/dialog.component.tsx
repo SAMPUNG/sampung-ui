@@ -2,6 +2,7 @@ import { defineComponent, ref, watch } from 'vue'
 
 import DialogButton from '@/components/button/button.component'
 import DialogIcon from '@/components/icon/icon.component'
+import DialogLegend from '@/components/legend/legend.component'
 
 import { createNamespace, resolveUniqueId } from '@/utils'
 
@@ -16,6 +17,7 @@ export default defineComponent({
   components: {
     DialogButton,
     DialogIcon,
+    DialogLegend,
   },
   inheritAttrs: false,
   props: dialogProps,
@@ -96,7 +98,10 @@ export default defineComponent({
               class={bem('icon')}
               name={props.icon}
             />
-            <span class={bem('legend')}>{props.legend}</span>
+            <dialog-legend
+              class={bem('legend')}
+              legend={props.legend}
+            />
           </div>
           <div class={bem('controls')}>{renderClose()}</div>
         </header>

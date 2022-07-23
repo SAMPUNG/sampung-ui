@@ -3,6 +3,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 import MenuTelescope from '@/components/telescope/telescope.component'
 import MenuIcon from '@/components/icon/icon.component'
+import MenuLegend from '@/components/legend/legend.component'
 import { createNamespace, resolveDataset } from '@/utils'
 
 import menuEmits from './menu.emits'
@@ -17,6 +18,7 @@ export default defineComponent({
   components: {
     MenuTelescope,
     MenuIcon,
+    MenuLegend,
   },
   props: menuProps,
   emits: menuEmits,
@@ -126,7 +128,10 @@ export default defineComponent({
           class={bem('icon')}
           name={option.icon}
         />
-        <span class={bem('legend')}>{option.legend}</span>
+        <menu-legend
+          class={bem('legend')}
+          legend={option.legend}
+        />
       </a>
     )
     const renderSubmenu = (subitems: MenuOption[]) => {

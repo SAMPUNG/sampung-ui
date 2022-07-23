@@ -10,6 +10,11 @@ export declare type Dataset = Record<string, Regular>
 
 export declare type I18n = Record<Language, string>
 
+export declare type LangOption = {
+  legend: string
+  name: Language
+}
+
 export declare type LangRecord = Record<string, I18n>
 
 export declare type Language = 'en' | 'kr' | 'zh'

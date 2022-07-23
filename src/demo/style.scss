@@ -124,6 +124,15 @@
   }
 }
 
+.sam-legend-demo {
+  color: var(--primary);
+  line-height: 400px;
+
+  &-text::before {
+    content: attr(attr(--lang));
+  }
+}
+
 .sam-marquee-demo {
   &-display {
     padding: 64px 0;

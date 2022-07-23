@@ -4,6 +4,7 @@ import { createNamespace } from '@/utils'
 
 import TelescopeButton from '@/components/button/button.component'
 import TelescopeIcon from '@/components/icon/icon.component'
+import TelescopeLegend from '@/components/legend/legend.component'
 
 import telescopeEmits from './telescope.emits'
 import telescopeProps from './telescope.props'
@@ -16,6 +17,7 @@ export default defineComponent({
   components: {
     TelescopeButton,
     TelescopeIcon,
+    TelescopeLegend,
   },
   props: telescopeProps,
   emits: telescopeEmits,
@@ -88,7 +90,10 @@ export default defineComponent({
               class={bem('icon')}
               name={props.icon}
             />
-            <span class={bem('legend')}>{props.legend}</span>
+            <telescope-legend
+              class={bem('legend')}
+              legend={props.legend}
+            />
           </div>
           <div class={bem('controls')}>{renderControls()}</div>
         </header>

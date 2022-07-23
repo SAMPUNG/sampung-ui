@@ -4,6 +4,7 @@ import { createNamespace } from '@/utils'
 import type { Style } from '@/types'
 
 import AffixIcon from '@/components/icon/icon.component'
+import AffixLegend from '@/components/legend/legend.component'
 
 import affixEmits from './affix.emits'
 import affixProps from './affix.props'
@@ -13,7 +14,10 @@ const bem = createNamespace('affix')
 
 export default defineComponent({
   name: bem(),
-  components: { AffixIcon },
+  components: {
+    AffixIcon,
+    AffixLegend,
+  },
   props: affixProps,
   emits: affixEmits,
   setup(props, context) {
@@ -36,7 +40,10 @@ export default defineComponent({
               class={bem('icon')}
               name={props.icon}
             />
-            <span class={bem('legend')}>{props.legend}</span>
+            <affix-legend
+              class={bem('legend')}
+              legend={props.legend}
+            />
           </div>
         )
       }

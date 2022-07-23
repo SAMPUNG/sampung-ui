@@ -70,6 +70,11 @@ export default [
     path: 'icon-demo',
   },
   {
+    component: () => import('./core/legend'),
+    name: 'Legend',
+    path: 'legend-demo',
+  },
+  {
     component: () => import('./customs/marquee'),
     name: 'Marquee',
     path: 'marquee-demo',
