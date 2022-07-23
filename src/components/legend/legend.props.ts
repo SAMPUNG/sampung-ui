@@ -8,4 +8,9 @@ export default {
     required: false,
     type: [String, Object] as PropType<Legend>,
   },
+  tag: {
+    default: 'span',
+    required: false,
+    type: String,
+  },
 }

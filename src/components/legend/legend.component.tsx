@@ -11,10 +11,11 @@ export default defineComponent({
   props: legendProps,
   setup(props) {
     return () => {
+      const Legend = props.tag
       if (typeof props.legend === 'string') {
-        return <span>{props.legend}</span>
+        return <Legend>{props.legend}</Legend>
       }
-      return <span {...resolveI18n(props.legend)} />
+      return <Legend {...resolveI18n(props.legend)} />
     }
   },
 })

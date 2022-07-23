@@ -50,14 +50,8 @@ export default defineComponent({
       if (!props.target) {
         return ''
       }
-      const name = block + '-' + props.target
-      return (
-        <component
-          class={bem(props.target)}
-          is={name}
-          {...props.source}
-        />
-      )
+      const Target = block + '-' + props.target
+      return <Target {...props.source} />
     }
 
     watch(() => props.source, onUpdateSource, { deep: true })

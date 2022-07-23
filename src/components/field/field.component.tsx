@@ -1,6 +1,7 @@
 // import { defineComponent, inject, provide, ref } from 'vue'
 import { defineComponent, provide, reactive } from 'vue'
 
+import FieldLegend from '@/components/legend/legend.component'
 import { createNamespace, resolveDataset, validateEmpty } from '@/utils'
 
 // import { model } from '@/components/form/form.provide'
@@ -16,6 +17,7 @@ const bem = createNamespace('field')
 
 export default defineComponent({
   name: bem(),
+  components: { FieldLegend },
   props: fieldProps,
   emits: fieldEmits,
   setup(props, context) {
@@ -71,7 +73,11 @@ export default defineComponent({
         class={[bem()]}
         {...resolveDataset(status)}
       >
-        <legend class={bem('legend')}>{props.legend}</legend>
+        <field-legend
+          class={bem('legend')}
+          legend={props.legend}
+          tag="legend"
+        />
         {context.slots?.default?.()}
       </fieldset>
     )
