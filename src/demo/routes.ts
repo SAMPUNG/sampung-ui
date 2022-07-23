@@ -100,9 +100,9 @@ export default [
     path: 'select-demo',
   },
   {
-    component: () => import('./schemas/switch'),
-    name: 'Switch',
-    path: 'switch-demo',
+    component: () => import('./schemas/toggle'),
+    name: 'Toggle',
+    path: 'toggle-demo',
   },
   {
     component: () => import('./router/tabs'),

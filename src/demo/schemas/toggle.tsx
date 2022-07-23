@@ -3,7 +3,7 @@ import { defineComponent, ref } from 'vue'
 import { BOOLEAN } from '@/configs'
 import { createNamespace } from '@/utils'
 
-const bem = createNamespace('switch-demo')
+const bem = createNamespace('toggle-demo')
 
 export default defineComponent({
   name: bem(),
@@ -26,11 +26,11 @@ export default defineComponent({
           options={BOOLEAN}
         />
         <div style="height: 16px;" />
-        <sam-switch
+        <sam-toggle
           v-model={checked.value}
           disabled={disabled.value}
-          legend="Switch"
-          name="switch"
+          legend="Toggle"
+          name="toggle"
         />
       </div>
     )

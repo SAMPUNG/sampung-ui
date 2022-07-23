@@ -2,19 +2,19 @@ import { defineComponent } from 'vue'
 
 import { createNamespace, resolveDataset } from '@/utils'
 
-import switchEmits from './switch.emits'
-import switchProps from './switch.props'
-import './switch.scss'
+import toggleEmits from './toggle.emits'
+import toggleProps from './toggle.props'
+import './toggle.scss'
 
-const bem = createNamespace('switch')
+const bem = createNamespace('toggle')
 
 export default defineComponent({
   name: bem(),
-  props: switchProps,
-  emits: switchEmits,
+  props: toggleProps,
+  emits: toggleEmits,
   setup(props, context) {
     const onCheck = (checked: boolean = true): void => {
-      context.emit('select', props.name)
+      context.emit('toggle', props.name)
       context.emit('update:modelValue', checked)
     }
     const onClick = (): boolean => {
@@ -60,7 +60,7 @@ export default defineComponent({
           checked={props.modelValue}
           hidden
           name={props.name}
-          type="switch"
+          type="checkbox"
           value={props.modelValue}
         />
         {renderIcon()}

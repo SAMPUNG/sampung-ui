@@ -1,25 +1,19 @@
-button:not([data-appearance="text"]) {
-  height: var(--input);
-  line-height: var(--input);
-  padding: 0 8px;
-}
-button:not([data-appearance="fill"]):not(:hover) {
+button:not([data-appearance='fill']):not(:hover) {
   background: transparent;
 }
 
-
-[data-appearance="dashed"] {
+[data-appearance='dashed'] {
   outline-style: dashed;
   outline-width: 1px;
   outline-offset: -1px;
 
   &:hover {
     box-shadow: inset 0px 0px 16px 2px var(--shadow);
-    color:  var(--highlight);
+    color: var(--highlight);
   }
 }
 
-[data-appearance="fill"] {
+[data-appearance='fill'] {
   color: var(--highlight);
   outline-color: var(--border);
   outline-style: solid;
@@ -28,19 +22,19 @@ button:not([data-appearance="fill"]):not(:hover) {
 
   &:hover {
     box-shadow: inset 0px 0px 8px 4px var(--shadow);
-    color:  var(--highlight);
+    color: var(--highlight);
     outline-width: 1px;
   }
 }
 
-[data-appearance="legacy"] {
+[data-appearance='legacy'] {
   outline-style: solid;
   outline-width: 1px;
   outline-offset: -1px;
 
   &:hover {
     box-shadow: inset 0px 0px 16px 2px var(--shadow);
-    color:  var(--highlight);
+    color: var(--highlight);
   }
   &:hover::before {
     height: 100%;
@@ -59,18 +53,18 @@ button:not([data-appearance="fill"]):not(:hover) {
   }
 }
 
-[data-appearance="outline"] {
+[data-appearance='outline'] {
   outline-style: solid;
   outline-width: 1px;
   outline-offset: -1px;
 
   &:hover {
     box-shadow: inset 0px 0px 16px 2px var(--shadow);
-    color:  var(--highlight);
+    color: var(--highlight);
   }
 }
 
-[data-appearance="text"] {
+[data-appearance='text'] {
   border: none;
   display: inline;
   padding: 0;

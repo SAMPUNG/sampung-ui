@@ -1,9 +1,13 @@
 .sam-button {
   border: none;
-  border-radius: 0;
+  border-radius: 2px;
   box-sizing: border-box;
   cursor: pointer;
+  height: 36px;
+  line-height: 36px;
+  min-width: 64px;
   overflow: hidden;
+  padding: 0 8px;
   position: relative;
 
   &:hover {
@@ -18,16 +22,16 @@
     margin: 0 0 0 4px;
   }
 
-  &[data-mode="knob"] &-prefix-icon,
-  &[data-mode="switch"] &-prefix-icon {
+  &[data-mode='knob'] &-prefix-icon,
+  &[data-mode='switch'] &-prefix-icon {
     display: none;
   }
-  &[data-mode="knob"] &-suffix-icon,
-  &[data-mode="switch"] &-suffix-icon {
+  &[data-mode='knob'] &-suffix-icon,
+  &[data-mode='switch'] &-suffix-icon {
     display: inherit;
     transition-duration: 0.5s;
 
-    &[data-knob="true"] {
+    &[data-knob='true'] {
       transform: rotate(180deg);
     }
   }
