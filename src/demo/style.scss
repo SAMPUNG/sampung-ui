@@ -124,6 +124,12 @@
   }
 }
 
+.sam-marquee-demo {
+  &-display {
+    padding: 64px 0;
+  }
+}
+
 .sam-menu-demo {
   height: calc(100vh - 64px);
 

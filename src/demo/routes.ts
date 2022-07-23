@@ -70,6 +70,11 @@ export default [
     path: 'icon-demo',
   },
   {
+    component: () => import('./customs/marquee'),
+    name: 'Marquee',
+    path: 'marquee-demo',
+  },
+  {
     component: () => import('./router/menu'),
     name: 'Menu',
     path: 'menu-demo',
