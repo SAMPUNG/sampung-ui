@@ -1,9 +1,16 @@
 // Theme: Faiz
 :root {
+  // Color
+  --secondary: #009688;
+  --secondary-darker: #b2dfdb;
+  --secondary-lighter: #00796b;
+  --primary: #f44336;
+  --primary-darker: #d32f2f;
+  --primary-lighter: #ffcdd2;
   // Color: Palette
   --error: teal;
-  --primary: crimson;
-  --secondary: fuchsia;
+  // --primary: crimson;
+  // --secondary: fuchsia;
   --success: forestgreen;
   --warning: tomato;
   // Size
@@ -21,9 +28,9 @@
   --bg-popup: #424242;
   --bg-system: black;
   // Color: Text
-  --irrelevant-text: rgba(0, 0, 0, 0.5);
+  --irrelevant-text: rgba(255, 255, 255, 0.5);
   --primary-text: white;
-  --secondary-text: rgba(0, 0, 0, 0.7);
+  --secondary-text: rgba(255, 255, 255, 0.7);
 
   // Color: Base
   --background: #212121;

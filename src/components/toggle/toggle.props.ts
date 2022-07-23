@@ -13,4 +13,14 @@ export default {
     required: false,
     type: Boolean,
   },
+  offIcon: {
+    default: 'radio-button-off',
+    required: false,
+    type: String,
+  },
+  onIcon: {
+    default: 'radio-button-on',
+    required: false,
+    type: String,
+  },
 }

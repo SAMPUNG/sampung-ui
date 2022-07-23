@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
 
+import ToggleIcon from '@/components/icon/icon.component'
 import { createNamespace, resolveDataset } from '@/utils'
 
 import toggleEmits from './toggle.emits'
@@ -10,6 +11,7 @@ const bem = createNamespace('toggle')
 
 export default defineComponent({
   name: bem(),
+  components: { ToggleIcon },
   props: toggleProps,
   emits: toggleEmits,
   setup(props, context) {
@@ -36,7 +38,10 @@ export default defineComponent({
           class={bem()}
           {...dataset}
         >
-          <span class={bem('control')} />
+          <toggle-icon
+            class={bem('control')}
+            name={props.modelValue ? props.onIcon : props.offIcon}
+          />
         </span>
       )
     }

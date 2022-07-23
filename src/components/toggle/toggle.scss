@@ -1,5 +1,5 @@
 .sam-toggle {
-  background-color: rgba(255, 255, 255, 70%);
+  background-color: var(--secondary-text);
   border-radius: 0.5em;
   cursor: pointer;
   display: inline-block;
@@ -10,25 +10,29 @@
   width: 2em;
 
   &[data-checked] {
-    background-color: var(--secondary);
+    background-color: var(--primary-lighter);
   }
   &[data-checked] &-control {
     background-color: var(--primary);
+    color: var(--text);
     left: 1.4em;
   }
   &[data-disabled] {
-    background-color: rgba(255, 255, 255, 30%);
+    background-color: var(--irrelevant-text);
     cursor: not-allowed;
   }
   &[data-disabled] &-control {
-    background-color: var(--text);
+    background-color: var(--primary-darker);
+    color: var(--irrelevant-text);
   }
 
   &-control {
     background-color: var(--text);
     border-radius: 0.6em;
+    color: var(--primary);
     height: 1.2em;
     left: -0.6em;
+    line-height: 1.2em;
     position: absolute;
     top: -0.1em;
     transition-duration: 0.5s;

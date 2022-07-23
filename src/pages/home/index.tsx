@@ -1,10 +1,10 @@
 import { defineComponent, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { createNamespace } from '@/utils'
-
-import DEMO_MENU from '@/demo/routes'
 import type { MenuValue } from '@/components/menu/menu.interface'
+import DEMO_MENU from '@/demo/routes'
+import { DARK_MODE } from '@/i18n'
+import { createNamespace } from '@/utils'
 
 import './style.scss'
 
@@ -42,8 +42,8 @@ export default defineComponent({
         >
           <sam-button
             class={bem('mode')}
-            icon="adjust"
-            legend="Click To Change Mode"
+            icon={dark.value ? 'dark-mode' : 'light-mode'}
+            legend={DARK_MODE}
             onClick={changeMode}
             palette="primary"
           />
