@@ -50,8 +50,8 @@ export default defineComponent({
       if (!props.target) {
         return ''
       }
-      const Target = block + '-' + props.target
-      return <Target {...props.source} />
+      const LatheTarget = block + '-' + props.target
+      return <LatheTarget {...props.source} />
     }
 
     watch(() => props.source, onUpdateSource, { deep: true })
