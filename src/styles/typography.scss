@@ -1,0 +1,175 @@
+// :root {
+//   font-family: Roboto, Noto, sans-serif;
+// }
+
+// English & English-like
+// af
+:root:lang(en) {
+  .display-4 {
+    font-family: Roboto-Light;
+    font-size: 112sp;
+  }
+  .display-3 {
+    font-family: Roboto-Regular;
+    font-size: 56sp;
+  }
+  .display-2 {
+    font-family: Roboto-Regular;
+    font-size: 45sp;
+    line-height: 48sp;
+  }
+  .display-14 {
+    font-family: Roboto-Regular;
+    font-size: 34sp;
+    line-height: 40sp;
+  }
+  .headline {
+    font-family: Roboto-Regular;
+    font-size: 24sp;
+    line-height: 32sp;
+  }
+  .title {
+    font-family: Roboto-Medium;
+    font-size: 20sp;
+  }
+  .sub-heading {
+    font-family: Roboto-Regular;
+    font-size: 15sp;
+    // Mobile: 16sp
+    line-height: 28sp;
+  }
+  .body-2 {
+    font-family: Roboto-Medium;
+    font-size: 13sp;
+    // Mobile: 14sp
+    line-height: 24sp;
+  }
+  .body-1 {
+    font-family: Roboto-Regular;
+    font-size: 13sp;
+    // Mobile: 14sp
+    line-height: 20sp;
+  }
+  .caption {
+    font-family: Roboto-Regular;
+    font-size: 12sp;
+  }
+  .button {
+    font-family: Roboto-Medium;
+    font-size: 14sp;
+  }
+}
+
+// Dense
+:root:lang(kr) {
+  .display-4 {
+    font-family: Noto-Light;
+    font-size: 112sp;
+  }
+  .display-3 {
+    font-family: Noto-Regular;
+    font-size: 56sp;
+  }
+  .display-2 {
+    font-family: Noto-Regular;
+    font-size: 45sp;
+    line-height: 63sp;
+  }
+  .display-14 {
+    font-family: Noto-Regular;
+    font-size: 34sp;
+    line-height: 48sp;
+  }
+  .headline {
+    font-family: Noto-Regular;
+    font-size: 24sp;
+    line-height: 34sp;
+  }
+  .title {
+    font-family: Noto-Medium;
+    font-size: 21sp;
+  }
+  .sub-heading {
+    font-family: Noto-Regular;
+    font-size: 16sp;
+    // Mobile: 17sp
+    line-height: 30sp;
+  }
+  .body-2 {
+    font-family: Noto-Medium;
+    font-size: 14sp;
+    // Mobile: 15sp
+    line-height: 26sp;
+  }
+  .body-1 {
+    font-family: Noto-Regular;
+    font-size: 14sp;
+    // Mobile: 15sp
+    line-height: 23sp;
+  }
+  .caption {
+    font-family: Noto-Regular;
+    font-size: 13sp;
+  }
+  .button {
+    font-family: Noto-Medium;
+    font-size: 15sp;
+  }
+}
+
+// Tall
+:root:lang(kr) {
+  .display-4 {
+    font-family: Noto-Regular;
+    font-size: 112sp;
+  }
+  .display-3 {
+    font-family: Noto-Regular;
+    font-size: 56sp;
+  }
+  .display-2 {
+    font-family: Noto-Regular;
+    font-size: 45sp;
+    line-height: 63sp;
+  }
+  .display-14 {
+    font-family: Noto-Regular;
+    font-size: 34sp;
+    line-height: 48sp;
+  }
+  .headline {
+    font-family: Noto-Regular;
+    font-size: 24sp;
+    line-height: 34sp;
+  }
+  .title {
+    font-family: Noto-Bold;
+    font-size: 21sp;
+  }
+  .sub-heading {
+    font-family: Noto-Regular;
+    font-size: 16sp;
+    // Mobile: 17sp
+    line-height: 30sp;
+  }
+  .body-2 {
+    font-family: Noto-Bold;
+    font-size: 14sp;
+    // Mobile: 15sp
+    line-height: 26sp;
+  }
+  .body-1 {
+    font-family: Noto-Regular;
+    font-size: 14sp;
+    // Mobile: 15sp
+    line-height: 23sp;
+  }
+  .caption {
+    font-family: Noto-Regular;
+    font-size: 13sp;
+  }
+  .button {
+    font-family: Noto-Bold;
+    font-size: 15sp;
+  }
+}

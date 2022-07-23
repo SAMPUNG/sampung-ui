@@ -13,6 +13,18 @@
 }
 // Mode: Dark
 :root[data-mode='dark'] {
+  // Color
+  --divider: rgba(255, 255, 255, 0.12);
+  // Color: Background
+  --bg-content: #303030;
+  --bg-nav: #212121;
+  --bg-popup: #424242;
+  --bg-system: black;
+  // Color: Text
+  --irrelevant-text: rgba(0, 0, 0, 0.5);
+  --primary-text: white;
+  --secondary-text: rgba(0, 0, 0, 0.7);
+
   // Color: Base
   --background: #212121;
   --border: #dedede;
@@ -33,6 +45,18 @@
 }
 // Mode: Light
 :root[data-mode='light'] {
+  // Color
+  --divider: rgba(0, 0, 0, 0.12);
+  // Color: Background
+  --bg-content: #fafafa;
+  --bg-nav: #f5f5f5;
+  --bg-popup: #ffffff;
+  --bg-system: #e0e0e0;
+  // Color: Text
+  --irrelevant-text: rgba(0, 0, 0, 0.38);
+  --primary-text: black;
+  --secondary-text: rgba(0, 0, 0, 0.54);
+
   // Color: Base
   --background: white;
   --border: #212121;

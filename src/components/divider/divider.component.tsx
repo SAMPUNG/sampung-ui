@@ -2,9 +2,9 @@ import { defineComponent } from 'vue'
 
 import { createNamespace } from '@/utils'
 
-import './empty.scss'
+import './divider.scss'
 
-const bem = createNamespace('empty')
+const bem = createNamespace('divider')
 
 export default defineComponent({
   name: bem(),

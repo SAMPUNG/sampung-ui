@@ -45,6 +45,11 @@ export default [
     path: 'dialog-demo',
   },
   {
+    component: () => import('./tools/divider'),
+    name: 'Divider',
+    path: 'divider-demo',
+  },
+  {
     component: () => import('./router/dropdown'),
     name: 'Dropdown',
     path: 'dropdown-demo',
